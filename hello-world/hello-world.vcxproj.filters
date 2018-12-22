@@ -4,4 +4,28 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{53f2a6e2-8328-48d1-afe7-8cfa96b0a4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Vectors">
+      <UniqueIdentifier>{a96b622b-142e-4fb8-a13d-4c47337b4a27}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vector2.h">
+      <Filter>Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Math\Vectors</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vector2.inl">
+      <Filter>Math\Vectors</Filter>
+    </None>
+    <None Include="Vector.inl">
+      <Filter>Math\Vectors</Filter>
+    </None>
+  </ItemGroup>
 </Project>
