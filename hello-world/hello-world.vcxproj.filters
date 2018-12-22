@@ -11,6 +11,9 @@
     <Filter Include="Math\Vectors">
       <UniqueIdentifier>{a96b622b-142e-4fb8-a13d-4c47337b4a27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{cfff007e-c781-43fd-a4e2-f39c4f0c4a79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2.h">
@@ -18,6 +21,9 @@
     </ClInclude>
     <ClInclude Include="Vector.h">
       <Filter>Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Array.h">
+      <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
