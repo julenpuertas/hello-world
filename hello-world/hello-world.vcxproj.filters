@@ -25,6 +25,7 @@
     <ClInclude Include="Array.h">
       <Filter>Containers</Filter>
     </ClInclude>
+    <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">
@@ -33,5 +34,6 @@
     <None Include="Vector.inl">
       <Filter>Math\Vectors</Filter>
     </None>
+    <None Include="Vector3.inl" />
   </ItemGroup>
 </Project>

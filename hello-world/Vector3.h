@@ -1,18 +1,19 @@
 #pragma once
 #include "Vector.h"
-#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 
-template<typename T> struct Vector<T, 2> : public glm::tvec2<T>
+template<typename T> struct Vector<T, 3> : public glm::tvec3<T>
 {
-	using iterator = T *;
+	using iterator = T * ;
 	using const_iterator = const T *;
 
 	template <typename ... Args> explicit Vector(Args&& ... args);
-	template <typename U, glm::precision P> Vector(glm::tvec2<U, P>&& rhs);
+	template <typename U, glm::precision P> Vector(glm::tvec3<U, P>&& rhs);
 
 	T square_modulus() const;
 	T modulus() const;
-	T dot(const Vector<T, 2>& rhs) const;
+	T dot(const Vector<T, 3>& rhs) const;
+	Vector<T, 3> cross(const Vector<T, 3>& rhs) const;
 
 	iterator begin();
 	iterator end();
@@ -22,4 +23,4 @@ template<typename T> struct Vector<T, 2> : public glm::tvec2<T>
 	const_iterator cend() const;
 };
 
-#include "Vector2.inl"
+#include "Vector3.inl"
