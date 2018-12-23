@@ -1,13 +1,14 @@
 #pragma once
 
 #include "Array.h"
+#include <glm/gtc/vec1.hpp>
 
-template <typename T, size_t N>
-class Vector : public Array<T, N>
+template <typename T, size_t N> class Vector : public Array<T, N>
 {
+	explicit Vector(glm::ctor uninitialize_flag);
+
 public:
-	Vector() = default;
-	template <typename U> explicit Vector(const U& default_value);
+	template <typename U> explicit Vector(const U& default_value = U());
 	Vector operator+(const Vector& rhs) const;
 };
 

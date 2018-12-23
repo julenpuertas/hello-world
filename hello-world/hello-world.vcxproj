@@ -187,14 +187,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
+    <ClInclude Include="Byte.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Matrix3.h" />
+    <ClInclude Include="Matrix3x4.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
+    <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Matrix.inl" />
+    <None Include="Matrix3.inl" />
+    <None Include="Matrix3x4.inl" />
     <None Include="Vector.inl" />
     <None Include="Vector2.inl" />
     <None Include="Vector3.inl" />
+    <None Include="Vector4.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
