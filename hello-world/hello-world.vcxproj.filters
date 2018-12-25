@@ -57,7 +57,7 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Pair.h" />
-    <ClInclude Include="VectorAdapter.h">
+    <ClInclude Include="ExtendedGLMVector.h">
       <Filter>Math\Vectors</Filter>
     </ClInclude>
   </ItemGroup>
@@ -87,7 +87,7 @@
     <None Include="Epsilon.inl">
       <Filter>Math</Filter>
     </None>
-    <None Include="VectorAdapter.inl">
+    <None Include="ExtendedGLMVector.inl">
       <Filter>Math\Vectors</Filter>
     </None>
   </ItemGroup>

@@ -8,15 +8,15 @@ namespace Engine
 	namespace Math
 	{
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename BaseT, glm::precision P = glm::defaultp>
-		struct VectorAdapter : public BaseT<T, P>
+		struct ExtendedGLMVector : public BaseT<T, P>
 		{
 			using iterator = T * ;
 			using const_iterator = const T *;
 
 			static const size_t SIZE = N;
 
-			template <typename ... Args> explicit VectorAdapter(Args&& ... args);
-			explicit VectorAdapter(Axis axis);
+			template <typename ... Args> explicit ExtendedGLMVector(Args&& ... args);
+			explicit ExtendedGLMVector(Axis axis);
 
 			T& operator[](size_t index);
 			const T& operator[](size_t index) const;
@@ -43,4 +43,4 @@ namespace Engine
 	}
 }
 
-#include "VectorAdapter.inl"
+#include "ExtendedGLMVector.inl"

@@ -200,7 +200,7 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
-    <ClInclude Include="VectorAdapter.h" />
+    <ClInclude Include="ExtendedGLMVector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Epsilon.inl" />
@@ -212,7 +212,7 @@
     <None Include="Vector2.inl" />
     <None Include="Vector3.inl" />
     <None Include="Vector4.inl" />
-    <None Include="VectorAdapter.inl" />
+    <None Include="ExtendedGLMVector.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

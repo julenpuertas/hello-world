@@ -1,13 +1,13 @@
 #pragma once
 #include "Vector.h"
-#include "VectorAdapter.h"
+#include "ExtendedGLMVector.h"
 #include <glm/vec2.hpp>
 
 namespace Engine
 {
 	namespace Math
 	{
-		template<typename T> struct Vector<T, 2> : public VectorAdapter<Vector, T, 2, glm::tvec2>
+		template<typename T> struct Vector<T, 2> : public ExtendedGLMVector<Vector, T, 2, glm::tvec2>
 		{
 			static const Vector<T, 2> RIGHT;
 			static const Vector<T, 2> UP;
