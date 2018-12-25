@@ -1,0 +1,6 @@
+namespace Engine
+{
+	namespace Math
+	{
+	}
+}

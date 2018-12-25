@@ -3,6 +3,9 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Rotation.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -44,6 +47,16 @@
     <ClInclude Include="Matrix3x4.h">
       <Filter>Math\Matrices</Filter>
     </ClInclude>
+    <ClInclude Include="Rotation.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Epsilon.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Axis.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Pair.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">
@@ -66,6 +79,10 @@
     </None>
     <None Include="Matrix3x4.inl">
       <Filter>Math\Matrices</Filter>
+    </None>
+    <None Include="Pair.inl" />
+    <None Include="Epsilon.inl">
+      <Filter>Math</Filter>
     </None>
   </ItemGroup>
 </Project>
