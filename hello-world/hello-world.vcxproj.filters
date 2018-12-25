@@ -57,6 +57,9 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Pair.h" />
+    <ClInclude Include="VectorAdapter.h">
+      <Filter>Math\Vectors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">
@@ -83,6 +86,9 @@
     <None Include="Pair.inl" />
     <None Include="Epsilon.inl">
       <Filter>Math</Filter>
+    </None>
+    <None Include="VectorAdapter.inl">
+      <Filter>Math\Vectors</Filter>
     </None>
   </ItemGroup>
 </Project>
