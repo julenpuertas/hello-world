@@ -1,4 +1,3 @@
-#include <glm/gtx/norm.hpp>
 
 namespace Engine
 {

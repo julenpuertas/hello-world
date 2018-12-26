@@ -18,7 +18,7 @@ namespace Engine
 			using iterator = T * ;
 			using const_iterator = const T *;
 
-			static const size_t SIZE = N;
+			static constexpr size_t SIZE = N;
 
 			T& operator[](size_t index);
 			const T& operator[](size_t index) const;
@@ -30,6 +30,7 @@ namespace Engine
 			T dot(const VectorT<T, N>& rhs) const;
 			void normalize();
 			VectorT<T, N> get_normalized() const;
+			VectorT<T, N> get_absolute() const;
 
 			bool is_all_true() const;
 			bool is_zero(const T& epsilon = get_epsilon<T>()) const;

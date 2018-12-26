@@ -100,11 +100,11 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -122,11 +122,11 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -148,11 +148,11 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,11 +174,11 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -191,6 +191,7 @@
     <ClInclude Include="Axis.h" />
     <ClInclude Include="Byte.h" />
     <ClInclude Include="Epsilon.h" />
+    <ClInclude Include="ExtendedGLMMatrix.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Matrix3.h" />
     <ClInclude Include="Matrix3x4.h" />
@@ -204,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Epsilon.inl" />
+    <None Include="ExtendedGLMMatrix.inl" />
     <None Include="Matrix.inl" />
     <None Include="Matrix3.inl" />
     <None Include="Matrix3x4.inl" />

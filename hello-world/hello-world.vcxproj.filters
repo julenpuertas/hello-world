@@ -60,6 +60,9 @@
     <ClInclude Include="ExtendedGLMVector.h">
       <Filter>Math\Vectors</Filter>
     </ClInclude>
+    <ClInclude Include="ExtendedGLMMatrix.h">
+      <Filter>Math\Matrices</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">
@@ -89,6 +92,9 @@
     </None>
     <None Include="ExtendedGLMVector.inl">
       <Filter>Math\Vectors</Filter>
+    </None>
+    <None Include="ExtendedGLMMatrix.inl">
+      <Filter>Math\Matrices</Filter>
     </None>
   </ItemGroup>
 </Project>

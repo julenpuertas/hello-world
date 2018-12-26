@@ -1,4 +1,3 @@
-#include <glm/gtc/epsilon.hpp>
 #include "Rotation.h"
 
 namespace Engine
@@ -114,5 +113,4 @@ namespace Engine
 	{
 		return glm::mat3_cast(quaternion_);
 	}
-
 }

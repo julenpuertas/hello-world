@@ -1,3 +1,4 @@
+#include <glm/gtx/norm.hpp>
 
 namespace Engine
 {
@@ -78,23 +79,27 @@ namespace Engine
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename BaseT, glm::precision P>
+		VectorT<T, N> ExtendedGLMVector<VectorT, T, N, BaseT, P>::get_absolute() const
+		{
+			return glm::abs(*this);
+		}
+
+		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename BaseT, glm::precision P>
 		bool ExtendedGLMVector<VectorT, T, N, BaseT, P>::is_all_true() const
 		{
-			return glm::all(*this);
+			return (*this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename BaseT, glm::precision P>
 		bool ExtendedGLMVector<VectorT, T, N, BaseT, P>::is_zero(const T& epsilon) const
 		{
-			const VectorT<bool, N> result = glm::epsilonEqual(*this, glm::zero<BaseT<T, P> >(), epsilon);
-			return result.is_all_true();
+			return is_equal(glm::zero<BaseT<T, P> >(), epsilon);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename BaseT, glm::precision P>
 		bool ExtendedGLMVector<VectorT, T, N, BaseT, P>::is_equal(const VectorT<T, N>& rhs, const T& epsilon) const
 		{
-			const ExtendedGLMVector<VectorT, bool, N, BaseT> result = glm::epsilonEqual(*this, rhs, epsilon);
-			return result.is_all_true();
+			return glm::all(glm::epsilonEqual(*this, rhs, epsilon));
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename BaseT, glm::precision P>
