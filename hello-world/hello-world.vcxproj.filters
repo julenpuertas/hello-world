@@ -11,42 +11,27 @@
     <Filter Include="Math">
       <UniqueIdentifier>{53f2a6e2-8328-48d1-afe7-8cfa96b0a4fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Math\Vectors">
-      <UniqueIdentifier>{a96b622b-142e-4fb8-a13d-4c47337b4a27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Containers">
       <UniqueIdentifier>{cfff007e-c781-43fd-a4e2-f39c4f0c4a79}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Math\Matrices">
+    <Filter Include="Math\Vector">
+      <UniqueIdentifier>{a96b622b-142e-4fb8-a13d-4c47337b4a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Matrix">
       <UniqueIdentifier>{67d3069f-8bdb-490d-97da-95f69af37700}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Vector2.h">
-      <Filter>Math\Vectors</Filter>
-    </ClInclude>
     <ClInclude Include="Vector.h">
-      <Filter>Math\Vectors</Filter>
+      <Filter>Math\Vector</Filter>
     </ClInclude>
     <ClInclude Include="Array.h">
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="Matrix.h">
-      <Filter>Math\Matrices</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix3.h">
-      <Filter>Math\Matrices</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Math\Vectors</Filter>
+      <Filter>Math\Matrix</Filter>
     </ClInclude>
     <ClInclude Include="Byte.h" />
-    <ClInclude Include="Vector4.h">
-      <Filter>Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix3x4.h">
-      <Filter>Math\Matrices</Filter>
-    </ClInclude>
     <ClInclude Include="Rotation.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -58,43 +43,28 @@
     </ClInclude>
     <ClInclude Include="Pair.h" />
     <ClInclude Include="ExtendedGLMVector.h">
-      <Filter>Math\Vectors</Filter>
+      <Filter>Math\Vector</Filter>
     </ClInclude>
     <ClInclude Include="ExtendedGLMMatrix.h">
-      <Filter>Math\Matrices</Filter>
+      <Filter>Math\Matrix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Vector2.inl">
-      <Filter>Math\Vectors</Filter>
-    </None>
     <None Include="Vector.inl">
-      <Filter>Math\Vectors</Filter>
+      <Filter>Math\Vector</Filter>
     </None>
     <None Include="Matrix.inl">
-      <Filter>Math\Matrices</Filter>
-    </None>
-    <None Include="Matrix3.inl">
-      <Filter>Math\Matrices</Filter>
-    </None>
-    <None Include="Vector3.inl">
-      <Filter>Math\Vectors</Filter>
-    </None>
-    <None Include="Vector4.inl">
-      <Filter>Math\Vectors</Filter>
-    </None>
-    <None Include="Matrix3x4.inl">
-      <Filter>Math\Matrices</Filter>
+      <Filter>Math\Matrix</Filter>
     </None>
     <None Include="Pair.inl" />
     <None Include="Epsilon.inl">
       <Filter>Math</Filter>
     </None>
     <None Include="ExtendedGLMVector.inl">
-      <Filter>Math\Vectors</Filter>
+      <Filter>Math\Vector</Filter>
     </None>
     <None Include="ExtendedGLMMatrix.inl">
-      <Filter>Math\Matrices</Filter>
+      <Filter>Math\Matrix</Filter>
     </None>
   </ItemGroup>
 </Project>

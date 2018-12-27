@@ -1,8 +1,8 @@
 #pragma once
 #include <glm\gtc\quaternion.hpp>
 #include "Pair.h"
-#include "Vector3.h"
-#include "Matrix3.h"
+#include "Vector.h"
+#include "Matrix.h"
 
 namespace Engine
 {

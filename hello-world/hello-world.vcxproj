@@ -193,27 +193,17 @@
     <ClInclude Include="Epsilon.h" />
     <ClInclude Include="ExtendedGLMMatrix.h" />
     <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Matrix3.h" />
-    <ClInclude Include="Matrix3x4.h" />
     <ClInclude Include="Pair.h" />
     <ClInclude Include="Rotation.h" />
     <ClInclude Include="Vector.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Vector3.h" />
-    <ClInclude Include="Vector4.h" />
     <ClInclude Include="ExtendedGLMVector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Epsilon.inl" />
     <None Include="ExtendedGLMMatrix.inl" />
     <None Include="Matrix.inl" />
-    <None Include="Matrix3.inl" />
-    <None Include="Matrix3x4.inl" />
     <None Include="Pair.inl" />
     <None Include="Vector.inl" />
-    <None Include="Vector2.inl" />
-    <None Include="Vector3.inl" />
-    <None Include="Vector4.inl" />
     <None Include="ExtendedGLMVector.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
