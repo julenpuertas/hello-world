@@ -52,6 +52,7 @@ namespace Engine
 	}
 
 	using FVector3 = Math::Vector<float, 3>;
+	using FVector4 = Math::Vector<float, 4>;
 }
 
 #include "Vector.inl"

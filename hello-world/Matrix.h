@@ -7,7 +7,7 @@ namespace Engine
 {
 	namespace Math
 	{
-		template<typename T, size_t ROW_COUNT, size_t COLUMN_COUNT = ROW_COUNT> class Matrix
+		template<typename T, size_t ROW_COUNT, size_t COLUMN_COUNT> class Matrix
 		{
 		};
 
@@ -26,6 +26,7 @@ namespace Engine
 	}
 
 	using FMatrix3 = Math::Matrix<float, 3, 3>;
+	using FMatrix3x4 = Math::Matrix<float, 3, 4>;
 }
 
 #include "Matrix.inl"

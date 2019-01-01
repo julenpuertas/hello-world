@@ -16,8 +16,8 @@ namespace Engine
 			using iterator = T * ;
 			using const_iterator = const T *;
 
-			static constexpr size_t WIDTH = M;
-			static constexpr size_t HEIGTH = N;
+			static constexpr size_t WIDTH = N;
+			static constexpr size_t HEIGTH = M;
 
 			T get_trace() const;
 			T get_determinant() const;

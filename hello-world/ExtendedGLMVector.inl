@@ -1,4 +1,5 @@
 #include <glm/gtx/norm.hpp>
+#include "ExtendedGLMVector.h"
 
 namespace Engine
 {

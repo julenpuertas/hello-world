@@ -6,6 +6,7 @@
     <ClCompile Include="Rotation.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -48,6 +49,7 @@
     <ClInclude Include="ExtendedGLMMatrix.h">
       <Filter>Math\Matrix</Filter>
     </ClInclude>
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -66,5 +68,6 @@
     <None Include="ExtendedGLMMatrix.inl">
       <Filter>Math\Matrix</Filter>
     </None>
+    <None Include="Transform.inl" />
   </ItemGroup>
 </Project>
