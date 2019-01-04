@@ -35,8 +35,7 @@ namespace Engine
 
 		public:
 			Transformation(const FMatrix3x4& translation_transformer, const FVector3& scale_transformer, const Rotation& rotation_transformer);
-			template <typename ... Args>
-			Transform operator()(const Transform& transform, Args&& ... arguments) const;
+			template <typename ... Args> Transform operator()(const Transform& transform, Args&& ... arguments) const;
 		};
 
 		FVector3 translation_;
@@ -44,8 +43,7 @@ namespace Engine
 		Rotation rotation_;
 
 		Transform() = default;
-		template <typename ... Args>
-		Transform(const FVector3& translation, const FVector3& scale, Args&& ... arguments);
+		template <typename ... Args> Transform(const FVector3& translation, const FVector3& scale, Args&& ... arguments);
 
 		FMatrix3x4 get_matrix() const;
 		FMatrix3x4 get_inverse_matrix() const;
