@@ -195,6 +195,7 @@
   <ItemGroup>
     <ClInclude Include="Array.h" />
     <ClInclude Include="Axis.h" />
+    <ClInclude Include="BitArray.h" />
     <ClInclude Include="Byte.h" />
     <ClInclude Include="Epsilon.h" />
     <ClInclude Include="ExtendedGLMMatrix.h" />

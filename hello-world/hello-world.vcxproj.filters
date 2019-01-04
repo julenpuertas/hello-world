@@ -50,6 +50,9 @@
       <Filter>Math\Matrix</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="BitArray.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
