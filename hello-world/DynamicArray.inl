@@ -28,7 +28,7 @@ namespace Engine
 		T element(std::forward<Args>(arguments) ...);
 		const std::function<bool(const T&)> equal_to_element_fn = make_equal_to_element_fn(element, equal_fn);
 
-		const const_iterator it_end = this->cend();
+		const std::pmr::vector<T>::const_iterator it_end = this->cend();
 		const bool insert_element = std::find_if(this->cbegin(), it_end, equal_to_element_fn) == it_end;
 		if (insert_element)
 			this->push_back(std::move(element));
@@ -46,23 +46,21 @@ namespace Engine
 		if (!requirement_to_satisty_fn)
 			return false;
 
-		iterator it_end = this->end();
-		const iterator it = std::find_if(this->begin(), it_end, requirement_to_satisty_fn);
+		typename std::pmr::vector<T>::iterator it_end = this->end();
+		const std::pmr::vector<T>::iterator it = std::find_if(this->begin(), it_end, requirement_to_satisty_fn);
+		if (it == it_end)
+			return false;
 
-		const bool erase_element = it != it_end;
-		if (erase_element)
+		if (preserve_order)
 		{
-			if (preserve_order)
-				this->erase(it);
-
-			else
-			{
-				std::iter_swap(it, --it_end);
-				this->pop_back();
-			}
+			this->erase(it);
+			return true;
 		}
 
-		return erase_element;
+		std::iter_swap(it, --it_end);
+		this->pop_back();
+
+		return true;
 	}
 
 	template<typename T> size_t DynamicArray<T>::sort_and_erase_duplicates(const Comparator<T>& sort_fn, const Comparator<T>& equal_fn)
@@ -71,11 +69,11 @@ namespace Engine
 			return 0;
 
 		std::sort(this->begin(), this->end(), sort_fn);
-		const const_iterator it_new_end = std::unique(this->begin(), this->end(), equal_fn);
-		const const_iterator it_end = this->cend();
+		const std::pmr::vector<T>::const_iterator it_new_end = std::unique(this->begin(), this->end(), equal_fn);
+		const std::pmr::vector<T>::const_iterator it_end = this->cend();
 
 		const size_t erased_element_count = it_end - it_new_end;
-		vector.erase(it_new_end, it_end);
+		this->erase(it_new_end, it_end);
 
 		return erased_element_count;
 	}

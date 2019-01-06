@@ -7,6 +7,10 @@ namespace Engine
 	{
 		FMatrix3 get_vector_transformation_inverse_matrix() const;
 
+		FVector3 translation_;
+		FVector3 scale_{ 1.f };
+		Rotation rotation_;
+
 	public:
 		class ParenthoodPolicy
 		{
@@ -38,12 +42,16 @@ namespace Engine
 			template <typename ... Args> Transform operator()(const Transform& transform, Args&& ... arguments) const;
 		};
 
-		FVector3 translation_;
-		FVector3 scale_{ 1.f };
-		Rotation rotation_;
-
 		Transform() = default;
 		template <typename ... Args> Transform(const FVector3& translation, const FVector3& scale, Args&& ... arguments);
+
+		const FVector3& get_translation() const;
+		const FVector3& get_scale() const;
+		const Rotation& get_rotation() const;
+
+		void set_translation(const FVector3& translation);
+		void set_scale(const FVector3& scale);
+		template <typename ... Args> void set_rotation(Args&& ... arguments);
 
 		FMatrix3x4 get_matrix() const;
 		FMatrix3x4 get_inverse_matrix() const;

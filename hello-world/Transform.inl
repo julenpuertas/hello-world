@@ -1,3 +1,4 @@
+#include "Transform.h"
 
 namespace Engine
 {
@@ -23,4 +24,9 @@ namespace Engine
 		, scale_(scale)
 		, rotation_(std::forward<Args>(arguments) ...)
 	{}
+
+	template<typename ...Args> void Transform::set_rotation(Args&& ...arguments)
+	{
+		rotation_ = Rotation(std::forward<Args>(arguments) ...);
+	}
 }

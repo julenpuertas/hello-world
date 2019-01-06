@@ -7,6 +7,11 @@
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="String.cpp" />
+    <ClCompile Include="Hasheable.cpp" />
+    <ClCompile Include="Rtti.cpp" />
+    <ClCompile Include="Writable.cpp" />
+    <ClCompile Include="Component.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -57,6 +62,18 @@
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="Comparator.h" />
+    <ClInclude Include="String.h" />
+    <ClInclude Include="Writable.h" />
+    <ClInclude Include="Hasheable.h" />
+    <ClInclude Include="HashMap.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rtti.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="UsesRtti.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -79,5 +96,6 @@
     <None Include="DynamicArray.inl">
       <Filter>Containers</Filter>
     </None>
+    <None Include="String.inl" />
   </ItemGroup>
 </Project>

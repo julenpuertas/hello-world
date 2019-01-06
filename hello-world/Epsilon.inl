@@ -6,7 +6,7 @@ namespace Engine
 	{
 		template <typename T> constexpr T get_epsilon()
 		{
-			return static_cast<T>(1e-4f);
+			return static_cast<T>(1e-4l);
 		}
 
 		template <typename T> bool is_zero(const T& number, const T& epsilon)

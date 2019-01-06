@@ -61,6 +61,31 @@ namespace Engine
 		return vector_transformation_inverse_matrix;
 	}
 
+	const FVector3& Transform::get_translation() const
+	{
+		return translation_;
+	}
+
+	const FVector3& Transform::get_scale() const
+	{
+		return scale_;
+	}
+
+	const Rotation& Transform::get_rotation() const
+	{
+		return rotation_;
+	}
+
+	void Transform::set_translation(const FVector3& translation)
+	{
+		translation_ = translation;
+	}
+
+	void Transform::set_scale(const FVector3& scale)
+	{
+		scale_ = scale;
+	}
+
 	FMatrix3x4 Transform::get_matrix() const
 	{
 		const glm::fvec3& scale = scale_;

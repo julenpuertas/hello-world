@@ -1,13 +1,17 @@
 #include "Transform.h"
 #include "DynamicArray.h"
+#include "String.h"
+#include <string_view>
 
 int main(int argc, char* argv[])
 {
 	using namespace Engine;
-	Transform parent;
-	Transform child;
+	using namespace std::literals;
 
-	DynamicArray<int> foo;
+	std::string foo;
+	std::string_view str{ "dsff"sv };
+
+//	foo + str;
 
 	return 0;
 }

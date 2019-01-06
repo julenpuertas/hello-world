@@ -14,13 +14,13 @@ namespace Engine
 		template <typename T> struct Matrix<T, 3, 3> : public ExtendedGLMMatrix<Matrix, T, 3, 3, glm::tmat3x3>
 		{
 			template <typename ... Args> explicit Matrix(Args&& ... args);
-			template <typename U, glm::precision P> Matrix(glm::tmat3x3<U, P>&& rhs);
+			template <glm::precision P> Matrix(glm::tmat3x3<T, P>&& rhs);
 		};
 
 		template <typename T> struct Matrix<T, 3, 4> : public ExtendedGLMMatrix<Matrix, T, 3, 4, glm::tmat4x3>
 		{
 			template <typename ... Args> explicit Matrix(Args&& ... args);
-			template <typename U, glm::precision P> Matrix(glm::tmat4x3<U, P>&& rhs);
+			template <glm::precision P> Matrix(glm::tmat4x3<T, P>&& rhs);
 			Vector<T, 3> operator*(const Vector<T, 3>& rhs) const;
 		};
 	}
