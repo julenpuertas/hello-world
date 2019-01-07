@@ -1,5 +1,10 @@
 #include "Rtti.h"
 
+namespace
+{
+	const char* TYPE_PREFIXES_TO_ERASE[] = { "Engine::", "class " };
+}
+
 namespace Engine
 {
 	Rtti::Rtti(const type_info& type, const Rtti& parent_type)
@@ -12,9 +17,17 @@ namespace Engine
 		, parent_types_(parent_types)
 	{}
 
-	String Rtti::get_name() const
+	String::View Rtti::get_name() const
 	{
-		return strchr(type_index_.name(), ' ') + 1;
+		const char* type_name = type_index_.name();
+		for (const char* type_prefix_to_erase : TYPE_PREFIXES_TO_ERASE)
+		{
+			const char* found_prefix = strstr(type_name, type_prefix_to_erase);
+			if (found_prefix)
+				return found_prefix + strlen(type_prefix_to_erase);
+		}
+
+		return type_name;
 	}
 
 	bool Rtti::is_derived_from(const Rtti& other_type) const

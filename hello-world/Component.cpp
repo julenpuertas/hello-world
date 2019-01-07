@@ -2,6 +2,8 @@
 
 namespace Engine
 {
+	const Rtti Component::TYPE = typeid(Component);
+
 	Component::Component(const Component &)
 	{}
 

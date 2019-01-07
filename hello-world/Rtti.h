@@ -14,8 +14,11 @@ namespace Engine
 		Rtti(const std::type_info& type, const Rtti& parent_type);
 		Rtti(const std::type_info& type, const std::initializer_list<const Rtti*>& parent_types = {});
 
-		String get_name() const;
+		String::View get_name() const;
 		bool is_derived_from(const Rtti& other_type) const;
 		bool is_base_of(const Rtti& other_type) const;
 	};
+
 }
+
+#define RTTI_DECLARATION static const Rtti TYPE

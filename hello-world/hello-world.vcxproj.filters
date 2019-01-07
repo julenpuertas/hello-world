@@ -12,6 +12,12 @@
     <ClCompile Include="Rtti.cpp" />
     <ClCompile Include="Writable.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Message.cpp">
+      <Filter>Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="MessagesListener.cpp">
+      <Filter>Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -25,6 +31,9 @@
     </Filter>
     <Filter Include="Math\Matrix">
       <UniqueIdentifier>{67d3069f-8bdb-490d-97da-95f69af37700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messages">
+      <UniqueIdentifier>{c5d32725-a2b5-49c9-8f16-f88c4db86452}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +83,16 @@
     <ClInclude Include="Rtti.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="UsesRtti.h" />
+    <ClInclude Include="ShareableFromThis.h" />
+    <ClInclude Include="Message.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="MessagesListener.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="SortedDynamicArray.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -97,5 +116,12 @@
       <Filter>Containers</Filter>
     </None>
     <None Include="String.inl" />
+    <None Include="ShareableFromThis.inl" />
+    <None Include="MessagesListener.inl">
+      <Filter>Messages</Filter>
+    </None>
+    <None Include="SortedDynamicArray.inl">
+      <Filter>Containers</Filter>
+    </None>
   </ItemGroup>
 </Project>

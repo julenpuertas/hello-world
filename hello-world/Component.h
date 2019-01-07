@@ -1,18 +1,21 @@
 #pragma once
 #include "UsesRtti.h"
-#include <memory>
+#include "Rtti.h"
+#include "ShareableFromThis.h"
 
 namespace Engine
 {
 	class GameObject;
 
-	class Component : public IUsesRtti
+	class Component : public ShareableFromThis, public IUsesRtti
 	{
 		bool active_ = true;
 		bool alive_ = false;
 		std::weak_ptr<GameObject> p_owner_;
 
 	public:
+		RTTI_DECLARATION;
+
 		Component() = default;
 		Component(const Component&);
 

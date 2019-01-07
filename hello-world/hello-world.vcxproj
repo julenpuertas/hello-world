@@ -188,6 +188,8 @@
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Hasheable.cpp" />
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="MessagesListener.cpp" />
     <ClCompile Include="Writable.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rotation.cpp" />
@@ -214,6 +216,10 @@
     <ClInclude Include="Hasheable.h" />
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="HashTable.h" />
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="MessagesListener.h" />
+    <ClInclude Include="ShareableFromThis.h" />
+    <ClInclude Include="SortedDynamicArray.h" />
     <ClInclude Include="UsesRtti.h" />
     <ClInclude Include="Rtti.h" />
     <ClInclude Include="Writable.h" />
@@ -235,7 +241,10 @@
     <None Include="Epsilon.inl" />
     <None Include="ExtendedGLMMatrix.inl" />
     <None Include="Matrix.inl" />
+    <None Include="MessagesListener.inl" />
     <None Include="Pair.inl" />
+    <None Include="ShareableFromThis.inl" />
+    <None Include="SortedDynamicArray.inl" />
     <None Include="String.inl" />
     <None Include="Transform.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
