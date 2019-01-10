@@ -5,10 +5,12 @@
 
 namespace Engine
 {
-	class Message : public IUsesRtti
+	namespace Messages
 	{
-	public:
-		RTTI_DECLARATION;
-	};
+		class Message : public IUsesRtti
+		{
+		public:
+			RTTI_DECLARATION;
+		};
+	}
 }
-

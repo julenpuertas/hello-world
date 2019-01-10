@@ -93,6 +93,9 @@
     <ClInclude Include="SortedDynamicArray.h">
       <Filter>Containers</Filter>
     </ClInclude>
+    <ClInclude Include="DynamicArrayMap.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -121,6 +124,9 @@
       <Filter>Messages</Filter>
     </None>
     <None Include="SortedDynamicArray.inl">
+      <Filter>Containers</Filter>
+    </None>
+    <None Include="DynamicArrayMap.inl">
       <Filter>Containers</Filter>
     </None>
   </ItemGroup>

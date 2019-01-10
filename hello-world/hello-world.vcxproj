@@ -211,6 +211,7 @@
     <ClInclude Include="Comparator.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DynamicArray.h" />
+    <ClInclude Include="DynamicArrayMap.h" />
     <ClInclude Include="Epsilon.h" />
     <ClInclude Include="ExtendedGLMMatrix.h" />
     <ClInclude Include="Hasheable.h" />
@@ -238,6 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DynamicArray.inl" />
+    <None Include="DynamicArrayMap.inl" />
     <None Include="Epsilon.inl" />
     <None Include="ExtendedGLMMatrix.inl" />
     <None Include="Matrix.inl" />

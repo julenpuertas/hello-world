@@ -2,5 +2,8 @@
 
 namespace Engine
 {
-	const Rtti Message::TYPE = typeid(Message);
+	namespace Messages
+	{
+		const Rtti Message::TYPE = typeid(Message);
+	}
 }

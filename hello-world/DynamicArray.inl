@@ -1,5 +1,4 @@
-#include "DynamicArray.h"
-#pragma once
+#include <algorithm>
 
 namespace Engine
 {
