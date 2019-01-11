@@ -21,6 +21,10 @@
       <Filter>IO</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Updateable.cpp" />
+    <ClCompile Include="System.inl">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -40,6 +44,9 @@
     </Filter>
     <Filter Include="IO">
       <UniqueIdentifier>{10b02b3c-9604-488c-8954-1ac6add3dfb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{2ae30f73-76f6-4fac-ab0f-dbd361109359}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +114,11 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Clonable.h" />
     <ClInclude Include="Swapable.h" />
+    <ClInclude Include="Updateable.h" />
+    <ClInclude Include="System.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -143,5 +155,6 @@
     <None Include="GameObject.inl" />
     <None Include="Clonable.inl" />
     <None Include="Swapable.inl" />
+    <None Include="Singleton.inl" />
   </ItemGroup>
 </Project>

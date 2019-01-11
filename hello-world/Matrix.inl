@@ -7,7 +7,7 @@ namespace Engine
 			: ExtendedGLMMatrix<Engine::Math::Matrix, T, 3, 3, glm::tmat3x3>(std::forward<Args>(args)...)
 		{}
 
-		template <typename T> template <glm::precision P> Matrix<T, 3, 3>::Matrix(glm::tmat3x3<T, P>&& rhs)
+		template <typename T> template <glm::precision P> Matrix<T, 3, 3>::Matrix(const glm::tmat3x3<T, P>& rhs)
 			: ExtendedGLMMatrix<Engine::Math::Matrix, T, 3, 3, glm::tmat3x3>(std::forward<glm::tmat3x3<T, P> >(rhs))
 		{}
 
@@ -15,7 +15,7 @@ namespace Engine
 			: ExtendedGLMMatrix<Engine::Math::Matrix, T, 3, 4, glm::tmat4x3>(std::forward<Args>(args)...)
 		{}
 
-		template <typename T> template <glm::precision P> Matrix<T, 3, 4>::Matrix(glm::tmat4x3<T, P>&& rhs)
+		template <typename T> template <glm::precision P> Matrix<T, 3, 4>::Matrix(const glm::tmat4x3<T, P>& rhs)
 			: ExtendedGLMMatrix<Engine::Math::Matrix, T, 3, 4, glm::tmat4x3>(std::forward<glm::tmat4x3<T, P> >(rhs))
 		{}
 
