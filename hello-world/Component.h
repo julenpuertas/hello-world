@@ -2,12 +2,16 @@
 #include "UsesRtti.h"
 #include "Rtti.h"
 #include "ShareableFromThis.h"
+#include "Clonable.h"
 
 namespace Engine
 {
 	class GameObject;
 
-	class Component : public ShareableFromThis, public IUsesRtti
+	class Component
+		: public ShareableFromThis
+		, public IUsesRtti
+		, public IClonable
 	{
 		bool active_ = true;
 		bool alive_ = false;

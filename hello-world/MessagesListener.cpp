@@ -31,14 +31,14 @@ namespace Engine
 			active_ = active;
 		}
 
-		void Listener::listen_publicly(const Rtti& type, const std::shared_ptr<Handler>& p_handler)
+		void Listener::add_public_handler(const Rtti& type, const std::shared_ptr<Handler>& p_handler)
 		{
 			g_public_handlers.emplace(&type, p_handler);
 		}
 
 		Listener::~Listener()
 		{
-			for (const Pair<const Rtti*, std::weak_ptr<Handler> >& type_handler_pair : public_handlers_)
+			for (const Pair<const Rtti* const, std::weak_ptr<Handler> >& type_handler_pair : public_handlers_)
 			{
 				const std::shared_ptr<Handler> p_handler = type_handler_pair.second.lock();
 				if (!p_handler)

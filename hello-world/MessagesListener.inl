@@ -21,51 +21,51 @@ namespace Engine
 			});
 		}
 
-		template<typename T> std::weak_ptr<Handler> Listener::listen_privately(const Callback<T>& callback)
+		template<typename T> std::weak_ptr<Handler> Listener::add_private_handler(const Callback<T>& callback)
 		{
 			const std::shared_ptr<Handler> p_handler = std::make_shared<THandler<T> >(callback);
 			private_handlers_.emplace(&T::TYPE, p_handler);
 			return p_handler;
 		}
 
-		template<typename T, typename LambaT> std::weak_ptr<Handler> Listener::listen_privately(LambaT&& callback)
+		template<typename T, typename LambaT> std::weak_ptr<Handler> Listener::add_private_handler(LambaT&& callback)
 		{
-			return listen_privately(Callback<T>(std::forward<LambaT>(callback)));
+			return add_private_handler(Callback<T>(std::forward<LambaT>(callback)));
 		}
 
-		template<typename T> std::weak_ptr<Handler> Listener::listen_privately(const GlobalFunction<T>& callback)
+		template<typename T> std::weak_ptr<Handler> Listener::add_private_handler(const GlobalFunction<T>& callback)
 		{
-			return listen_privately(Callback<T>(callback));
+			return add_private_handler(Callback<T>(callback));
 		}
 
-		template<typename T, typename InstanceT> std::weak_ptr<Handler> Listener::listen_privately(InstanceT& instance, const MemberFunction<T, InstanceT>& callback)
+		template<typename T, typename InstanceT> std::weak_ptr<Handler> Listener::add_private_handler(InstanceT& instance, const MemberFunction<T, InstanceT>& callback)
 		{
-			return listen_privately(make_callback(instance, callback));
+			return add_private_handler(make_callback(instance, callback));
 		}
 
-		template<typename T> std::weak_ptr<Handler> Listener::listen_publicly(const Callback<T>& callback)
+		template<typename T> std::weak_ptr<Handler> Listener::add_public_handler(const Callback<T>& callback)
 		{
 			const std::shared_ptr<Handler> p_handler = std::make_shared<THandler<T> >(callback);
-			listen_publicly(T::TYPE, p_handler);
+			add_public_handler(T::TYPE, p_handler);
 
 			const std::weak_ptr<Handler> wp_handler = p_handler;
 			public_handlers_.emplace_back(&T::TYPE, wp_handler);
 			return wp_handler;
 		}
 
-		template<typename T, typename LambdaT> std::weak_ptr<Handler> Listener::listen_publicly(LambdaT&& callback)
+		template<typename T, typename LambdaT> std::weak_ptr<Handler> Listener::add_public_handler(LambdaT&& callback)
 		{
-			return listen_publicly(Callback<T>(std::forward<LambdaT>(callback)));
+			return add_public_handler(Callback<T>(std::forward<LambdaT>(callback)));
 		}
 
-		template<typename T> std::weak_ptr<Handler> Listener::listen_publicly(const GlobalFunction<T>& callback)
+		template<typename T> std::weak_ptr<Handler> Listener::add_public_handler(const GlobalFunction<T>& callback)
 		{
-			return listen_publicly(Callback<T>(callback));
+			return add_public_handler(Callback<T>(callback));
 		}
 
-		template<typename T, typename InstanceT> std::weak_ptr<Handler> Listener::listen_publicly(InstanceT& instance, const MemberFunction<T, InstanceT>& callback)
+		template<typename T, typename InstanceT> std::weak_ptr<Handler> Listener::add_public_handler(InstanceT& instance, const MemberFunction<T, InstanceT>& callback)
 		{
-			return listen_publicly(make_callback(instance, callback));
+			return add_public_handler(make_callback(instance, callback));
 		}
 	}
 }

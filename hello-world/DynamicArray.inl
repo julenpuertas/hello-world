@@ -35,31 +35,68 @@ namespace Engine
 		return insert_element;
 	}
 
-	template<typename T> bool DynamicArray<T>::erase(const T& element, bool preserve_order, const Comparator<T>& equal_fn)
+	template<typename T> bool DynamicArray<T>::erase(const T& element, const Comparator<T>& equal_fn)
 	{
-		return erase(make_equal_to_element_fn(element, equal_fn), preserve_order);
+		return erase(make_equal_to_element_fn(element, equal_fn));
 	}
 
-	template<typename T> bool DynamicArray<T>::erase(const std::function<bool(const T&)>& requirement_to_satisty_fn, bool preserve_order)
+	template<typename T> bool DynamicArray<T>::erase(const std::function<bool(const T&)>& requirement_to_satisty_fn)
 	{
 		if (!requirement_to_satisty_fn)
 			return false;
 
 		typename std::pmr::vector<T>::iterator it_end = this->end();
 		const std::pmr::vector<T>::iterator it = std::find_if(this->begin(), it_end, requirement_to_satisty_fn);
-		if (it == it_end)
+
+		const bool element_erased = it != it_end;
+		if (element_erased)
+			this->erase(it);
+
+		return element_erased;
+	}
+
+	template<typename T> bool DynamicArray<T>::erase_fast(const T& element, const Comparator<T>& equal_fn)
+	{
+		return erase_fast(make_equal_to_element_fn(element, equal_fn));
+	}
+
+	template<typename T> bool DynamicArray<T>::erase_fast(const std::function<bool(const T&)>& requirement_to_satisty_fn)
+	{
+		if (!requirement_to_satisty_fn)
 			return false;
 
-		if (preserve_order)
+		typename std::pmr::vector<T>::iterator it_end = this->end();
+		const std::pmr::vector<T>::iterator it = std::find_if(this->begin(), it_end, requirement_to_satisty_fn);
+
+		const bool element_can_be_erased = it != it_end;
+		if (element_can_be_erased)
 		{
-			this->erase(it);
-			return true;
+			std::iter_swap(it, --it_end);
+			this->pop_back();
 		}
 
-		std::iter_swap(it, --it_end);
-		this->pop_back();
+		return element_can_be_erased;
+	}
 
-		return true;
+	template<typename T> size_t DynamicArray<T>::erase_multiple(const T& element, const Comparator<T>& equal_fn, size_t max_erase_count)
+	{
+		return erase_multiple(make_equal_to_element_fn(element, equal_fn), max_erase_count);
+	}
+
+	template<typename T> size_t DynamicArray<T>::erase_multiple(const std::function<bool(const T&)>& requirement_to_satisty_fn, size_t max_erase_count)
+	{
+		if (!requirement_to_satisty_fn)
+			return false;
+
+		size_t erased_element_count = 0;
+		typename std::pmr::vector<T>::iterator it_end = this->end();
+		const std::pmr::vector<T>::iterator it_new_end = std::remove_if(this->begin(), it_end, [&erased_element_count, max_erase_count](const T& element)
+		{
+			return erased_element_count++ < max_erase_count && requirement_to_satisty_fn(element);
+		});
+
+		this->erase(it_new_end, it_end);
+		return erased_element_count;
 	}
 
 	template<typename T> size_t DynamicArray<T>::sort_and_erase_duplicates(const Comparator<T>& sort_fn, const Comparator<T>& equal_fn)

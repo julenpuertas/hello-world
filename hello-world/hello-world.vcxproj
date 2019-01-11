@@ -94,6 +94,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;GLM_FORCE_SIZE_T_LENGTH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessToFile>false</PreprocessToFile>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -117,6 +119,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;GLM_FORCE_SIZE_T_LENGTH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessToFile>false</PreprocessToFile>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -142,6 +146,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;GLM_FORCE_SIZE_T_LENGTH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessToFile>false</PreprocessToFile>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -169,6 +175,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;GLM_FORCE_SIZE_T_LENGTH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessToFile>false</PreprocessToFile>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -187,6 +195,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MessagesListener.cpp" />
@@ -208,12 +217,14 @@
     <ClInclude Include="Axis.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="Byte.h" />
+    <ClInclude Include="Clonable.h" />
     <ClInclude Include="Comparator.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="DynamicArrayMap.h" />
     <ClInclude Include="Epsilon.h" />
     <ClInclude Include="ExtendedGLMMatrix.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Hasheable.h" />
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="HashTable.h" />
@@ -221,6 +232,7 @@
     <ClInclude Include="MessagesListener.h" />
     <ClInclude Include="ShareableFromThis.h" />
     <ClInclude Include="SortedDynamicArray.h" />
+    <ClInclude Include="Swapable.h" />
     <ClInclude Include="UsesRtti.h" />
     <ClInclude Include="Rtti.h" />
     <ClInclude Include="Writable.h" />
@@ -238,16 +250,19 @@
     <ClInclude Include="ExtendedGLMVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Clonable.inl" />
     <None Include="DynamicArray.inl" />
     <None Include="DynamicArrayMap.inl" />
     <None Include="Epsilon.inl" />
     <None Include="ExtendedGLMMatrix.inl" />
+    <None Include="GameObject.inl" />
     <None Include="Matrix.inl" />
     <None Include="MessagesListener.inl" />
     <None Include="Pair.inl" />
     <None Include="ShareableFromThis.inl" />
     <None Include="SortedDynamicArray.inl" />
     <None Include="String.inl" />
+    <None Include="Swapable.inl" />
     <None Include="Transform.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

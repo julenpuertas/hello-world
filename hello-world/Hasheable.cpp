@@ -2,8 +2,8 @@
 
 namespace std
 {
-	size_t hash<Engine::IHasheable>::operator()(const Engine::IHasheable& element) const
+	size_t hash<Engine::IHasheable>::operator()(const Engine::IHasheable& hasheable) const
 	{
-		return element.get_hash();
+		return hasheable.get_hash();
 	}
 }

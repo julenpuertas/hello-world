@@ -21,6 +21,7 @@ namespace Engine
 
 		bool erase(const T& element);
 		size_t erase_multiple(const T& element, size_t max_element_count_to_erase = std::numeric_limits<size_t>::max());
+		size_t erase_multiple(const std::function<bool(const T&)>& requirement_to_satisty_fn, size_t max_element_count_to_erase = std::numeric_limits<size_t>::max());
 
 		const_iterator begin() const;
 		const_iterator end() const;

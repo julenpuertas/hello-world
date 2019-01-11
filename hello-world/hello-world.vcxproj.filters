@@ -10,7 +10,6 @@
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="Rtti.cpp" />
-    <ClCompile Include="Writable.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Message.cpp">
       <Filter>Messages</Filter>
@@ -18,6 +17,10 @@
     <ClCompile Include="MessagesListener.cpp">
       <Filter>Messages</Filter>
     </ClCompile>
+    <ClCompile Include="Writable.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -34,6 +37,9 @@
     </Filter>
     <Filter Include="Messages">
       <UniqueIdentifier>{c5d32725-a2b5-49c9-8f16-f88c4db86452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{10b02b3c-9604-488c-8954-1ac6add3dfb3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +78,6 @@
     </ClInclude>
     <ClInclude Include="Comparator.h" />
     <ClInclude Include="String.h" />
-    <ClInclude Include="Writable.h" />
     <ClInclude Include="Hasheable.h" />
     <ClInclude Include="HashMap.h">
       <Filter>Containers</Filter>
@@ -96,6 +101,12 @@
     <ClInclude Include="DynamicArrayMap.h">
       <Filter>Containers</Filter>
     </ClInclude>
+    <ClInclude Include="Writable.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Clonable.h" />
+    <ClInclude Include="Swapable.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -129,5 +140,8 @@
     <None Include="DynamicArrayMap.inl">
       <Filter>Containers</Filter>
     </None>
+    <None Include="GameObject.inl" />
+    <None Include="Clonable.inl" />
+    <None Include="Swapable.inl" />
   </ItemGroup>
 </Project>

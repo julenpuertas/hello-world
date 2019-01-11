@@ -21,11 +21,11 @@ namespace Engine
 		const const_iterator it_end = elements_.cend();
 		const const_iterator it = std::lower_bound(elements_.cbegin(), it_end, element, less_fn_);
 
-		if (it != it_end && equals_fn_(element, *it))
-			return false;
+		const bool element_can_be_inserted = it == it_end || !equals_fn_(element, *it)
+		if (element_can_be_inserted)
+			elements_.insert(it, std::move(element));
 
-		elements_.insert(it, std::move(element));
-		return true;
+		return element_can_be_inserted;
 	}
 
 	template<typename T> Pair<typename SortedDynamicArray<T>::const_iterator> SortedDynamicArray<T>::get_equal_range(const T & element) const
@@ -46,6 +46,11 @@ namespace Engine
 		return element_count_to_erase;
 	}
 
+	template<typename T> size_t SortedDynamicArray<T>::erase_multiple(const std::function<bool(const T&)>& requirement_to_satisty_fn, size_t max_element_count_to_erase)
+	{
+		return elements_.erase_multiple(requirement_to_satisty_fn, max_element_count_to_erase);
+	}
+	
 	template<typename T> typename SortedDynamicArray<T>::const_iterator SortedDynamicArray<T>::begin() const
 	{
 		return cbegin();

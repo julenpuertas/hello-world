@@ -14,8 +14,14 @@ namespace Engine
 		template <typename ... Args> bool emplace_back_if_unique(Args&& ... arguments);
 		template <typename ... Args> bool emplace_back_if_unique(const Comparator<T>& equal_fn, Args&& ... arguments);
 
-		bool erase(const T& element, bool preserve_order = false, const Comparator<T>& equal_fn = std::equal_to<T>());
-		bool erase(const std::function<bool(const T&)>& requirement_to_satisty_fn, bool preserve_order = false);
+		bool erase(const T& element, const Comparator<T>& equal_fn = std::equal_to<T>());
+		bool erase(const std::function<bool(const T&)>& requirement_to_satisty_fn);
+
+		bool erase_fast(const T& element, const Comparator<T>& equal_fn = std::equal_to<T>());
+		bool erase_fast(const std::function<bool(const T&)>& requirement_to_satisty_fn);
+
+		size_t erase_multiple(const T& element, const Comparator<T>& equal_fn = std::equal_to<T>(), size_t max_erase_count = std::numeric_limits<size_t>::max());
+		size_t erase_multiple(const std::function<bool(const T&)>& requirement_to_satisty_fn, size_t max_erase_count = std::numeric_limits<size_t>::max());
 
 		size_t sort_and_erase_duplicates(const Comparator<T>& sort_fn = std::less<T>(), const Comparator<T>& equal_fn = std::equal_to<T>());
 	};
