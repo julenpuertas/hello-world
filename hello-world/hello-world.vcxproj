@@ -216,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
+    <ClInclude Include="AssociativeDynamicArray.h" />
     <ClInclude Include="Axis.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="Byte.h" />
@@ -223,7 +224,6 @@
     <ClInclude Include="Comparator.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DynamicArray.h" />
-    <ClInclude Include="DynamicArrayMap.h" />
     <ClInclude Include="Epsilon.h" />
     <ClInclude Include="ExtendedGLMMatrix.h" />
     <ClInclude Include="GameObject.h" />
@@ -232,6 +232,7 @@
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessagesListener.h" />
+    <ClInclude Include="MultiSortedDynamicArray.h" />
     <ClInclude Include="ShareableFromThis.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SortedDynamicArray.h" />
@@ -255,14 +256,15 @@
     <ClInclude Include="ExtendedGLMVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AssociativeDynamicArray.inl" />
     <None Include="Clonable.inl" />
     <None Include="DynamicArray.inl" />
-    <None Include="DynamicArrayMap.inl" />
     <None Include="Epsilon.inl" />
     <None Include="ExtendedGLMMatrix.inl" />
     <None Include="GameObject.inl" />
     <None Include="Matrix.inl" />
     <None Include="MessagesListener.inl" />
+    <None Include="MultiSortedDynamicArray.inl" />
     <None Include="Pair.inl" />
     <None Include="ShareableFromThis.inl" />
     <None Include="Singleton.inl" />

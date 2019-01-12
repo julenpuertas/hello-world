@@ -105,9 +105,6 @@
     <ClInclude Include="SortedDynamicArray.h">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicArrayMap.h">
-      <Filter>Containers</Filter>
-    </ClInclude>
     <ClInclude Include="Writable.h">
       <Filter>IO</Filter>
     </ClInclude>
@@ -119,6 +116,12 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="AssociativeDynamicArray.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSortedDynamicArray.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -149,12 +152,15 @@
     <None Include="SortedDynamicArray.inl">
       <Filter>Containers</Filter>
     </None>
-    <None Include="DynamicArrayMap.inl">
-      <Filter>Containers</Filter>
-    </None>
     <None Include="GameObject.inl" />
     <None Include="Clonable.inl" />
     <None Include="Swapable.inl" />
     <None Include="Singleton.inl" />
+    <None Include="AssociativeDynamicArray.inl">
+      <Filter>Containers</Filter>
+    </None>
+    <None Include="MultiSortedDynamicArray.inl">
+      <Filter>Containers</Filter>
+    </None>
   </ItemGroup>
 </Project>

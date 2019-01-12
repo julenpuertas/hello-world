@@ -11,6 +11,8 @@ namespace Engine
 	public:
 		template <typename ... Args> DynamicArray(Args&& ... arguments);
 
+		void reserve_for(size_t new_extra_capacity);
+
 		template <typename ... Args> bool emplace_back_if_unique(Args&& ... arguments);
 		template <typename ... Args> bool emplace_back_if_unique(const Comparator<T>& equal_fn, Args&& ... arguments);
 

@@ -14,6 +14,11 @@ namespace Engine
 		: std::pmr::vector<T>(std::forward<Args>(arguments) ...)
 	{}
 
+	template<typename T> void DynamicArray<T>::reserve_for(size_t new_extra_capacity)
+	{
+		this->reserve(this->size() + new_extra_capacity);
+	}
+
 	template<typename T> template<typename ...Args> bool DynamicArray<T>::emplace_back_if_unique(Args&& ...arguments)
 	{
 		return emplace_back_if_unique(std::equal_to<T>(), std::forward<Args>(arguments) ...);
@@ -90,7 +95,7 @@ namespace Engine
 
 		size_t erased_element_count = 0;
 		typename std::pmr::vector<T>::iterator it_end = this->end();
-		const std::pmr::vector<T>::iterator it_new_end = std::remove_if(this->begin(), it_end, [&erased_element_count, max_erase_count](const T& element)
+		const std::pmr::vector<T>::iterator it_new_end = std::remove_if(this->begin(), it_end, [erased_element_count, max_erase_count](const T& element)
 		{
 			return erased_element_count++ < max_erase_count && requirement_to_satisty_fn(element);
 		});
