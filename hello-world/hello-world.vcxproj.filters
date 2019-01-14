@@ -3,9 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Window.cpp" />
-    <ClCompile Include="Rotation.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Hasheable.cpp" />
@@ -25,7 +22,12 @@
     <ClCompile Include="System.inl">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="BaseSystem.cpp" />
+    <ClCompile Include="Rotation.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Systern.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -61,9 +63,6 @@
       <Filter>Math\Matrix</Filter>
     </ClInclude>
     <ClInclude Include="Byte.h" />
-    <ClInclude Include="Rotation.h">
-      <Filter>Math</Filter>
-    </ClInclude>
     <ClInclude Include="Epsilon.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -120,9 +119,14 @@
     <ClInclude Include="MultiSortedDynamicArray.h">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="BaseSystem.h" />
     <ClInclude Include="BaseSortedDynamicArray.h">
       <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Division.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Rotation.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +167,9 @@
     </None>
     <None Include="BaseSortedDynamicArray.inl">
       <Filter>Containers</Filter>
+    </None>
+    <None Include="Division.inl">
+      <Filter>Math</Filter>
     </None>
   </ItemGroup>
 </Project>

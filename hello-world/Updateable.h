@@ -11,16 +11,16 @@ namespace Engine
 		Updateable();
 		~Updateable();
 
-		bool is_alive() const;
-		void set_alive(bool alive);
+		//bool is_alive() const;
+		//void set_alive(bool alive);
 
-		bool is_active() const;
-		void set_active(bool active);
+		//bool is_active() const;
+		//void set_active(bool active);
 
-		virtual void on_activation();
-		virtual void on_deactivation();
+		//virtual void on_activation();
+		//virtual void on_deactivation();
 
-		virtual void on_update();
-		virtual void on_destroy();
+		//virtual void on_update();
+		//virtual void on_destroy();
 	};
 }
