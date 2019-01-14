@@ -19,9 +19,6 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Updateable.cpp" />
-    <ClCompile Include="System.inl">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="Rotation.cpp">
       <Filter>Math</Filter>
     </ClCompile>
@@ -112,9 +109,6 @@
     <ClInclude Include="Clonable.h" />
     <ClInclude Include="Swapable.h" />
     <ClInclude Include="Updateable.h" />
-    <ClInclude Include="System.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="MultiSortedDynamicArray.h">
       <Filter>Containers</Filter>
@@ -127,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="Rotation.h">
       <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +167,9 @@
     </None>
     <None Include="Division.inl">
       <Filter>Math</Filter>
+    </None>
+    <None Include="System.inl">
+      <Filter>Systems</Filter>
     </None>
   </ItemGroup>
 </Project>

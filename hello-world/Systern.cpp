@@ -16,7 +16,7 @@ namespace Engine
 {
 	namespace Systems
 	{
-		double System::compute_frame_time() const
+		double System::compute_frame_duration() const
 		{
 			if (update_wait_time_ == 0.)
 				return waited_time_;
@@ -39,9 +39,9 @@ namespace Engine
 			if (needs_to_wait_more_frames || needs_to_wait_more_time)
 				return;
 
-			//on_update();
+			on_update();
 
-			waited_time_ -= compute_frame_time();
+			waited_time_ -= compute_frame_duration();
 			frame_count_since_last_update_ = 0;
 
 			stepping_ = false;

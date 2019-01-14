@@ -199,18 +199,7 @@
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MessagesListener.cpp" />
-    <ClCompile Include="Systern.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="System.inl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Systern.cpp" />
     <ClCompile Include="Updateable.cpp" />
     <ClCompile Include="Writable.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -249,12 +238,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SortedDynamicArray.h" />
     <ClInclude Include="Swapable.h" />
-    <ClInclude Include="System.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="System.h" />
     <ClInclude Include="Updateable.h" />
     <ClInclude Include="UsesRtti.h" />
     <ClInclude Include="Rtti.h" />
@@ -289,6 +273,7 @@
     <None Include="SortedDynamicArray.inl" />
     <None Include="String.inl" />
     <None Include="Swapable.inl" />
+    <None Include="System.inl" />
     <None Include="Transform.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
