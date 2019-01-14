@@ -1,0 +1,48 @@
+#pragma once
+
+namespace Engine
+{
+	namespace Systems
+	{
+		namespace Base
+		{
+			class System
+			{
+				double frame_time_ = 0;
+
+				double update_wait_time_ = 0;
+				double waited_time_ = 0;
+
+				size_t frame_count_to_update_after_ = 0;
+				size_t frame_count_since_last_update_ = 0;
+
+				bool time_forward_ = true;
+				bool updating_ = true;
+				bool stepping_ = false;
+
+			protected:
+				virtual void on_update() = 0;
+
+			public:
+				void update();
+				template <typename U> U get_frame_time() const;
+
+				bool is_waiting_time_for_update() const;
+				void stop_waiting_time_for_update();
+				void set_update_wait_time(double update_wait_time);
+
+				void set_frame_count_to_update_after(size_t frame_count_to_update_after);
+
+				bool is_time_forward() const;
+				void set_time_forward(bool time_forward);
+
+				bool is_updating() const;
+				void set_updating(bool updating);
+
+				void give_step();
+			};
+		}
+
+		void update();
+	}
+}

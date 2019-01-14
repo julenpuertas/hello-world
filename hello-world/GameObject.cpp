@@ -13,6 +13,3 @@ namespace Engine
 
 
 }
-
-class Foo
-{};

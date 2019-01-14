@@ -2,7 +2,7 @@
 namespace Engine
 {
 	template<typename T> template<typename ...Args> MultiSortedDynamicArray<T>::MultiSortedDynamicArray(Args&& ... arguments)
-		: AssociativeDynamicArray<T>(std::forward<Args>(arguments) ...)
+		: SortedDynamicArray<T>(std::forward<Args>(arguments) ...)
 	{}
 
 	template<typename T> template<typename ...Args> void MultiSortedDynamicArray<T>::emplace(Args&& ...arguments)
@@ -12,12 +12,11 @@ namespace Engine
 
 	template<typename T> template<typename ...Args> void MultiSortedDynamicArray<T>::emplace_multiple(size_t copies_to_emplace, Args&& ... arguments)
 	{
-		T element(std::forward<Args>(arguments) ...);
 		const const_iterator it = std::upper_bound(elements_.cbegin(), elements_.cend(), element, less_fn_);
-		elements_.insert(it, std::move(element));
+		elements_.insert(it, copies_to_emplace, T(std::forward<Args>(arguments) ...));
 	}
 
-	template<typename T> Pair<typename AssociativeDynamicArray<T>::const_iterator> MultiSortedDynamicArray<T>::get_equal_range(const T& element) const
+	template<typename T> Pair<typename MultiSortedDynamicArray<T>::const_iterator> MultiSortedDynamicArray<T>::get_equal_range(const T& element) const
 	{
 		return std::equal_range(elements_.cbegin(), elements_.cend(), element, less_fn_);
 	}

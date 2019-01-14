@@ -1,11 +1,11 @@
 #pragma once
 
-#include "AssociativeDynamicArray.h"
+#include "BaseSortedDynamicArray.h"
 
 namespace Engine
 {
 	template<typename T> class SortedDynamicArray
-		: public AssociativeDynamicArray<T>
+		: public Base::SortedDynamicArray<T>
 	{
 	public:
 		template <typename ... Args> explicit SortedDynamicArray(Args&& ... arguments);

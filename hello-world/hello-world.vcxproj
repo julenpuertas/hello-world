@@ -194,6 +194,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseSystem.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Hasheable.cpp" />
@@ -216,8 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
-    <ClInclude Include="AssociativeDynamicArray.h" />
+    <ClInclude Include="BaseSortedDynamicArray.h" />
     <ClInclude Include="Axis.h" />
+    <ClInclude Include="BaseSystem.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="Byte.h" />
     <ClInclude Include="Clonable.h" />
@@ -256,7 +258,7 @@
     <ClInclude Include="ExtendedGLMVector.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AssociativeDynamicArray.inl" />
+    <None Include="BaseSortedDynamicArray.inl" />
     <None Include="Clonable.inl" />
     <None Include="DynamicArray.inl" />
     <None Include="Epsilon.inl" />

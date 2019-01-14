@@ -25,6 +25,7 @@
     <ClCompile Include="System.inl">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="BaseSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -116,10 +117,11 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="AssociativeDynamicArray.h">
+    <ClInclude Include="MultiSortedDynamicArray.h">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="MultiSortedDynamicArray.h">
+    <ClInclude Include="BaseSystem.h" />
+    <ClInclude Include="BaseSortedDynamicArray.h">
       <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -156,10 +158,10 @@
     <None Include="Clonable.inl" />
     <None Include="Swapable.inl" />
     <None Include="Singleton.inl" />
-    <None Include="AssociativeDynamicArray.inl">
+    <None Include="MultiSortedDynamicArray.inl">
       <Filter>Containers</Filter>
     </None>
-    <None Include="MultiSortedDynamicArray.inl">
+    <None Include="BaseSortedDynamicArray.inl">
       <Filter>Containers</Filter>
     </None>
   </ItemGroup>
