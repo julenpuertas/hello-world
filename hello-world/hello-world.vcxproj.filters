@@ -7,7 +7,6 @@
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="Rtti.cpp" />
-    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Message.cpp">
       <Filter>Messages</Filter>
     </ClCompile>
@@ -17,13 +16,23 @@
     <ClCompile Include="Writable.cpp">
       <Filter>IO</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Updateable.cpp" />
     <ClCompile Include="Rotation.cpp">
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="Systern.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectDestroyed.cpp">
+      <Filter>Messages\MessageTypes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +56,12 @@
     </Filter>
     <Filter Include="Systems">
       <UniqueIdentifier>{2ae30f73-76f6-4fac-ab0f-dbd361109359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{33df00e3-63fd-4abe-acf2-c18036a68c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messages\MessageTypes">
+      <UniqueIdentifier>{5c433867-7acd-4696-a0e6-96c4c80a436f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +105,6 @@
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="Rtti.h" />
-    <ClInclude Include="Component.h" />
     <ClInclude Include="UsesRtti.h" />
     <ClInclude Include="ShareableFromThis.h" />
     <ClInclude Include="Message.h">
@@ -105,10 +119,8 @@
     <ClInclude Include="Writable.h">
       <Filter>IO</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Clonable.h" />
     <ClInclude Include="Swapable.h" />
-    <ClInclude Include="Updateable.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="MultiSortedDynamicArray.h">
       <Filter>Containers</Filter>
@@ -124,6 +136,18 @@
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectDestroyed.h">
+      <Filter>Messages\MessageTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +179,6 @@
     <None Include="SortedDynamicArray.inl">
       <Filter>Containers</Filter>
     </None>
-    <None Include="GameObject.inl" />
     <None Include="Clonable.inl" />
     <None Include="Swapable.inl" />
     <None Include="Singleton.inl" />
@@ -170,6 +193,9 @@
     </None>
     <None Include="System.inl">
       <Filter>Systems</Filter>
+    </None>
+    <None Include="GameObject.inl">
+      <Filter>Entity</Filter>
     </None>
   </ItemGroup>
 </Project>

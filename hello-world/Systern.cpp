@@ -18,7 +18,7 @@ namespace Engine
 	{
 		double System::compute_frame_duration() const
 		{
-			if (update_wait_time_ == 0.)
+			if (update_wait_time_ == 0)
 				return waited_time_;
 
 			const size_t waited_frame_count = static_cast<size_t>(waited_time_ / update_wait_time_);

@@ -3,5 +3,5 @@
 
 namespace Engine
 {
-	template <typename T> using Comparator = std::function<bool(const T&, const T&)>;
+	template <typename T, typename U = T> using Comparator = std::function<bool(const T&, const U&)>;
 }
