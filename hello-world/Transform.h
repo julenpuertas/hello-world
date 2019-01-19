@@ -12,34 +12,34 @@ namespace Engine
 		Rotation rotation_;
 
 	public:
-		class ParenthoodPolicy
-		{
-			bool translation_affected_;
-			bool scale_affected_;
-			bool rotation_affected_;
-
-		public:
-			explicit ParenthoodPolicy(bool value = true);
-			ParenthoodPolicy(bool translation_affected, bool scale_affected, bool rotation_affected);
-
-			bool is_translation_affected() const;
-			bool is_scale_affected() const;
-			bool is_rotation_affected() const;
-
-			void set_translation_affected(bool translation_affected);
-			void set_scale_affected(bool scale_affected);
-			void set_rotation_affected(bool rotation_affected);
-		};
-
-		class Transformation
+		class Concatenator
 		{
 			FMatrix3x4 translation_transformer_;
 			FVector3 scale_transformer_;
 			Rotation rotation_transformer_;
 
 		public:
-			Transformation(const FMatrix3x4& translation_transformer, const FVector3& scale_transformer, const Rotation& rotation_transformer);
-			template <typename ... Args> Transform operator()(const Transform& transform, Args&& ... arguments) const;
+			class Policy
+			{
+				bool translation_affected_;
+				bool scale_affected_;
+				bool rotation_affected_;
+
+			public:
+				explicit Policy(bool value = true);
+				Policy(bool translation_affected, bool scale_affected, bool rotation_affected);
+
+				bool is_translation_affected() const;
+				bool is_scale_affected() const;
+				bool is_rotation_affected() const;
+
+				void set_translation_affected(bool translation_affected);
+				void set_scale_affected(bool scale_affected);
+				void set_rotation_affected(bool rotation_affected);
+			};
+
+			Concatenator(const FMatrix3x4& translation_transformer, const FVector3& scale_transformer, const Rotation& rotation_transformer);
+			template <typename ... Args> Transform concatenate(const Transform& transform, Args&& ... arguments) const;
 		};
 
 		Transform() = default;
@@ -57,8 +57,8 @@ namespace Engine
 		FMatrix3x4 get_inverse_matrix() const;
 		FMatrix3 get_normal_matrix() const;
 
-		Transformation get_relative_to_local() const;
-		Transformation get_local_to_relative() const;
+		Concatenator get_relative_to_local() const;
+		Concatenator get_local_to_relative() const;
 	};
 }
 

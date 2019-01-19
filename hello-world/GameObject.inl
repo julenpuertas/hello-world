@@ -7,11 +7,6 @@ namespace Engine
 		, world_transform_(std::forward<Args>(arguments) ...)
 	{}
 
-	template<typename ...Args> GameObject::GameObject(GameObject & parent, Args&& ... arguments)
-		: Entity(true)
-		, world_transform_(std::forward<Args>(arguments) ...)
-	{}
-
 	template<typename T, typename ...Args> std::shared_ptr<T> GameObject::add(Args&& ... arguments)
 	{
 		return std::shared_ptr<T>();

@@ -6,10 +6,13 @@
 #include <iostream>
 #include "Hasheable.h"
 #include "System.h"
+#include "GameObject.h"
 
 int main(int argc, char* argv[])
 {
 	using namespace Engine;
+
+	const int sdfsdf = sizeof(GameObject);
 
 	return 0;
 }

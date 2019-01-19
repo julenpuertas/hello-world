@@ -2,18 +2,18 @@
 
 namespace Engine
 {
-	template<typename ...Args> Transform Transform::Transformation::operator()(const Transform& transform, Args&& ...arguments) const
+	template<typename ...Args> Transform Transform::Concatenator::concatenate(const Transform& transform, Args&& ... arguments) const
 	{
-		const ParenthoodPolicy parenthood_policy(std::forward<Args>(arguments) ...);
+		const Policy concatenation_policy(std::forward<Args>(arguments) ...);
 		Transform result = transform;
 
-		if (parenthood_policy.is_translation_affected())
+		if (concatenation_policy.is_translation_affected())
 			result.translation_ = translation_transformer_ * result.translation_;
 
-		if (parenthood_policy.is_scale_affected())
+		if (concatenation_policy.is_scale_affected())
 			result.scale_ = scale_transformer_ * result.scale_;
 
-		if (parenthood_policy.is_rotation_affected())
+		if (concatenation_policy.is_rotation_affected())
 			result.rotation_ = rotation_transformer_ * result.rotation_;
 
 		return result;
@@ -25,7 +25,7 @@ namespace Engine
 		, rotation_(std::forward<Args>(arguments) ...)
 	{}
 
-	template<typename ...Args> void Transform::set_rotation(Args&& ...arguments)
+	template<typename ...Args> void Transform::set_rotation(Args&& ... arguments)
 	{
 		rotation_ = Rotation(std::forward<Args>(arguments) ...);
 	}
