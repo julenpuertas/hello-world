@@ -60,9 +60,6 @@ namespace Engine
 	void Component::on_deactivation()
 	{}
 
-	void Component::on_update()
-	{}
-
 	void Component::attach()
 	{}
 }

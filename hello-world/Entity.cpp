@@ -35,6 +35,9 @@ namespace Engine
 	void Entity::on_deactivation()
 	{}
 
+	void Entity::on_update()
+	{}
+
 	void Entity::on_destroy()
 	{}
 }

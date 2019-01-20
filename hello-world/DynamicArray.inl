@@ -2,9 +2,9 @@
 
 namespace Engine
 {
-	template<typename T> std::function<bool(const T&)> DynamicArray<T>::make_equal_to_element_fn(const T & element, const Comparator<T>& equal_fn)
+	template<typename T> std::function<bool(const T&)> DynamicArray<T>::make_equal_to_element_fn(const T& element, const Comparator<T>& equal_fn)
 	{
-		return [&element](const T& rhs)
+		return [&element, &equal_fn](const T& rhs)
 		{
 			return equal_fn(element, rhs);
 		};

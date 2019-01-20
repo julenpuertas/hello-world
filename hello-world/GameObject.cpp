@@ -4,6 +4,20 @@
 
 namespace Engine
 {
+	void GameObject::set_transform(const Transform& new_transform, Transform& directly_modified_transform, Transform& indirectly_modified_transform, Transform::Concatenator(Transform::* get_concatenator)() const)
+	{
+		directly_modified_transform = new_transform;
+
+		Transform parent_world_transform;
+		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
+			parent_world_transform = p_parent->world_transform_;
+
+		const Transform::Concatenator concatenator = (parent_world_transform.*get_concatenator)();
+		indirectly_modified_transform = concatenator.concatenate(new_transform, attachment_to_parent_policy_);
+
+		update_children_transforms();
+	}
+
 	void GameObject::remove_child(const GameObject& posible_child)
 	{
 		const GameObject* const p_posible_child = &posible_child;
@@ -31,7 +45,9 @@ namespace Engine
 		: Entity(true)
 		, world_transform_(world_transform)
 		, attachment_to_parent_policy_(attachment_to_parent_policy)
-	{}
+	{
+		set_parent(parent);
+	}
 
 	bool GameObject::is_descendant_of(const GameObject& posible_ancestor) const
 	{
@@ -100,16 +116,7 @@ namespace Engine
 
 	void GameObject::set_local_transform(const Transform& local_transform)
 	{
-		local_transform_ = local_transform;
-
-		Transform parent_world_transform;
-		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
-			parent_world_transform = p_parent->world_transform_;
-
-		const Transform::Concatenator relative_to_local_concatenator = parent_world_transform.get_relative_to_local();
-		world_transform_ = relative_to_local_concatenator.concatenate(local_transform, attachment_to_parent_policy_);
-
-		update_children_transforms();
+		set_transform(local_transform, local_transform_, world_transform_, &Transform::get_relative_to_local);
 	}
 
 	const Transform& GameObject::get_world_transform() const
@@ -119,16 +126,7 @@ namespace Engine
 
 	void GameObject::set_world_transform(const Transform& world_transform)
 	{
-		world_transform_ = world_transform;
-
-		Transform parent_world_transform;
-		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
-			parent_world_transform = p_parent->world_transform_;
-
-		const Transform::Concatenator local_to_relative_concatenator = parent_world_transform.get_local_to_relative();
-		local_transform_ = local_to_relative_concatenator.concatenate(world_transform, attachment_to_parent_policy_);
-
-		update_children_transforms();
+		set_transform(world_transform, world_transform_, local_transform_, &Transform::get_local_to_relative);
 	}
 
 	const Transform::Concatenator::Policy& GameObject::get_attachment_to_parent_policy() const
@@ -147,18 +145,74 @@ namespace Engine
 
 	bool GameObject::is_active() const
 	{
-		return false;
+		bool active = Entity::is_active();
+		std::shared_ptr<GameObject> p_ancestor = p_parent_.lock();
+
+		while (p_ancestor && active)
+		{
+			GameObject& ancestor = *p_ancestor;
+			active = ancestor.Entity::is_active();
+			p_ancestor = ancestor.p_parent_.lock();
+		}
+
+		return active;
 	}
 
 	void GameObject::set_active(bool active)
 	{
+		bool was_active = Entity::is_active();
+		if (was_active == active)
+			return;
+
+		Entity::set_active(active);
+
+		if (is_active())
+			on_activation();
+
+		else on_deactivation();
 	}
 
 	void GameObject::on_activation()
 	{
+		for (const std::weak_ptr<Component>& p_component : components_)
+		{
+			if (p_component.expired())
+				continue;
+
+			Component& component = *p_component.lock();
+			if (component.Entity::is_active())
+				component.on_activation();
+		}
+
+		for (const std::shared_ptr<GameObject>& p_child : children_)
+		{
+			GameObject& child = *p_child;
+			if (child.Entity::is_active())
+				child.on_activation();
+		}
 	}
 
 	void GameObject::on_deactivation()
+	{
+		for (const std::weak_ptr<Component>& p_component : components_)
+		{
+			if (p_component.expired())
+				continue;
+
+			Component& component = *p_component.lock();
+			if (component.Entity::is_active())
+				component.on_deactivation();
+		}
+
+		for (const std::shared_ptr<GameObject>& p_child : children_)
+		{
+			GameObject& child = *p_child;
+			if (child.Entity::is_active())
+				child.on_deactivation();
+		}
+	}
+
+	void GameObject::on_update()
 	{
 	}
 

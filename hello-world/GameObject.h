@@ -19,6 +19,7 @@ namespace Engine
 		DynamicArray<std::shared_ptr<GameObject> > children_;
 		DynamicArray<std::weak_ptr<Component> > components_;
 
+		void set_transform(const Transform& new_transform, Transform& directly_modified_transform, Transform& indirectly_modified_transform, Transform::Concatenator(Transform::*get_concatenator)() const);
 		void remove_child(const GameObject& posible_child);
 		void update_children_transforms() const;
 
@@ -52,6 +53,7 @@ namespace Engine
 		void on_activation() override;
 		void on_deactivation() override;
 
+		void on_update() override;
 		void on_destroy() override;
 	};
 }

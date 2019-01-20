@@ -28,8 +28,6 @@ namespace Engine
 		virtual void on_activation();
 		virtual void on_deactivation();
 
-		virtual void on_update();
-
 		virtual void attach();
 	};
 }

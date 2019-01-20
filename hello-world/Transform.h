@@ -39,7 +39,7 @@ namespace Engine
 			};
 
 			Concatenator(const FMatrix3x4& translation_transformer, const FVector3& scale_transformer, const Rotation& rotation_transformer);
-			template <typename ... Args> Transform concatenate(const Transform& transform, Args&& ... arguments) const;
+			Transform concatenate(const Transform& transform, const Policy& policy) const;
 		};
 
 		Transform() = default;

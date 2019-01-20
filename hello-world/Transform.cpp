@@ -50,6 +50,22 @@ namespace Engine
 		, rotation_transformer_(rotation_transformer)
 	{}
 
+	Transform Transform::Concatenator::concatenate(const Transform& transform, const Policy& policy) const
+	{
+		Transform result = transform;
+
+		if (policy.is_translation_affected())
+			result.translation_ = translation_transformer_ * result.translation_;
+
+		if (policy.is_scale_affected())
+			result.scale_ = scale_transformer_ * result.scale_;
+
+		if (policy.is_rotation_affected())
+			result.rotation_ = rotation_transformer_ * result.rotation_;
+
+		return result;
+	}
+
 	FMatrix3 Transform::get_vector_transformation_inverse_matrix() const
 	{
 		const glm::fvec3 inverse_scale = 1.f / scale_;
