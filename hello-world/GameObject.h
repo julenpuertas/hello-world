@@ -20,6 +20,8 @@ namespace Engine
 		DynamicArray<std::weak_ptr<Component> > components_;
 
 		void set_transform(const Transform& new_transform, Transform& directly_modified_transform, Transform& indirectly_modified_transform, Transform::Concatenator(Transform::*get_concatenator)() const);
+		void for_each_component(const std::function<void(Component&)>& predicate) const;
+		void for_each_child(const std::function<void(GameObject&)>& predicate) const;
 		void remove_child(const GameObject& posible_child);
 		void update_children_transforms() const;
 

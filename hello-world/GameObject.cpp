@@ -18,6 +18,30 @@ namespace Engine
 		update_children_transforms();
 	}
 
+	void GameObject::for_each_component(const std::function<void(Component&)>& predicate) const
+	{
+		if (!predicate)
+			return;
+
+		for (const std::weak_ptr<Component>& p_comopnent : components_)
+		{
+			if (!p_comopnent.expired())
+				predicate(*p_comopnent.lock());
+		}
+	}
+
+	void GameObject::for_each_child(const std::function<void(GameObject&)>& predicate) const
+	{
+		if (!predicate)
+			return;
+
+		for (const std::shared_ptr<GameObject>& p_child : children_)
+		{
+			if (p_child)
+				predicate(*p_child);
+		}
+	}
+
 	void GameObject::remove_child(const GameObject& posible_child)
 	{
 		const GameObject* const p_posible_child = &posible_child;
@@ -33,12 +57,11 @@ namespace Engine
 	void GameObject::update_children_transforms() const
 	{
 		const Transform::Concatenator relative_to_local = world_transform_.get_relative_to_local();
-		for (const std::shared_ptr<GameObject>& p_child : children_)
+		for_each_child([&relative_to_local](GameObject& child)
 		{
-			GameObject& child = *p_child;
 			child.world_transform_ = relative_to_local.concatenate(child.local_transform_, child.attachment_to_parent_policy_);
 			child.update_children_transforms();
-		}
+		});
 	}
 
 	bool GameObject::update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject)
@@ -179,48 +202,38 @@ namespace Engine
 		if (!was_active && now_is_active)
 			on_activation();
 
-		else if(was_active && !now_is_active)
+		else if (was_active && !now_is_active)
 			on_deactivation();
 	}
 
 	void GameObject::on_activation()
 	{
-		for (const std::weak_ptr<Component>& p_component : components_)
+		for_each_component([](Component& component)
 		{
-			if (p_component.expired())
-				continue;
-
-			Component& component = *p_component.lock();
 			if (component.Entity::is_active())
 				component.on_activation();
-		}
+		});
 
-		for (const std::shared_ptr<GameObject>& p_child : children_)
+		for_each_child([](GameObject& child)
 		{
-			GameObject& child = *p_child;
 			if (child.Entity::is_active())
 				child.on_activation();
-		}
+		});
 	}
 
 	void GameObject::on_deactivation()
 	{
-		for (const std::weak_ptr<Component>& p_component : components_)
+		for_each_component([](Component& component)
 		{
-			if (p_component.expired())
-				continue;
-
-			Component& component = *p_component.lock();
 			if (component.Entity::is_active())
 				component.on_deactivation();
-		}
+		});
 
-		for (const std::shared_ptr<GameObject>& p_child : children_)
+		for_each_child([](GameObject& child)
 		{
-			GameObject& child = *p_child;
 			if (child.Entity::is_active())
 				child.on_deactivation();
-		}
+		});
 	}
 
 	void GameObject::on_update()
@@ -233,21 +246,16 @@ namespace Engine
 		Messages::GameObjectDestroyed message(*this);
 		handle(message);
 
-		for (const std::shared_ptr<GameObject>& p_child : children_)
+		for_each_child([](GameObject& child)
 		{
-			GameObject& child = *p_child;
 			child.on_destroy();
 			child.set_alive(false);
-		}
+		});
 
-		for (const std::weak_ptr<Component>& p_component : components_)
+		for_each_component([](Component& component)
 		{
-			if (p_component.expired())
-				continue;
-
-			Component& component = *p_component.lock();
 			component.on_destroy();
 			component.set_alive(false);
-		}
+		});
 	}
 }
