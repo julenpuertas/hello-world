@@ -24,6 +24,7 @@ namespace Engine
 		void update_children_transforms() const;
 
 	public:
+		static bool update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject);
 		template <typename ... Args> explicit GameObject(Args&& ... arguments);
 		GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy);
 

@@ -40,12 +40,12 @@ namespace Engine
 		return insert_element;
 	}
 
-	template<typename T> bool DynamicArray<T>::erase(const T& element, const Comparator<T>& equal_fn)
+	template<typename T> bool DynamicArray<T>::erase_single(const T& element, const Comparator<T>& equal_fn)
 	{
 		return erase(make_equal_to_element_fn(element, equal_fn));
 	}
 
-	template<typename T> bool DynamicArray<T>::erase(const std::function<bool(const T&)>& requirement_to_satisty_fn)
+	template<typename T> bool DynamicArray<T>::erase_single(const std::function<bool(const T&)>& requirement_to_satisty_fn)
 	{
 		if (!requirement_to_satisty_fn)
 			return false;
@@ -95,7 +95,7 @@ namespace Engine
 
 		size_t erased_element_count = 0;
 		typename std::pmr::vector<T>::iterator it_end = this->end();
-		const std::pmr::vector<T>::iterator it_new_end = std::remove_if(this->begin(), it_end, [erased_element_count, max_erase_count](const T& element)
+		const std::pmr::vector<T>::iterator it_new_end = std::remove_if(this->begin(), it_end, [&erased_element_count, max_erase_count, &requirement_to_satisty_fn](const T& element)
 		{
 			return erased_element_count++ < max_erase_count && requirement_to_satisty_fn(element);
 		});

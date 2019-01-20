@@ -30,13 +30,13 @@ namespace Engine
 
 		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
 		{
-			if (p_owner->is_active())
-			{
-				if (active)
-					on_activation();
+			if (!p_owner->is_active())
+				return;
 
-				else on_deactivation();
-			}
+			if (active)
+				on_activation();
+
+			else on_deactivation();
 		}
 	}
 

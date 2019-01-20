@@ -41,6 +41,18 @@ namespace Engine
 		}
 	}
 
+	bool GameObject::update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject)
+	{
+		GameObject& gameobject = *p_gameobject;
+		const bool alive = gameobject.is_alive();
+		if (alive)
+			gameobject.on_update();
+
+		else gameobject.on_destroy();
+
+		return !alive;
+	}
+
 	GameObject::GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy)
 		: Entity(true)
 		, world_transform_(world_transform)
@@ -160,16 +172,15 @@ namespace Engine
 
 	void GameObject::set_active(bool active)
 	{
-		bool was_active = Entity::is_active();
-		if (was_active == active)
-			return;
-
+		const bool was_active = is_active();
 		Entity::set_active(active);
+		const bool now_is_active = is_active();
 
-		if (is_active())
+		if (!was_active && now_is_active)
 			on_activation();
 
-		else on_deactivation();
+		else if(was_active && !now_is_active)
+			on_deactivation();
 	}
 
 	void GameObject::on_activation()
@@ -214,6 +225,7 @@ namespace Engine
 
 	void GameObject::on_update()
 	{
+		children_.erase_multiple(&GameObject::update_or_destroy);
 	}
 
 	void GameObject::on_destroy()
