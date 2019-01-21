@@ -224,6 +224,7 @@
     <ClInclude Include="Clonable.h" />
     <ClInclude Include="Comparator.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentTraits.h" />
     <ClInclude Include="Division.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Epsilon.h" />
@@ -261,6 +262,7 @@
   <ItemGroup>
     <None Include="BaseSortedDynamicArray.inl" />
     <None Include="Clonable.inl" />
+    <None Include="ComponentTraits.inl" />
     <None Include="Division.inl" />
     <None Include="DynamicArray.inl" />
     <None Include="Epsilon.inl" />

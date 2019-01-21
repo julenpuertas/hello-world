@@ -1,5 +1,6 @@
 #pragma once
 #include "Comparator.h"
+#include "Requirement.h"
 #include <vector>
 
 namespace Engine

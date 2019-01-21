@@ -2,20 +2,14 @@
 
 namespace Engine
 {
-	Rtti::Rtti(const std::type_info& type)
-		: type_index_(type)
-	{}
-
-	Rtti::Rtti(const type_info& type, const Rtti& parent_type, const std::initializer_list<const Rtti*>& required_types)
+	Rtti::Rtti(const type_info& type, const Rtti& parent_type)
 		: type_index_(type)
 		, parent_types_(1, &parent_type)
-		, required_types_(required_types)
 	{}
 
-	Rtti::Rtti(const type_info& type, const std::initializer_list<const Rtti*>& parent_types, const std::initializer_list<const Rtti*>& required_types)
+	Rtti::Rtti(const type_info& type, const std::initializer_list<const Rtti*>& parent_types)
 		: type_index_(type)
 		, parent_types_(parent_types)
-		, required_types_(required_types)
 	{}
 
 	String::View Rtti::get_name() const
@@ -41,10 +35,5 @@ namespace Engine
 			found = (*it)->is_same_or_derived_from(other_type);
 
 		return found;
-	}
-
-	bool Rtti::requires(const Rtti & other_type) const
-	{
-		return false;
 	}
 }

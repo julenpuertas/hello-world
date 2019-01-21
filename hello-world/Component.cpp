@@ -5,12 +5,10 @@ namespace Engine
 {
 	const Rtti Component::TYPE = typeid(Component);
 
-	Component::Component()
-		: Entity(false)
+	Component::Component(const Component&)
 	{}
 
-	Component::Component(const Component&)
-		: Entity(false)
+	void Component::attach()
 	{}
 
 	bool Component::is_active() const
@@ -51,15 +49,11 @@ namespace Engine
 			p_owner->remove(get_rtti());
 
 		p_owner_ = owner.get_this<GameObject>();
+
+		const bool was_alive = is_alive();
 		set_alive(true);
+
+		if(was_alive)
+			attach();
 	}
-
-	void Component::on_activation()
-	{}
-
-	void Component::on_deactivation()
-	{}
-
-	void Component::attach()
-	{}
 }

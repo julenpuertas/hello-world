@@ -9,10 +9,10 @@ namespace Engine
 		, public IClonable
 	{
 		bool active_ = true;
-		bool alive_;
+		bool alive_ = true;
 
 	protected:
-		explicit Entity(bool alive);
+		Entity() = default;
 		explicit Entity(const Entity&);
 
 	public:

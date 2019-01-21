@@ -13,21 +13,19 @@ namespace Engine
 	{
 		std::weak_ptr<GameObject> p_owner_;
 
+	protected:
+		Component() = default;
+		Component(const Component&);
+
+		virtual void attach();
+
 	public:
 		RTTI_DECLARATION;
-
-		Component();
-		Component(const Component&);
 
 		bool is_active() const;
 		void set_active(bool active);
 
 		std::shared_ptr<GameObject> get_owner() const;
 		void set_owner(GameObject& owner);
-
-		virtual void on_activation();
-		virtual void on_deactivation();
-
-		virtual void attach();
 	};
 }

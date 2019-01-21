@@ -64,6 +64,34 @@ namespace Engine
 		});
 	}
 
+	DynamicArray<std::weak_ptr<Component> >::const_iterator GameObject::get_iterator_to_type(const Rtti& type)
+	{
+		return std::find_if(components_.cbegin(), components_.cend(), [&type](const std::weak_ptr<Component>& wp_component)
+		{
+			if (const std::shared_ptr<Component> p_component = wp_component.lock())
+			{
+				const Rtti& component_type = p_component->get_rtti();
+				return &type == &component_type;
+			}
+
+			return false;
+		});
+	}
+
+	Requirement<std::weak_ptr<Component> > GameObject::make_is_derived_from_type_fn(const Rtti & type)
+	{
+		return [&type](const std::weak_ptr<Component>& wp_component)
+		{
+			if (const std::shared_ptr<Component> p_component = wp_component.lock())
+			{
+				const Rtti& component_type = p_component->get_rtti();
+				return component_type.is_same_or_derived_from(type);
+			}
+
+			return false;
+		};
+	}
+
 	bool GameObject::update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject)
 	{
 		GameObject& gameobject = *p_gameobject;
@@ -77,11 +105,19 @@ namespace Engine
 	}
 
 	GameObject::GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy)
-		: Entity(true)
-		, world_transform_(world_transform)
+		: world_transform_(world_transform)
 		, attachment_to_parent_policy_(attachment_to_parent_policy)
 	{
 		set_parent(parent);
+	}
+
+	GameObject::GameObject(const GameObject& rhs)
+	{
+
+	}
+
+	GameObject::GameObject(GameObject&& rhs)
+	{
 	}
 
 	bool GameObject::is_descendant_of(const GameObject& posible_ancestor) const
@@ -174,8 +210,15 @@ namespace Engine
 		attachment_to_parent_policy_ = attachment_to_parent_policy;
 	}
 
-	void GameObject::remove(const Rtti& comp_type)
+	bool GameObject::remove(const Rtti& type)
 	{
+		const DynamicArray<std::weak_ptr<Component> >::const_iterator it = get_iterator_to_type(type);
+
+		const bool erased = it != components_.cend();
+		if (erased)
+			components_.erase(it);
+
+		return erased;
 	}
 
 	bool GameObject::is_active() const

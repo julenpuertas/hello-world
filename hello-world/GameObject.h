@@ -24,11 +24,15 @@ namespace Engine
 		void for_each_child(const std::function<void(GameObject&)>& predicate) const;
 		void remove_child(const GameObject& posible_child);
 		void update_children_transforms() const;
+		DynamicArray<std::weak_ptr<Component> >::const_iterator get_iterator_to_type(const Rtti& type);
+		static Requirement<std::weak_ptr<Component> > make_is_derived_from_type_fn(const Rtti& type);
 
 	public:
 		static bool update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject);
 		template <typename ... Args> explicit GameObject(Args&& ... arguments);
 		GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy);
+		GameObject(const GameObject& rhs);
+		GameObject(GameObject&& rhs);
 
 		bool is_descendant_of(const GameObject& posible_ancestor) const;
 		std::shared_ptr<GameObject> get_ancestor(size_t ancestor_index = 0) const;
@@ -45,7 +49,7 @@ namespace Engine
 		void set_attachment_to_parent_policy(const Transform::Concatenator::Policy& attachment_to_parent_policy);
 
 		template <typename T, typename ... Args> std::shared_ptr<T> add(Args&& ... arguments);
-		void remove(const Rtti& comp_type);
+		bool remove(const Rtti& type);
 
 		template <typename T> std::shared_ptr<T> get() const;
 		template <typename T> DynamicArray<std::shared_ptr<T> > get_all() const;

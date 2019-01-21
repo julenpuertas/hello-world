@@ -149,6 +149,7 @@
     <ClInclude Include="GameObjectDestroyed.h">
       <Filter>Messages\MessageTypes</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentTraits.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -197,5 +198,6 @@
     <None Include="GameObject.inl">
       <Filter>Entity</Filter>
     </None>
+    <None Include="ComponentTraits.inl" />
   </ItemGroup>
 </Project>
