@@ -4,20 +4,6 @@
 
 namespace Engine
 {
-	void GameObject::set_transform(const Transform& new_transform, Transform& directly_modified_transform, Transform& indirectly_modified_transform, Transform::Concatenator(Transform::* get_concatenator)() const)
-	{
-		directly_modified_transform = new_transform;
-
-		Transform parent_world_transform;
-		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
-			parent_world_transform = p_parent->world_transform_;
-
-		const Transform::Concatenator concatenator = (parent_world_transform.*get_concatenator)();
-		indirectly_modified_transform = concatenator.concatenate(new_transform, attachment_to_parent_policy_);
-
-		update_children_transforms();
-	}
-
 	void GameObject::for_each_component(const std::function<void(Component&)>& predicate) const
 	{
 		if (!predicate)
@@ -45,22 +31,30 @@ namespace Engine
 	void GameObject::remove_child(const GameObject& posible_child)
 	{
 		const GameObject* const p_posible_child = &posible_child;
-		children_.erase_fast([&p_posible_child](const std::shared_ptr<GameObject>& wp_child)
+		children_.erase_fast([&p_posible_child](const std::shared_ptr<GameObject>& p_child)
 		{
-			if (wp_child)
-				return p_posible_child == wp_child.get();
+			if (p_child)
+				return p_posible_child == p_child.get();
 
 			return false;
 		});
 	}
 
-	void GameObject::update_children_transforms() const
+	Transform GameObject::get_local_transform(const Transform& parent_world_transform) const
+	{
+		const Transform::Concatenator local_to_relative = parent_world_transform.get_local_to_relative();
+		return local_to_relative.concatenate(world_transform_, attachment_to_parent_policy_);
+	}
+
+	void GameObject::update_children_transforms(const Transform& old_world_transform) const
 	{
 		const Transform::Concatenator relative_to_local = world_transform_.get_relative_to_local();
-		for_each_child([&relative_to_local](GameObject& child)
+		for_each_child([&old_world_transform, &relative_to_local](GameObject& child)
 		{
-			child.world_transform_ = relative_to_local.concatenate(child.local_transform_, child.attachment_to_parent_policy_);
-			child.update_children_transforms();
+			const Transform child_old_world_transform = child.world_transform_;
+			const Transform child_local_transform = child.get_local_transform(old_world_transform);
+			child.world_transform_ = relative_to_local.concatenate(child_local_transform, child.attachment_to_parent_policy_);
+			child.update_children_transforms(child_old_world_transform);
 		});
 	}
 
@@ -76,20 +70,6 @@ namespace Engine
 
 			return false;
 		});
-	}
-
-	Requirement<std::weak_ptr<Component> > GameObject::make_is_derived_from_type_fn(const Rtti & type)
-	{
-		return [&type](const std::weak_ptr<Component>& wp_component)
-		{
-			if (const std::shared_ptr<Component> p_component = wp_component.lock())
-			{
-				const Rtti& component_type = p_component->get_rtti();
-				return component_type.is_same_or_derived_from(type);
-			}
-
-			return false;
-		};
 	}
 
 	bool GameObject::update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject)
@@ -166,8 +146,6 @@ namespace Engine
 
 		p_parent_ = new_parent.get_this<GameObject>();
 		new_parent.children_.push_back(get_this<GameObject>());
-		const Transform::Concatenator local_to_relative = new_parent.world_transform_.get_local_to_relative();
-		local_transform_ = local_to_relative.concatenate(world_transform_, attachment_to_parent_policy_);
 	}
 
 	void GameObject::remove_parent()
@@ -176,18 +154,30 @@ namespace Engine
 		{
 			p_parent->remove_child(*this);
 			p_parent_.reset();
-			local_transform_ = world_transform_;
 		}
 	}
 
-	const Transform& GameObject::get_local_transform() const
+	Transform GameObject::get_local_transform() const
 	{
-		return local_transform_;
+		Transform parent_world_transform;
+		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
+			parent_world_transform = p_parent->world_transform_;
+
+		return get_local_transform(parent_world_transform);
 	}
 
 	void GameObject::set_local_transform(const Transform& local_transform)
 	{
-		set_transform(local_transform, local_transform_, world_transform_, &Transform::get_relative_to_local);
+		const Transform old_world_transform = world_transform_;
+
+		Transform parent_world_transform;
+		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
+			parent_world_transform = p_parent->world_transform_;
+
+		const Transform::Concatenator concatenator = parent_world_transform.get_relative_to_local();
+		world_transform_ = concatenator.concatenate(local_transform, attachment_to_parent_policy_);
+
+		update_children_transforms(old_world_transform);
 	}
 
 	const Transform& GameObject::get_world_transform() const
@@ -197,7 +187,9 @@ namespace Engine
 
 	void GameObject::set_world_transform(const Transform& world_transform)
 	{
-		set_transform(world_transform, world_transform_, local_transform_, &Transform::get_local_to_relative);
+		const Transform old_world_transform = world_transform_;
+		world_transform_ = world_transform;
+		update_children_transforms(old_world_transform);
 	}
 
 	const Transform::Concatenator::Policy& GameObject::get_attachment_to_parent_policy() const

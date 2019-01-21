@@ -3,8 +3,7 @@
 namespace Engine
 {
 	template<typename ... Args> GameObject::GameObject(Args&& ... arguments)
-		: local_transform_(std::forward<Args>(arguments) ...)
-		, world_transform_(local_transform_)
+		: world_transform_(std::forward<Args>(arguments) ...)
 	{}
 
 	template<typename T, typename ...Args> std::shared_ptr<T> GameObject::add(Args&& ... arguments)

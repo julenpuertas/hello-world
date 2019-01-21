@@ -237,6 +237,7 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessagesListener.h" />
     <ClInclude Include="MultiSortedDynamicArray.h" />
+    <ClInclude Include="Requirement.h" />
     <ClInclude Include="ShareableFromThis.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SortedDynamicArray.h" />

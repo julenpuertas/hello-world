@@ -11,7 +11,6 @@ namespace Engine
 		: public Entity
 		, public Messages::Listener
 	{
-		Transform local_transform_;
 		Transform world_transform_;
 		Transform::Concatenator::Policy attachment_to_parent_policy_;
 
@@ -19,16 +18,16 @@ namespace Engine
 		DynamicArray<std::shared_ptr<GameObject> > children_;
 		DynamicArray<std::weak_ptr<Component> > components_;
 
-		void set_transform(const Transform& new_transform, Transform& directly_modified_transform, Transform& indirectly_modified_transform, Transform::Concatenator(Transform::*get_concatenator)() const);
 		void for_each_component(const std::function<void(Component&)>& predicate) const;
 		void for_each_child(const std::function<void(GameObject&)>& predicate) const;
 		void remove_child(const GameObject& posible_child);
-		void update_children_transforms() const;
+		Transform get_local_transform(const Transform& parent_world_transform) const;
+		void update_children_transforms(const Transform& old_world_transform) const;
 		DynamicArray<std::weak_ptr<Component> >::const_iterator get_iterator_to_type(const Rtti& type);
-		static Requirement<std::weak_ptr<Component> > make_is_derived_from_type_fn(const Rtti& type);
 
 	public:
 		static bool update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject);
+
 		template <typename ... Args> explicit GameObject(Args&& ... arguments);
 		GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy);
 		GameObject(const GameObject& rhs);
@@ -39,7 +38,7 @@ namespace Engine
 		void set_parent(GameObject& new_parent);
 		void remove_parent();
 
-		const Transform& get_local_transform() const;
+		Transform get_local_transform() const;
 		void set_local_transform(const Transform& local_transform);
 
 		const Transform& get_world_transform() const;

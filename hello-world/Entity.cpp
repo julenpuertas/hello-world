@@ -2,10 +2,6 @@
 
 namespace Engine
 {
-	Entity::Entity(bool alive)
-		: alive_(alive)
-	{}
-
 	Entity::Entity(const Entity&)
 	{}
 

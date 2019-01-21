@@ -1,12 +1,10 @@
 #pragma once
 #include "ShareableFromThis.h"
-#include "Clonable.h"
 
 namespace Engine
 {
 	class Entity
 		: public ShareableFromThis
-		, public IClonable
 	{
 		bool active_ = true;
 		bool alive_ = true;

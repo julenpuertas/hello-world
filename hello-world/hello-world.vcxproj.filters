@@ -150,6 +150,7 @@
       <Filter>Messages\MessageTypes</Filter>
     </ClInclude>
     <ClInclude Include="ComponentTraits.h" />
+    <ClInclude Include="Requirement.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
