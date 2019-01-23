@@ -11,6 +11,12 @@ namespace Engine
 	void Component::attach()
 	{}
 
+	void Component::on_owner_set()
+	{}
+
+	void Component::assign(const Component & rhs)
+	{}
+
 	bool Component::is_active() const
 	{
 		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
@@ -53,7 +59,9 @@ namespace Engine
 		const bool was_alive = is_alive();
 		set_alive(true);
 
-		if(was_alive)
+		if(!was_alive)
 			attach();
+
+		on_owner_set();
 	}
 }

@@ -72,6 +72,41 @@ namespace Engine
 		});
 	}
 
+	void GameObject::destroy_children() const
+	{
+		for_each_child([](GameObject& child)
+		{
+			child.on_destroy();
+			child.set_alive(false);
+		});
+	}
+
+	void GameObject::destroy_components() const
+	{
+		for_each_component([](Component& component)
+		{
+			component.on_destroy();
+			component.set_alive(false);
+		});
+	}
+
+	bool GameObject::remove_parent_if_it_has()
+	{
+		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
+		{
+			p_parent->remove_child(*this);
+			p_parent_.reset();
+			return true;
+		}
+		return false;
+	}
+
+	void GameObject::add_to_global_gameobject_list()
+	{}
+
+	void GameObject::remove_from_global_gameobject_list()
+	{}
+
 	bool GameObject::update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject)
 	{
 		GameObject& gameobject = *p_gameobject;
@@ -84,6 +119,9 @@ namespace Engine
 		return !alive;
 	}
 
+	GameObject::GameObject(Uninitialize)
+	{}
+
 	GameObject::GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy)
 		: world_transform_(world_transform)
 		, attachment_to_parent_policy_(attachment_to_parent_policy)
@@ -91,13 +129,88 @@ namespace Engine
 		set_parent(parent);
 	}
 
-	GameObject::GameObject(const GameObject& rhs)
+	GameObject::GameObject(GameObject& parent, const Transform& local_transform, const Transform::Concatenator::Policy& attachment_to_parent_policy)
+		: attachment_to_parent_policy_(attachment_to_parent_policy)
 	{
-
 	}
 
-	GameObject::GameObject(GameObject&& rhs)
+	GameObject& GameObject::operator=(const GameObject& rhs)
 	{
+		destroy_children();
+		children_.clear();
+		children_.reserve(rhs.children_.size());
+		world_transform_.set_scale(rhs.world_transform_.get_scale());
+		const Transform::Concatenator relative_to_local = world_transform_.get_relative_to_local();
+		const std::weak_ptr<GameObject> p_this = get_this<GameObject>();
+		for (const std::shared_ptr<GameObject>& p_rhs_child : rhs.children_)
+		{
+			if (!p_rhs_child)
+				continue;
+
+			const GameObject& rhs_child = *p_rhs_child;
+			const Transform rhs_child_local_transform = rhs_child.get_local_transform();
+
+			const std::shared_ptr<GameObject> p_child = std::make_shared<GameObject>(Uninitialize());
+			children_.push_back(p_child);
+			GameObject& child = *p_child;
+			child = rhs_child;
+			child.p_parent_ = p_this;
+			child.world_transform_ = relative_to_local.concatenate(rhs_child_local_transform, child.attachment_to_parent_policy_);
+		}
+
+		components_.reserve_for(rhs.components_.size());
+		DynamicArray<std::weak_ptr<Component> >::const_iterator it_end = rhs.components_.cend();
+		for_each_component([](Component& component)
+		{
+			const Rtti& type = component.get_rtti();
+			//if()
+		});
+
+		return *this;
+	}
+
+	GameObject& GameObject::operator=(GameObject&& rhs)
+	{
+		destroy_children();
+		destroy_components();
+
+		world_transform_ = rhs.world_transform_;
+		attachment_to_parent_policy_ = rhs.attachment_to_parent_policy_;
+
+
+
+		const bool had_parent = remove_parent_if_it_has();
+		if (const std::shared_ptr<GameObject> p_rhs_parent = rhs.p_parent_.lock())
+		{
+			p_rhs_parent->remove_child(rhs);
+			p_parent_ = std::move(rhs.p_parent_);
+			if (!had_parent)
+				remove_from_global_gameobject_list();
+		}
+
+		else if (had_parent)
+			add_to_global_gameobject_list();
+
+
+
+		children_ = std::move(rhs.children_);
+		const std::weak_ptr<GameObject> p_this = get_this<GameObject>();
+		for (const std::shared_ptr<GameObject>& p_child : children_)
+			p_child->p_parent_ = p_this;
+
+
+		GameObject& this_ref = *this;
+		components_.clear();
+		components_.reserve(rhs.components_.size());
+		while (!rhs.components_.empty())
+		{
+			const std::weak_ptr<Component>& wp_component = components_.back();
+			if (const std::shared_ptr<Component> p_component = wp_component.lock())
+				p_component->set_owner(this_ref);
+		}
+
+		rhs.set_alive(false);
+		return this_ref;
 	}
 
 	bool GameObject::is_descendant_of(const GameObject& posible_ancestor) const
@@ -144,17 +257,16 @@ namespace Engine
 		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
 			p_parent->remove_child(this_ref);
 
+		else remove_from_global_gameobject_list();
+
 		p_parent_ = new_parent.get_this<GameObject>();
 		new_parent.children_.push_back(get_this<GameObject>());
 	}
 
 	void GameObject::remove_parent()
 	{
-		if (const std::shared_ptr<GameObject> p_parent = p_parent_.lock())
-		{
-			p_parent->remove_child(*this);
-			p_parent_.reset();
-		}
+		if(remove_parent_if_it_has())
+			add_to_global_gameobject_list();
 	}
 
 	Transform GameObject::get_local_transform() const
@@ -281,16 +393,7 @@ namespace Engine
 		Messages::GameObjectDestroyed message(*this);
 		handle(message);
 
-		for_each_child([](GameObject& child)
-		{
-			child.on_destroy();
-			child.set_alive(false);
-		});
-
-		for_each_component([](Component& component)
-		{
-			component.on_destroy();
-			component.set_alive(false);
-		});
+		destroy_children();
+		destroy_components();
 	}
 }

@@ -24,14 +24,26 @@ namespace Engine
 		Transform get_local_transform(const Transform& parent_world_transform) const;
 		void update_children_transforms(const Transform& old_world_transform) const;
 		DynamicArray<std::weak_ptr<Component> >::const_iterator get_iterator_to_type(const Rtti& type);
+		void destroy_children() const;
+		void destroy_components() const;
+		bool remove_parent_if_it_has();
+		void add_to_global_gameobject_list();
+		void remove_from_global_gameobject_list();
 
 	public:
 		static bool update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject);
 
+		enum class Uninitialize : Byte
+		{};
+
+		GameObject(Uninitialize);
 		template <typename ... Args> explicit GameObject(Args&& ... arguments);
-		GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy);
-		GameObject(const GameObject& rhs);
-		GameObject(GameObject&& rhs);
+		GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy = Transform::Concatenator::Policy());
+		GameObject(GameObject& parent, const Transform& local_transform, const Transform::Concatenator::Policy& attachment_to_parent_policy = Transform::Concatenator::Policy());
+		GameObject(const GameObject& rhs) = delete;
+
+		GameObject& operator=(const GameObject& rhs);
+		GameObject& operator=(GameObject&& rhs);
 
 		bool is_descendant_of(const GameObject& posible_ancestor) const;
 		std::shared_ptr<GameObject> get_ancestor(size_t ancestor_index = 0) const;
