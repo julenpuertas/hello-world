@@ -14,8 +14,8 @@ namespace Engine
 		explicit Entity(const Entity&);
 
 	public:
-		bool is_alive() const;
-		void set_alive(bool alive);
+		virtual bool is_alive() const;
+		void destroy();
 
 		virtual bool is_active() const = 0;
 		virtual void set_active(bool active) = 0;

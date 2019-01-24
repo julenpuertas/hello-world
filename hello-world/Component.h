@@ -25,6 +25,8 @@ namespace Engine
 
 		virtual void assign(const Component& rhs);
 
+		bool is_alive() const override;
+
 		bool is_active() const;
 		void set_active(bool active);
 

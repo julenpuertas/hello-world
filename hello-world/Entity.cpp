@@ -10,9 +10,9 @@ namespace Engine
 		return alive_;
 	}
 
-	void Entity::set_alive(bool alive)
+	void Entity::destroy()
 	{
-		alive_ = alive;
+		alive_ = false;
 	}
 
 	bool Entity::is_active() const

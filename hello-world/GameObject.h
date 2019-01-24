@@ -23,12 +23,17 @@ namespace Engine
 		void remove_child(const GameObject& posible_child);
 		Transform get_local_transform(const Transform& parent_world_transform) const;
 		void update_children_transforms(const Transform& old_world_transform) const;
-		DynamicArray<std::weak_ptr<Component> >::const_iterator get_iterator_to_type(const Rtti& type);
+		DynamicArray<std::weak_ptr<Component> >::const_iterator get_iterator_to_type(const Rtti& type) const;
 		void destroy_children() const;
 		void destroy_components() const;
 		bool remove_parent_if_it_has();
 		void add_to_global_gameobject_list();
 		void remove_from_global_gameobject_list();
+		void copy_children(const GameObject& rhs);
+		void copy_components(const GameObject& rhs);
+		void move_parent(GameObject&& rhs);
+		void move_children(GameObject&& rhs);
+		void move_components(GameObject&& rhs);
 
 	public:
 		static bool update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject);
@@ -38,8 +43,7 @@ namespace Engine
 
 		GameObject(Uninitialize);
 		template <typename ... Args> explicit GameObject(Args&& ... arguments);
-		GameObject(const Transform& world_transform, GameObject& parent, const Transform::Concatenator::Policy& attachment_to_parent_policy = Transform::Concatenator::Policy());
-		GameObject(GameObject& parent, const Transform& local_transform, const Transform::Concatenator::Policy& attachment_to_parent_policy = Transform::Concatenator::Policy());
+		GameObject(const Transform& world_transform, const Transform::Concatenator::Policy& attachment_to_parent_policy);
 		GameObject(const GameObject& rhs) = delete;
 
 		GameObject& operator=(const GameObject& rhs);

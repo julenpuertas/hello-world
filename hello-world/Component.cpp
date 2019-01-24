@@ -17,6 +17,14 @@ namespace Engine
 	void Component::assign(const Component & rhs)
 	{}
 
+	bool Component::is_alive() const
+	{
+		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
+			return Entity::is_alive() && p_owner->is_alive();
+
+		return false;
+	}
+
 	bool Component::is_active() const
 	{
 		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
@@ -54,12 +62,10 @@ namespace Engine
 		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
 			p_owner->remove(get_rtti());
 
+		const bool was_free = p_owner_.expired();
 		p_owner_ = owner.get_this<GameObject>();
 
-		const bool was_alive = is_alive();
-		set_alive(true);
-
-		if(!was_alive)
+		if(was_free)
 			attach();
 
 		on_owner_set();
