@@ -151,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="ComponentTraits.h" />
     <ClInclude Include="Requirement.h" />
+    <ClInclude Include="Angles.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -200,5 +203,8 @@
       <Filter>Entity</Filter>
     </None>
     <None Include="ComponentTraits.inl" />
+    <None Include="Angles.inl">
+      <Filter>Math</Filter>
+    </None>
   </ItemGroup>
 </Project>

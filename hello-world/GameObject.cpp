@@ -227,29 +227,36 @@ namespace Engine
 
 	GameObject& GameObject::operator=(const GameObject& rhs)
 	{
-		destroy_children();
-		children_.clear();
-		world_transform_.set_scale(rhs.world_transform_.get_scale());
+		if (this != &rhs)
+		{
+			destroy_children();
+			children_.clear();
+			world_transform_.set_scale(rhs.world_transform_.get_scale());
 
-		copy_children(rhs);
-		copy_components(rhs);
+			copy_children(rhs);
+			copy_components(rhs);
+		}
 
 		return *this;
 	}
 
 	GameObject& GameObject::operator=(GameObject&& rhs)
 	{
-		destroy_children();
-		destroy_components();
+		if (this != &rhs)
+		{
+			destroy_children();
+			destroy_components();
 
-		world_transform_ = rhs.world_transform_;
-		attachment_to_parent_policy_ = rhs.attachment_to_parent_policy_;
+			world_transform_ = rhs.world_transform_;
+			attachment_to_parent_policy_ = rhs.attachment_to_parent_policy_;
 
-		move_parent(std::move(rhs));
-		move_children(std::move(rhs));
-		move_components(std::move(rhs));
+			move_parent(std::move(rhs));
+			move_children(std::move(rhs));
+			move_components(std::move(rhs));
 
-		rhs.destroy();
+			rhs.destroy();
+		}
+
 		return *this;
 	}
 

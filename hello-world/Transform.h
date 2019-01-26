@@ -53,6 +53,10 @@ namespace Engine
 		void set_scale(const FVector3& scale);
 		template <typename ... Args> void set_rotation(Args&& ... arguments);
 
+		template <typename ... Args> const FVector3& translate(Args&& ... arguments);
+		template <typename ... Args> const FVector3& scale(Args&& ... arguments);
+		template <typename ... Args> const Rotation& rotate(Args&& ... arguments);
+
 		FMatrix3x4 get_matrix() const;
 		FMatrix3x4 get_inverse_matrix() const;
 		FMatrix3 get_normal_matrix() const;

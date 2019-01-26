@@ -216,6 +216,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Angles.h" />
     <ClInclude Include="Array.h" />
     <ClInclude Include="BaseSortedDynamicArray.h" />
     <ClInclude Include="Axis.h" />
@@ -261,6 +262,7 @@
     <ClInclude Include="ExtendedGLMVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Angles.inl" />
     <None Include="BaseSortedDynamicArray.inl" />
     <None Include="Clonable.inl" />
     <None Include="ComponentTraits.inl" />
