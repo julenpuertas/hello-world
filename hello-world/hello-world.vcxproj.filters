@@ -34,6 +34,9 @@
     <ClCompile Include="GameObjectDestroyed.cpp">
       <Filter>Messages\MessageTypes</Filter>
     </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -63,6 +66,12 @@
     <Filter Include="Messages\MessageTypes">
       <UniqueIdentifier>{5c433867-7acd-4696-a0e6-96c4c80a436f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{95335e57-a9f0-41de-9d2e-f57020b0f09d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Function">
+      <UniqueIdentifier>{8bb109bf-bdfe-4ed3-8a2a-ce847fbbdc67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector.h">
@@ -82,9 +91,6 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Pair.h" />
-    <ClInclude Include="ExtendedGLMVector.h">
-      <Filter>Math\Vector</Filter>
-    </ClInclude>
     <ClInclude Include="ExtendedGLMMatrix.h">
       <Filter>Math\Matrix</Filter>
     </ClInclude>
@@ -95,7 +101,6 @@
     <ClInclude Include="DynamicArray.h">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="Comparator.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Hasheable.h" />
     <ClInclude Include="HashMap.h">
@@ -150,9 +155,23 @@
       <Filter>Messages\MessageTypes</Filter>
     </ClInclude>
     <ClInclude Include="ComponentTraits.h" />
-    <ClInclude Include="Requirement.h" />
     <ClInclude Include="Angles.h">
       <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Comparator.h">
+      <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Requirement.h">
+      <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="RGB.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GLMVectorWrapper.h">
+      <Filter>Math\Vector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +184,6 @@
     <None Include="Pair.inl" />
     <None Include="Epsilon.inl">
       <Filter>Math</Filter>
-    </None>
-    <None Include="ExtendedGLMVector.inl">
-      <Filter>Math\Vector</Filter>
     </None>
     <None Include="ExtendedGLMMatrix.inl">
       <Filter>Math\Matrix</Filter>
@@ -202,9 +218,14 @@
     <None Include="GameObject.inl">
       <Filter>Entity</Filter>
     </None>
-    <None Include="ComponentTraits.inl" />
     <None Include="Angles.inl">
       <Filter>Math</Filter>
+    </None>
+    <None Include="ComponentTraits.inl">
+      <Filter>Entity</Filter>
+    </None>
+    <None Include="GLMVectorWrapper.inl">
+      <Filter>Math\Vector</Filter>
     </None>
   </ItemGroup>
 </Project>

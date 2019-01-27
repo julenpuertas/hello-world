@@ -194,6 +194,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDestroyed.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="Byte.h" />
     <ClInclude Include="Clonable.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Comparator.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentTraits.h" />
@@ -239,6 +241,7 @@
     <ClInclude Include="MessagesListener.h" />
     <ClInclude Include="MultiSortedDynamicArray.h" />
     <ClInclude Include="Requirement.h" />
+    <ClInclude Include="RGB.h" />
     <ClInclude Include="ShareableFromThis.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SortedDynamicArray.h" />
@@ -259,7 +262,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Vector.h" />
-    <ClInclude Include="ExtendedGLMVector.h" />
+    <ClInclude Include="GLMVectorWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Angles.inl" />
@@ -288,7 +291,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </None>
     <None Include="Vector.inl" />
-    <None Include="ExtendedGLMVector.inl" />
+    <None Include="GLMVectorWrapper.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

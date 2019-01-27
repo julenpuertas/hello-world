@@ -11,10 +11,10 @@ namespace Engine
 
 		template <typename T> bool is_zero(const T& number, const T& epsilon)
 		{
-			return is_equal(number, static_cast<T>(0), epsilon);
+			return equals(number, static_cast<T>(0), epsilon);
 		}
 
-		template <typename T> bool is_equal(const T& lhs, const T& rhs, const T& epsilon)
+		template <typename T> bool equals(const T& lhs, const T& rhs, const T& epsilon)
 		{
 			return glm::epsilonEqual(lhs, rhs, epsilon);
 		}

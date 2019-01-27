@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Array.h"
-#include "ExtendedGLMVector.h"
+#include "GLMVectorWrapper.h"
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
@@ -19,16 +19,21 @@ namespace Engine
 			Vector operator+(const Vector& rhs) const;
 		};
 
-		template<typename T> struct Vector<T, 2> : public ExtendedGLMVector<Vector, T, 2, glm::tvec2>
+		template<typename T> struct Vector<T, 2> : public GLMVectorWrapper<Vector, T, 2, glm::tvec2>
 		{
 			static const Vector<T, 2> RIGHT;
 			static const Vector<T, 2> UP;
 
 			template <typename ... Args> explicit Vector(Args&& ... args);
 			template <glm::precision P> Vector(const glm::tvec2<T, P>& rhs);
+
+			const T& get_x() const;
+			void set_x(const T& x) const;
+			const T& get_y() const;
+			void set_y(const T& y) const;
 		};
 
-		template<typename T> struct Vector<T, 3> : public ExtendedGLMVector<Vector, T, 3, glm::tvec3>
+		template<typename T> struct Vector<T, 3> : public GLMVectorWrapper<Vector, T, 3, glm::tvec3>
 		{
 			static const Vector<T, 3> RIGHT;
 			static const Vector<T, 3> UP;
@@ -37,10 +42,17 @@ namespace Engine
 			template <typename ... Args> explicit Vector(Args&& ... args);
 			template <glm::precision P> Vector(const glm::tvec3<T, P>& rhs);
 
+			const T& get_x() const;
+			void set_x(const T& x) const;
+			const T& get_y() const;
+			void set_y(const T& y) const;
+			const T& get_z() const;
+			void set_z(const T& z) const;
+
 			Vector<T, 3> cross(const Vector<T, 3>& rhs) const;
 		};
 
-		template<typename T> struct Vector<T, 4> : public ExtendedGLMVector<Vector, T, 4, glm::tvec4>
+		template<typename T> struct Vector<T, 4> : public GLMVectorWrapper<Vector, T, 4, glm::tvec4>
 		{
 			static const Vector<T, 4> RIGHT;
 			static const Vector<T, 4> UP;
@@ -48,6 +60,15 @@ namespace Engine
 
 			template <typename ... Args> explicit Vector(Args&& ... args);
 			template <glm::precision P> Vector(const glm::tvec4<T, P>& rhs);
+
+			const T& get_x() const;
+			void set_x(const T& x) const;
+			const T& get_y() const;
+			void set_y(const T& y) const;
+			const T& get_z() const;
+			void set_z(const T& z) const;
+			const T& get_w() const;
+			void set_w(const T& w) const;
 		};
 	}
 
