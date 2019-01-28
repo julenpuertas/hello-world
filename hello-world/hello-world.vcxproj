@@ -241,7 +241,6 @@
     <ClInclude Include="MessagesListener.h" />
     <ClInclude Include="MultiSortedDynamicArray.h" />
     <ClInclude Include="Requirement.h" />
-    <ClInclude Include="RGB.h" />
     <ClInclude Include="ShareableFromThis.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SortedDynamicArray.h" />
@@ -268,6 +267,7 @@
     <None Include="Angles.inl" />
     <None Include="BaseSortedDynamicArray.inl" />
     <None Include="Clonable.inl" />
+    <None Include="Color.inl" />
     <None Include="ComponentTraits.inl" />
     <None Include="Division.inl" />
     <None Include="DynamicArray.inl" />

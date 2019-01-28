@@ -164,9 +164,6 @@
     <ClInclude Include="Color.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="RGB.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="GLMVectorWrapper.h">
       <Filter>Math\Vector</Filter>
     </ClInclude>
@@ -226,6 +223,9 @@
     </None>
     <None Include="GLMMatrixWrapper.inl">
       <Filter>Math\Matrix</Filter>
+    </None>
+    <None Include="Color.inl">
+      <Filter>Graphics</Filter>
     </None>
   </ItemGroup>
 </Project>
