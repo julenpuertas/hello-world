@@ -7,11 +7,11 @@
 #include "Hasheable.h"
 #include "System.h"
 #include "GameObject.h"
+#include "Color.h"
 
 int main(int argc, char* argv[])
 {
 	using namespace Engine;
-
 
 	return 0;
 }
