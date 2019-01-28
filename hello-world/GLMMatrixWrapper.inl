@@ -1,4 +1,3 @@
-#include "GLMMatrixWrapper.h"
 
 namespace Engine
 {
@@ -118,34 +117,39 @@ namespace Engine
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
 		T GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::get_determinant() const
 		{
-			return glm::determinant(*this);
+			const GLMMatrixT<T, P>& matrix = *this;
+			return glm::determinant(matrix);
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
 		MatrixT<T, M, N> GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::scalar_product(const MatrixT<T, M, N>& rhs) const
 		{
-			return glm::matrixCompMult(*this, rhs);
+			const GLMMatrixT<T, P>& matrix = *this;
+			return glm::matrixCompMult(matrix, rhs);
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
 		MatrixT<T, N, M> GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::get_transpose() const
 		{
-			return glm::transpose(*this);
+			const GLMMatrixT<T, P>& matrix = *this;
+			return glm::transpose(matrix);
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
 		MatrixT<T, M, N> GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::get_inverse() const
 		{
-			return glm::inverse(*this);
+			const GLMMatrixT<T, P>& matrix = *this;
+			return glm::inverse(matrix);
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
 		MatrixT<T, M, N> GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::get_absolute() const
 		{
+			const MatrixT<T, M, N>& matrix = *this;
 			MatrixT<T, M, N> result(glm::ctor::uninitialize);
 
 			for (size_t i = 0; i < WIDTH; ++i)
-				result[i] = (*this)[i].get_absolute();
+				result[i] = matrix[i].get_absolute();
 
 			return result;
 		}
@@ -159,9 +163,10 @@ namespace Engine
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
 		bool GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::equals(const MatrixT<T, M, N>& rhs, const T& epsilon) const
 		{
+			const MatrixT<T, M, N>& matrix = *this;
 			bool equal = true;
 			for (size_t i = 0; equal && i < WIDTH; ++i)
-				equal &= (*this)[i].equals(rhs[i], epsilon);
+				equal &= matrix[i].equals(rhs[i], epsilon);
 
 			return equal;
 		}
@@ -169,7 +174,8 @@ namespace Engine
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
 		typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::begin()
 		{
-			return &(*this)[0][0];
+			MatrixT<T, M, N>& matrix = *this;
+			return &matrix[0][0];
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
@@ -181,7 +187,8 @@ namespace Engine
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
 		typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::begin() const
 		{
-			return &(*this)[0][0];
+			const MatrixT<T, M, N>& matrix = *this;
+			return &matrix[0][0];
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
