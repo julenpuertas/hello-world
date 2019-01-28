@@ -1,13 +1,17 @@
 //#pragma once
 //
 //#include <GL/glew.h>
-//#include "Vector.h"
+//#include "Color.h"
+//#include "String.h"
+//#include "Swapable.h"
+//#include "Table.h"
 //
 //namespace Engine
 //{
 //	namespace Graphics
 //	{
 //		struct Texture
+//			: public ISwapable<Texture>
 //		{
 //			struct PixelData
 //			{
@@ -173,25 +177,21 @@
 //
 //		private:
 //			GLuint handle_ = 0;
-//			index_t location_ = std::numeric_limits<index_t>::max();
+//			size_t location_ = std::numeric_limits<size_t>::max();
 //
-//			void load(const SizeVec2& size, Format format, PixelData::Format pixel_data_format, PixelData::Type pixel_data_type, const void* p_pixel_data);
+//			void load(const SVector2& size, Format format, PixelData::Format pixel_data_format, PixelData::Type pixel_data_type, const void* p_pixel_data);
 //			void unload();
 //			void bind() const;
 //
 //		public:
-//			TYPE_DECL;
-//			SWAP_MEMBER_FUNC_DECL(Texture);
-//
-//			// construction - destruction
-//			Texture(const SizeVec2& size, Format format);
-//			Texture(const SizeVec2& size, Format format, PixelData::Format pixel_data_format, PixelData::Type pixel_data_type, const void* p_pixel_data);
-//			explicit Texture(const String& name);
-//			explicit Texture(const glm::fvec3& color);
+//			Texture(const SVector2& size, Format format);
+//			Texture(const SVector2& size, Format format, PixelData::Format pixel_data_format, PixelData::Type pixel_data_type, const void* p_pixel_data);
+//			explicit Texture(const String::View& name);
+//			explicit Texture(const Color& color);
 //			explicit Texture(const Table<float>& table);
-//			explicit Texture(const Table<glm::fvec2>& table);
-//			explicit Texture(const Table<glm::fvec3>& table);
-//			explicit Texture(const SizeVec2& size);
+//			explicit Texture(const Table<FVector2>& table);
+//			explicit Texture(const Table<FVector3>& table);
+//			explicit Texture(const SVector2& size);
 //			Texture(const Texture&) = delete;
 //			Texture(Texture&& rhs);
 //
@@ -201,9 +201,9 @@
 //			Texture& operator=(Texture&& rhs);
 //
 //			GLuint get_handle() const;
-//			SizeVec2 get_size(index_t mimpmap_level = 0) const;
+//			SVector2 get_size(size_t mimpmap_level = 0) const;
 //
-//			index_t get_location();
+//			size_t get_location();
 //			void release_location();
 //
 //			MinFilter get_min_filter() const;
@@ -214,6 +214,8 @@
 //
 //			glm::tvec2<Wrap> get_wrap() const;
 //			void set_wrap(const glm::tvec2<Wrap>& wrap) const;
+//
+//			void swap(Texture& rhs);
 //		};
 //	}
 //}

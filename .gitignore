@@ -18,8 +18,6 @@
 html
 bin
 ipch
-Debug
-Release
 obj
 doxywarn.txt
 *.db
