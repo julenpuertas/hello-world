@@ -66,6 +66,7 @@ namespace Engine
 		};
 	}
 
+	using SVector2 = Math::Vector<size_t, 2>;
 	using FVector3 = Math::Vector<float, 3>;
 	using FVector4 = Math::Vector<float, 4>;
 }

@@ -37,6 +37,9 @@
     <ClCompile Include="Color.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -170,6 +173,12 @@
     <ClInclude Include="GLMMatrixWrapper.h">
       <Filter>Math\Matrix</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -226,6 +235,9 @@
     </None>
     <None Include="Color.inl">
       <Filter>Graphics</Filter>
+    </None>
+    <None Include="Table.inl">
+      <Filter>Containers</Filter>
     </None>
   </ItemGroup>
 </Project>
