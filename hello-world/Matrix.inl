@@ -21,7 +21,7 @@ namespace Engine
 
 		template <typename T> Vector<T, 3> Matrix<T, 3, 4>::operator*(const Vector<T, 3>& rhs) const
 		{
-			return this->matrix_ * Vector<T, 4>(rhs.vector_, 1).vector_;
+			return *this * Vector<T, 4>(rhs, 1);
 		}
 	}
 }

@@ -7,14 +7,12 @@ namespace Engine
 	namespace Math
 	{
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P = glm::defaultp>
-		class GLMMatrixWrapper
+		class GLMMatrixWrapper : public GLMMatrixT<T, P>
 		{
 		protected:
 			template <typename ... Args> explicit GLMMatrixWrapper(Args&& ... args);
 
 		public:
-			GLMMatrixT<T, P> matrix_;
-
 			using iterator = T*;
 			using const_iterator = const T*;
 

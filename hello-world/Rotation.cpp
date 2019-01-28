@@ -18,17 +18,17 @@ namespace Engine
 	{}
 
 	Rotation::Rotation(float degrees, const FVector3& axis)
-		: quaternion_(glm::angleAxis(glm::radians(degrees), axis.get_normalized().vector_))
+		: quaternion_(glm::angleAxis(glm::radians(degrees), axis.get_normalized()))
 	{
 		normalize();
 	}
 
 	Rotation::Rotation(const FVector3& euler_degrees)
-		: quaternion_((Rotation(euler_degrees.get_z(), Math::Axis::Z) * Rotation(euler_degrees.get_y(), Math::Axis::Y) * Rotation(euler_degrees.get_x(), Math::Axis::X)).quaternion_)
+		: quaternion_((Rotation(euler_degrees.z, Math::Axis::Z) * Rotation(euler_degrees.y, Math::Axis::Y) * Rotation(euler_degrees.y, Math::Axis::X)).quaternion_)
 	{}
 
 	Rotation::Rotation(const FVector3& start, const FVector3& end)
-		: quaternion_(glm::rotation(start.get_normalized().vector_, end.get_normalized().vector_))
+		: quaternion_(glm::rotation(start.get_normalized(), end.get_normalized()))
 	{
 		normalize();
 	}
@@ -64,7 +64,7 @@ namespace Engine
 
 	FVector3 Rotation::operator*(const FVector3& rhs) const
 	{
-		return quaternion_ * rhs.vector_;
+		return quaternion_ * rhs;
 	}
 
 	bool Rotation::operator ==(const Rotation& rhs) const

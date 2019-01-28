@@ -16,25 +16,25 @@ namespace Engine
 			: GLMVectorWrapper<Engine::Math::Vector, T, 2, glm::tvec2>(rhs)
 		{}
 
-		template<typename T> const T& Vector<T, 2>::get_x() const
-		{
-			return this->vector_.x;
-		}
+		//template<typename T> const T& Vector<T, 2>::get_x() const
+		//{
+		//	return this->vector_.x;
+		//}
 
-		template<typename T> void Vector<T, 2>::set_x(const T& x) const
-		{
-			this->vector_.x = x;
-		}
+		//template<typename T> void Vector<T, 2>::set_x(const T& x) const
+		//{
+		//	this->vector_.x = x;
+		//}
 
-		template<typename T> const T & Vector<T, 2>::get_y() const
-		{
-			return this->vector_.y;
-		}
+		//template<typename T> const T & Vector<T, 2>::get_y() const
+		//{
+		//	return this->vector_.y;
+		//}
 
-		template<typename T> void Vector<T, 2>::set_y(const T& y) const
-		{
-			this->vector_.y = y;
-		}
+		//template<typename T> void Vector<T, 2>::set_y(const T& y) const
+		//{
+		//	this->vector_.y = y;
+		//}
 
 		template <typename T> const Vector<T, 3> Vector<T, 3>::RIGHT(1, 0, 0);
 		template <typename T> const Vector<T, 3> Vector<T, 3>::UP(0, 1, 0);
@@ -48,35 +48,35 @@ namespace Engine
 			: GLMVectorWrapper<Engine::Math::Vector, T, 3, glm::tvec3>(rhs)
 		{}
 
-		template<typename T> const T& Vector<T, 3>::get_x() const
-		{
-			return this->vector_.x;
-		}
+		//template<typename T> const T& Vector<T, 3>::get_x() const
+		//{
+		//	return this->vector_.x;
+		//}
 
-		template<typename T> void Vector<T, 3>::set_x(const T& x) const
-		{
-			this->vector_.x = x;
-		}
+		//template<typename T> void Vector<T, 3>::set_x(const T& x) const
+		//{
+		//	this->vector_.x = x;
+		//}
 
-		template<typename T> const T & Vector<T, 3>::get_y() const
-		{
-			return this->vector_.y;
-		}
+		//template<typename T> const T & Vector<T, 3>::get_y() const
+		//{
+		//	return this->vector_.y;
+		//}
 
-		template<typename T> void Vector<T, 3>::set_y(const T& y) const
-		{
-			this->vector_.y = y;
-		}
+		//template<typename T> void Vector<T, 3>::set_y(const T& y) const
+		//{
+		//	this->vector_.y = y;
+		//}
 
-		template<typename T> const T & Vector<T, 3>::get_z() const
-		{
-			return this->vector_.z;
-		}
+		//template<typename T> const T & Vector<T, 3>::get_z() const
+		//{
+		//	return this->vector_.z;
+		//}
 
-		template<typename T> void Vector<T, 3>::set_z(const T& z) const
-		{
-			this->vector_.z = z;
-		}
+		//template<typename T> void Vector<T, 3>::set_z(const T& z) const
+		//{
+		//	this->vector_.z = z;
+		//}
 
 		template <typename T> Vector<T, 3> Vector<T, 3>::cross(const Vector<T, 3>& rhs) const
 		{
@@ -95,44 +95,44 @@ namespace Engine
 			: GLMVectorWrapper<Engine::Math::Vector, T, 4, glm::tvec4>(rhs)
 		{}
 
-		template<typename T> const T& Vector<T, 4>::get_x() const
-		{
-			return this->vector_.x;
-		}
+		//template<typename T> const T& Vector<T, 4>::get_x() const
+		//{
+		//	return this->vector_.x;
+		//}
 
-		template<typename T> void Vector<T, 4>::set_x(const T& x) const
-		{
-			this->vector_.x = x;
-		}
+		//template<typename T> void Vector<T, 4>::set_x(const T& x) const
+		//{
+		//	this->vector_.x = x;
+		//}
 
-		template<typename T> const T & Vector<T, 4>::get_y() const
-		{
-			return this->vector_.y;
-		}
+		//template<typename T> const T & Vector<T, 4>::get_y() const
+		//{
+		//	return this->vector_.y;
+		//}
 
-		template<typename T> void Vector<T, 4>::set_y(const T& y) const
-		{
-			this->vector_.y = y;
-		}
+		//template<typename T> void Vector<T, 4>::set_y(const T& y) const
+		//{
+		//	this->vector_.y = y;
+		//}
 
-		template<typename T> const T & Vector<T, 4>::get_z() const
-		{
-			return this->vector_.z;
-		}
+		//template<typename T> const T & Vector<T, 4>::get_z() const
+		//{
+		//	return this->vector_.z;
+		//}
 
-		template<typename T> void Vector<T, 4>::set_z(const T& z) const
-		{
-			this->vector_.z = z;
-		}
+		//template<typename T> void Vector<T, 4>::set_z(const T& z) const
+		//{
+		//	this->vector_.z = z;
+		//}
 
-		template<typename T> const T & Vector<T, 4>::get_w() const
-		{
-			return this->vector_.w;
-		}
+		//template<typename T> const T & Vector<T, 4>::get_w() const
+		//{
+		//	return this->vector_.w;
+		//}
 
-		template<typename T> void Vector<T, 4>::set_w(const T& w) const
-		{
-			this->vector_.w = w;
-		}
+		//template<typename T> void Vector<T, 4>::set_w(const T& w) const
+		//{
+		//	this->vector_.w = w;
+		//}
 	}
 }

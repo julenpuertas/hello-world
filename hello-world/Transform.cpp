@@ -104,19 +104,19 @@ namespace Engine
 
 	FMatrix3x4 Transform::get_matrix() const
 	{
-		FMatrix3x4 matrix(rotation_.get_matrix().matrix_);
+		FMatrix3x4 matrix(rotation_.get_matrix());
 
 		const size_t matrix_last_column_index = FMatrix3x4::WIDTH - 1;
 		for (size_t i = 0; i < matrix_last_column_index; ++i)
 			matrix[i] *= scale_[i];
 
-		matrix[matrix_last_column_index] = translation_.vector_;
+		matrix[matrix_last_column_index] = translation_;
 		return matrix;
 	}
 
 	FMatrix3x4 Transform::get_inverse_matrix() const
 	{
-		FMatrix3x4 matrix(get_vector_transformation_inverse_matrix().matrix_);
+		FMatrix3x4 matrix(get_vector_transformation_inverse_matrix());
 		const FVector3 negative_translation = -translation_;
 
 		const size_t matrix_last_column_index = FMatrix3x4::WIDTH - 1;

@@ -1,5 +1,4 @@
 #include <glm/gtx/norm.hpp>
-#include "GLMVectorWrapper.h"
 
 namespace Engine
 {
@@ -7,7 +6,7 @@ namespace Engine
 	{
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		template <typename ... Args> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::GLMVectorWrapper(Args&& ... args)
-			: vector_(std::forward<Args>(args)...)
+			: GLMVectorT<T, P>(std::forward<Args>(args)...)
 		{}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
@@ -19,13 +18,15 @@ namespace Engine
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		T& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator[](size_t index)
 		{
-			return vector_[index];
+			GLMVectorT<T, P>& vector = *this;
+			return vector[index];
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		const T& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator[](size_t index) const
 		{
-			return vector_[index];
+			const GLMVectorT<T, P>& vector = *this;
+			return vector[index];
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
@@ -43,7 +44,8 @@ namespace Engine
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		bool GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator==(const VectorT<T, N>& rhs) const
 		{
-			return vector_ == rhs.vector_;
+			const GLMVectorT<T, P>& vector = *this;
+			return vector == rhs;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
@@ -55,143 +57,171 @@ namespace Engine
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator-() const
 		{
-			return -vector_;
+			const GLMVectorT<T, P>& vector = *this;
+			return -vector;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator+(const VectorT<T, N>& rhs) const
 		{
-			return vector_ + rhs.vector_;
+			const GLMVectorT<T, P>& vector = *this;
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			return vector + rhs_vector;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N>& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator+=(const VectorT<T, N>& rhs)
 		{
-			vector_ += rhs.vector_;
+			GLMVectorT<T, P>& vector = *this;
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			vector += rhs_vector;
 			return *reinterpret_cast<VectorT<T, N>*>(this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator+(const T & rhs) const
 		{
-			return vector_ + rhs;
+			const GLMVectorT<T, P>& vector = *this;
+			return vector + rhs;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N>& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator+=(const T & rhs)
 		{
-			vector_ += rhs;
+			GLMVectorT<T, P>& vector = *this;
+			vector += rhs;
 			return *reinterpret_cast<VectorT<T, N>*>(this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator-(const VectorT<T, N>& rhs) const
 		{
-			return vector_ - rhs.vector_;
+			const GLMVectorT<T, P>& vector = *this;
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			return vector - rhs_vector;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N>& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator-=(const VectorT<T, N>& rhs)
 		{
-			vector_ -= rhs.vector_;
+			GLMVectorT<T, P>& vector = *this;
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			vector -= rhs_vector;
 			return *reinterpret_cast<VectorT<T, N>*>(this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator-(const T & rhs) const
 		{
-			return vector_ - rhs;
+			const GLMVectorT<T, P>& vector = *this;
+			return vector - rhs;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N>& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator-=(const T & rhs)
 		{
-			vector_ -= rhs;
+			GLMVectorT<T, P>& vector = *this;
+			vector -= rhs;
 			return *reinterpret_cast<VectorT<T, N>*>(this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator*(const VectorT<T, N>& rhs) const
 		{
-			return vector_ * rhs.vector_;
+			const GLMVectorT<T, P>& vector = *this;
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			return vector * rhs_vector;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N>& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator*=(const VectorT<T, N>& rhs)
 		{
-			vector_ *= rhs.vector_;
+			GLMVectorT<T, P>& vector = *this;
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			vector *= rhs_vector;
 			return *reinterpret_cast<VectorT<T, N>*>(this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator*(const T & rhs) const
 		{
-			return vector_ * rhs;
+			const GLMVectorT<T, P>& vector = *this;
+			return vector * rhs;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N>& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator*=(const T & rhs)
 		{
-			vector_ *= rhs;
+			GLMVectorT<T, P>& vector = *this;
+			vector *= rhs;
 			return *reinterpret_cast<VectorT<T, N>*>(this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator/(const VectorT<T, N>& rhs) const
 		{
-			return vector_ / rhs.vector_;
+			const GLMVectorT<T, P>& vector = *this;
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			return vector / rhs_vector;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N>& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator/=(const VectorT<T, N>& rhs)
 		{
-			vector_ /= rhs.vector_;
+			GLMVectorT<T, P>& vector = *this;
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			vector /= rhs_vector;
 			return *reinterpret_cast<VectorT<T, N>*>(this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator/(const T & rhs) const
 		{
-			return vector_ / rhs;
+			const GLMVectorT<T, P>& vector = *this;
+			return vector / rhs;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N>& GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::operator/=(const T & rhs)
 		{
-			vector_ /= rhs;
+			GLMVectorT<T, P>& vector = *this;
+			vector /= rhs;
 			return *reinterpret_cast<VectorT<T, N>*>(this);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		T GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::get_square_length() const
 		{
-			return glm::length2(vector_);
+			const GLMVectorT<T, P>& vector = *this;
+			return glm::length2(vector);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		T GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::get_length() const
 		{
-			return glm::length(vector_);
+			const GLMVectorT<T, P>& vector = *this;
+			return glm::length(vector);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		T GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::dot(const VectorT<T, N>& rhs) const
 		{
-			return glm::dot(vector_, rhs.vector_);
+			const GLMVectorT<T, P>& vector = *this;
+			return glm::dot(vector, rhs);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		void GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::normalize()
 		{
-			const T length = get_length();
-			if (length != static_cast<T>(0))
-				*this /= length;
+			const T square_length = get_square_length();
+			if (square_length != static_cast<T>(0))
+				*this /= sqrt(square_length);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::get_normalized() const
 		{
-			VectorT<T, N> result(vector_);
+			VectorT<T, N> result(*this);
 			result.normalize();
 			return result;
 		}
@@ -199,31 +229,34 @@ namespace Engine
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::get_absolute() const
 		{
-			return glm::abs(vector_);
+			const GLMVectorT<T, P>& vector = *this;
+			return glm::abs(vector);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		bool GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::is_all_true() const
 		{
-			return glm::all(vector_);
+			const GLMVectorT<T, P>& vector = *this;
+			return glm::all(vector);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		bool GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::is_zero(const T& epsilon) const
 		{
-			return is_equal(glm::zero<GLMVectorT<T, P> >(), epsilon);
+			return equals(glm::zero<GLMVectorT<T, P> >(), epsilon);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		bool GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::equals(const VectorT<T, N>& rhs, const T& epsilon) const
 		{
-			return glm::all(glm::epsilonEqual(vector_, rhs.vector_, epsilon));
+			const GLMVectorT<T, P>& vector = *this;
+			return glm::all(glm::epsilonEqual(vector, rhs, epsilon));
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::begin()
 		{
-			return &vector_.x;
+			return &this->x;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
@@ -235,7 +268,7 @@ namespace Engine
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::begin() const
 		{
-			return &vector_.x;
+			return &this->x;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
@@ -256,17 +289,17 @@ namespace Engine
 			return end();
 		}
 
-		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		GLMVectorT<T, P> operator+(const GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
-		{
-			return lhs + rhs.vector_;
-		}
+		//template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
+		//GLMVectorT<T, P> operator+(const GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
+		//{
+		//	return lhs + rhs.vector_;
+		//}
 
-		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		GLMVectorT<T, P>& operator+=(GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
-		{
-			return lhs += rhs.vector_;
-		}
+		//template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
+		//GLMVectorT<T, P>& operator+=(GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
+		//{
+		//	return lhs += rhs.vector_;
+		//}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> operator+(const T & lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
@@ -274,17 +307,17 @@ namespace Engine
 			return rhs + lhs;
 		}
 
-		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		GLMVectorT<T, P> operator-(const GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
-		{
-			return lhs - rhs.vector_;
-		}
+		//template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
+		//GLMVectorT<T, P> operator-(const GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
+		//{
+		//	return lhs - rhs.vector_;
+		//}
 
-		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		GLMVectorT<T, P>& operator-=(GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
-		{
-			return lhs -= rhs.vector_;
-		}
+		//template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
+		//GLMVectorT<T, P>& operator-=(GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
+		//{
+		//	return lhs -= rhs.vector_;
+		//}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> operator-(const T & lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
@@ -292,17 +325,17 @@ namespace Engine
 			return VectorT<T, N>(lhs) - VectorT<T, N>(rhs);
 		}
 
-		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		GLMVectorT<T, P> operator*(const GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
-		{
-			return lhs * rhs.vector_;
-		}
+		//template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
+		//GLMVectorT<T, P> operator*(const GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
+		//{
+		//	return lhs * rhs.vector_;
+		//}
 
-		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		GLMVectorT<T, P>& operator*=(GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
-		{
-			return lhs *= rhs.vector_;
-		}
+		//template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
+		//GLMVectorT<T, P>& operator*=(GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
+		//{
+		//	return lhs *= rhs.vector_;
+		//}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> operator*(const T & lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
@@ -310,17 +343,17 @@ namespace Engine
 			return rhs * lhs;
 		}
 
-		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		GLMVectorT<T, P> operator/(const GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
-		{
-			return lhs / rhs.vector_;
-		}
+		//template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
+		//GLMVectorT<T, P> operator/(const GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
+		//{
+		//	return lhs / rhs.vector_;
+		//}
 
-		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		GLMVectorT<T, P>& operator/=(GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
-		{
-			return lhs /= rhs.vector_;
-		}
+		//template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
+		//GLMVectorT<T, P>& operator/=(GLMVectorT<T, P>& lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)
+		//{
+		//	return lhs /= rhs.vector_;
+		//}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
 		VectorT<T, N> operator/(const T & lhs, const GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>& rhs)

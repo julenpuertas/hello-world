@@ -12,7 +12,6 @@ int main(int argc, char* argv[])
 {
 	using namespace Engine;
 
-	const int sdfsdf = sizeof(GameObject);
-//	DynamicArray<int>::iterator;
+
 	return 0;
 }
