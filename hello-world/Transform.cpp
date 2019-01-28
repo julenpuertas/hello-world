@@ -68,7 +68,7 @@ namespace Engine
 
 	FMatrix3 Transform::get_vector_transformation_inverse_matrix() const
 	{
-		const glm::fvec3 inverse_scale = 1.f / scale_;
+		const FVector3 inverse_scale = 1.f / scale_;
 		FMatrix3 vector_transformation_inverse_matrix = rotation_.get_inverse().get_matrix();
 
 		for (size_t i = 0; i < FMatrix3::WIDTH; ++i)
@@ -104,14 +104,13 @@ namespace Engine
 
 	FMatrix3x4 Transform::get_matrix() const
 	{
-		const glm::fvec3& scale = scale_;
 		FMatrix3x4 matrix(rotation_.get_matrix());
 
 		const size_t matrix_last_column_index = FMatrix3x4::WIDTH - 1;
 		for (size_t i = 0; i < matrix_last_column_index; ++i)
-			matrix[i] *= scale[i];
+			matrix[i] *= scale_[i];
 
-		matrix[matrix_last_column_index] = translation_;
+		matrix[matrix_last_column_index] = translation_.vector_;
 		return matrix;
 	}
 

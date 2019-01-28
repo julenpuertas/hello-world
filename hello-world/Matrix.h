@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ExtendedGLMMatrix.h"
+#include "GLMMatrixWrapper.h"
 #include "Vector.h"
 
 namespace Engine
@@ -8,16 +8,15 @@ namespace Engine
 	namespace Math
 	{
 		template<typename T, size_t ROW_COUNT, size_t COLUMN_COUNT> class Matrix
-		{
-		};
+		{};
 
-		template <typename T> struct Matrix<T, 3, 3> : public ExtendedGLMMatrix<Matrix, T, 3, 3, glm::tmat3x3>
+		template <typename T> struct Matrix<T, 3, 3> : public GLMMatrixWrapper<Matrix, T, 3, 3, glm::tmat3x3>
 		{
 			template <typename ... Args> explicit Matrix(Args&& ... args);
 			template <glm::precision P> Matrix(const glm::tmat3x3<T, P>& rhs);
 		};
 
-		template <typename T> struct Matrix<T, 3, 4> : public ExtendedGLMMatrix<Matrix, T, 3, 4, glm::tmat4x3>
+		template <typename T> struct Matrix<T, 3, 4> : public GLMMatrixWrapper<Matrix, T, 3, 4, glm::tmat4x3>
 		{
 			template <typename ... Args> explicit Matrix(Args&& ... args);
 			template <glm::precision P> Matrix(const glm::tmat4x3<T, P>& rhs);

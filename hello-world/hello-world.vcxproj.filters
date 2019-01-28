@@ -91,9 +91,6 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Pair.h" />
-    <ClInclude Include="ExtendedGLMMatrix.h">
-      <Filter>Math\Matrix</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h" />
     <ClInclude Include="BitArray.h">
       <Filter>Containers</Filter>
@@ -173,6 +170,9 @@
     <ClInclude Include="GLMVectorWrapper.h">
       <Filter>Math\Vector</Filter>
     </ClInclude>
+    <ClInclude Include="GLMMatrixWrapper.h">
+      <Filter>Math\Matrix</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -184,9 +184,6 @@
     <None Include="Pair.inl" />
     <None Include="Epsilon.inl">
       <Filter>Math</Filter>
-    </None>
-    <None Include="ExtendedGLMMatrix.inl">
-      <Filter>Math\Matrix</Filter>
     </None>
     <None Include="Transform.inl" />
     <None Include="DynamicArray.inl">
@@ -226,6 +223,9 @@
     </None>
     <None Include="GLMVectorWrapper.inl">
       <Filter>Math\Vector</Filter>
+    </None>
+    <None Include="GLMMatrixWrapper.inl">
+      <Filter>Math\Matrix</Filter>
     </None>
   </ItemGroup>
 </Project>

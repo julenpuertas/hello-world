@@ -231,7 +231,7 @@
     <ClInclude Include="Division.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Epsilon.h" />
-    <ClInclude Include="ExtendedGLMMatrix.h" />
+    <ClInclude Include="GLMMatrixWrapper.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectDestroyed.h" />
     <ClInclude Include="Hasheable.h" />
@@ -272,7 +272,7 @@
     <None Include="Division.inl" />
     <None Include="DynamicArray.inl" />
     <None Include="Epsilon.inl" />
-    <None Include="ExtendedGLMMatrix.inl" />
+    <None Include="GLMMatrixWrapper.inl" />
     <None Include="GameObject.inl" />
     <None Include="Matrix.inl" />
     <None Include="MessagesListener.inl" />

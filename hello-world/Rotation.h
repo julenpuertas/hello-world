@@ -1,5 +1,6 @@
 #pragma once
 #include <glm\gtc\quaternion.hpp>
+#include "Array.h"
 #include "Pair.h"
 #include "Vector.h"
 #include "Matrix.h"
