@@ -104,7 +104,7 @@ namespace Engine
 
 	FMatrix3x4 Transform::get_matrix() const
 	{
-		FMatrix3x4 matrix(rotation_.get_matrix());
+		FMatrix3x4 matrix(rotation_.get_matrix().matrix_);
 
 		const size_t matrix_last_column_index = FMatrix3x4::WIDTH - 1;
 		for (size_t i = 0; i < matrix_last_column_index; ++i)
@@ -116,11 +116,11 @@ namespace Engine
 
 	FMatrix3x4 Transform::get_inverse_matrix() const
 	{
-		FMatrix3x4 matrix(get_vector_transformation_inverse_matrix());
+		FMatrix3x4 matrix(get_vector_transformation_inverse_matrix().matrix_);
 		const FVector3 negative_translation = -translation_;
 
 		const size_t matrix_last_column_index = FMatrix3x4::WIDTH - 1;
-		glm::fvec3& matrix_last_column = matrix[matrix_last_column_index];
+		FVector3& matrix_last_column = matrix[matrix_last_column_index];
 		for (size_t i = 0; i < matrix_last_column_index; ++i)
 			matrix_last_column += matrix[i] * negative_translation[i];
 

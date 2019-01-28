@@ -10,15 +10,15 @@ namespace Engine
 		{}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
-		typename GLMMatrixT<T, P>::col_type& GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::operator[](size_t column_index)
+		Vector<T, M>& GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::operator[](size_t column_index)
 		{
-			return matrix_[column_index];
+			return *reinterpret_cast<Vector<T, M>*>(&matrix_[column_index]);
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
-		const typename GLMMatrixT<T, P>::col_type& GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::operator[](size_t column_index) const
+		const Vector<T, M>& GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::operator[](size_t column_index) const
 		{
-			return matrix_[column_index];
+			return *reinterpret_cast<const Vector<T, M>*>(&matrix_[column_index]);
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>

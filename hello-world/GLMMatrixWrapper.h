@@ -10,19 +10,19 @@ namespace Engine
 		class GLMMatrixWrapper
 		{
 		protected:
-			GLMMatrixT<T, P> matrix_;
-
 			template <typename ... Args> explicit GLMMatrixWrapper(Args&& ... args);
 
 		public:
+			GLMMatrixT<T, P> matrix_;
+
 			using iterator = T*;
 			using const_iterator = const T*;
 
 			static constexpr size_t WIDTH = N;
 			static constexpr size_t HEIGTH = M;
 
-			typename GLMMatrixT<T, P>::col_type& operator[](size_t column_index);
-			const typename GLMMatrixT<T, P>::col_type& operator[](size_t column_index) const;
+			Vector<T, M>& operator[](size_t column_index);
+			const Vector<T, M>& operator[](size_t column_index) const;
 
 			MatrixT<T, M, N> operator-() const;
 
