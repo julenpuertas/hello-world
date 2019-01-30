@@ -7,9 +7,6 @@
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="Rtti.cpp" />
-    <ClCompile Include="Message.cpp">
-      <Filter>Messages</Filter>
-    </ClCompile>
     <ClCompile Include="MessagesListener.cpp">
       <Filter>Messages</Filter>
     </ClCompile>

@@ -6,6 +6,7 @@
 namespace Engine
 {
 	class Component;
+	class Rtti;
 
 	class GameObject
 		: public Entity

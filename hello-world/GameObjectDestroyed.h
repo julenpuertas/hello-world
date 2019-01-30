@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "Message.h"
 
 namespace Engine
@@ -13,11 +14,9 @@ namespace Engine
 			std::weak_ptr<GameObject> p_destroyed_gameobject_;
 
 		public:
-			RTTI_DECLARATION;
 
 			explicit GameObjectDestroyed(GameObject& destroyed_gameobject);
 			std::shared_ptr<GameObject> get_destroyed_gameobject() const;
-			const Rtti& get_rtti() const override;
 		};
 	}
 }

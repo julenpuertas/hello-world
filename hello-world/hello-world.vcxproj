@@ -199,7 +199,6 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDestroyed.cpp" />
     <ClCompile Include="Hasheable.cpp" />
-    <ClCompile Include="Message.cpp" />
     <ClCompile Include="MessagesListener.cpp" />
     <ClCompile Include="Systern.cpp" />
     <ClCompile Include="Entity.cpp" />
