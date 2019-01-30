@@ -20,15 +20,19 @@ namespace Engine
 		Table() = default;
 		explicit Table(const SVector2& dimensions, const T& element = T());
 
-		typename DynamicArray<T>::const_reference operator[](const SVector2& indices) const;
-		typename DynamicArray<T>::reference operator[](const SVector2& indices);
+		using reference = typename DynamicArray<T>::reference;
+		using const_reference = typename DynamicArray<T>::const_reference;
+		using const_pointer = typename DynamicArray<T>::const_pointer;
+
+		const_reference operator[](const SVector2& indices) const;
+		reference operator[](const SVector2& indices);
 
 		void resize(const SVector2& dimensions, const T& element = T());
 		void clear();
 		SVector2 get_dimensions() const;
 		bool is_empty() const;
 
-		typename DynamicArray<T>::const_pointer get() const;
+		const_pointer get() const;
 
 		void add_rows(size_t row_index, size_t row_count = 1, const T& element = T());
 		void add_columns(size_t column_index, size_t column_count = 1, const T& element = T());

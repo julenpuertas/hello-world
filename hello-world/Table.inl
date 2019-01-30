@@ -25,12 +25,12 @@ namespace Engine
 		, table_(dimensions.x * dimensions.y, element)
 	{}
 
-	template <typename T> typename DynamicArray<T>::const_reference Table<T>::operator[](const SVector2& indices) const
+	template <typename T> typename Table<T>::const_reference Table<T>::operator[](const SVector2& indices) const
 	{
 		return table_.at(convert(indices));
 	}
 
-	template <typename T> typename DynamicArray<T>::reference Table<T>::operator[](const SVector2& indices)
+	template <typename T> typename Table<T>::reference Table<T>::operator[](const SVector2& indices)
 	{
 		return table_.at(convert(indices));
 	}
@@ -69,7 +69,7 @@ namespace Engine
 		return table_.empty();
 	}
 
-	template <typename T> typename DynamicArray<T>::const_pointer Table<T>::get() const
+	template <typename T> typename Table<T>::const_pointer Table<T>::get() const
 	{
 		if (table_.empty())
 			return nullptr;
