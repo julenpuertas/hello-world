@@ -9,9 +9,12 @@ namespace
 
 namespace Engine
 {
-	Component::TypeInfo::TypeInfo(const std::type_info& type)
+	Component::TypeInfo::TypeInfo(const std::type_info& type, const Requirement<GameObject>& requirement_to_be_instantiated_in)
 		: type_(type)
-	{}
+	{
+		if (requirement_to_be_instantiated_in)
+			g_requirements_to_be_instantiated_in.emplace(*this, requirement_to_be_instantiated_in);
+	}
 
 	Component::TypeInfo::TypeInfo(const std::type_info& type, const TypeInfo& parent_type, const Requirement<GameObject>& requirement_to_be_instantiated_in)
 		: type_(type)
@@ -118,8 +121,6 @@ namespace Engine
 		return std::hash<std::type_index>()(type_);
 	}
 
-	const Rtti Component::TYPE = typeid(Component);
-
 	Component::Component(const Component&)
 	{}
 
@@ -175,7 +176,7 @@ namespace Engine
 	void Component::set_owner(GameObject& owner)
 	{
 		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
-			p_owner->remove(get_rtti());
+			p_owner->remove(get_type_info());
 
 		const bool was_free = p_owner_.expired();
 		p_owner_ = owner.get_this<GameObject>();

@@ -20,11 +20,6 @@ namespace Engine
 
 			template <typename ... Args> explicit Vector(Args&& ... args);
 			template <glm::precision P> Vector(const glm::tvec2<T, P>& rhs);
-
-			//const T& get_x() const;
-			//void set_x(const T& x) const;
-			//const T& get_y() const;
-			//void set_y(const T& y) const;
 		};
 
 		template<typename T> struct Vector<T, 3> : public GLMVectorWrapper<Vector, T, 3, glm::tvec3>
@@ -35,13 +30,6 @@ namespace Engine
 
 			template <typename ... Args> explicit Vector(Args&& ... args);
 			template <glm::precision P> Vector(const glm::tvec3<T, P>& rhs);
-
-			//const T& get_x() const;
-			//void set_x(const T& x) const;
-			//const T& get_y() const;
-			//void set_y(const T& y) const;
-			//const T& get_z() const;
-			//void set_z(const T& z) const;
 
 			Vector<T, 3> cross(const Vector<T, 3>& rhs) const;
 		};
@@ -54,15 +42,6 @@ namespace Engine
 
 			template <typename ... Args> explicit Vector(Args&& ... args);
 			template <glm::precision P> Vector(const glm::tvec4<T, P>& rhs);
-
-			//const T& get_x() const;
-			//void set_x(const T& x) const;
-			//const T& get_y() const;
-			//void set_y(const T& y) const;
-			//const T& get_z() const;
-			//void set_z(const T& z) const;
-			//const T& get_w() const;
-			//void set_w(const T& w) const;
 		};
 	}
 

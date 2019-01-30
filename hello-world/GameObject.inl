@@ -1,4 +1,3 @@
-#include "ComponentTraits.h"
 
 namespace Engine
 {
@@ -10,12 +9,14 @@ namespace Engine
 
 	template<typename T, typename ...Args> std::shared_ptr<T> GameObject::add(Args&& ... arguments)
 	{
-		const DynamicArray<std::weak_ptr<Component> >::const_iterator it = get_iterator_to_type(T::TYPE);
+		const std::type_info& type = typeid(T);
+		const DynamicArray<std::weak_ptr<Component> >::const_iterator it = get_iterator_to_type(type);
 		if (it != components_.cend())
 			return std::dynamic_pointer_cast<T>(it->lock());
 
 		GameObject& this_ref = *this;
-		if (!ComponentTraits::can_have_component_of_type<T>(this_ref))
+		const Component::TypeInfo component_type = type;
+		if (!component_type.can_be_instantiated_in(this_ref))
 			return nullptr;
 
 		const std::shared_ptr<T> p_component = std::make_shared<T>(std::forward<Args>(arguments) ...);
@@ -32,8 +33,8 @@ namespace Engine
 		{
 			if (const std::shared_ptr<Component> p_component = wp_component.lock())
 			{
-				const Rtti& component_type = p_component->get_rtti();
-				return component_type.is_same_or_derived_from(T::TYPE);
+				const Component::TypeInfo component_type = p_component->get_type_info();
+				return component_type.is_same_or_derived_from(typeid(T));
 			}
 
 			return false;
@@ -55,8 +56,8 @@ namespace Engine
 			if (!p_component)
 				continue;
 
-			const Rtti& component_type = p_component->get_rtti();
-			if (component_type.is_same_or_derived_from(T::TYPE))
+			const Component::TypeInfo component_type = p_component->get_type_info();
+			if (component_type.is_same_or_derived_from(typeid(T)))
 				result.push_back(std::dynamic_pointer_cast<T>(p_component));
 		}
 

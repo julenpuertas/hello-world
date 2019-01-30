@@ -1,6 +1,6 @@
 #pragma once
-#include "UsesRtti.h"
-#include "Rtti.h"
+#include <typeindex>
+#include "String.h"
 #include "Entity.h"
 #include "Hasheable.h"
 
@@ -10,7 +10,6 @@ namespace Engine
 
 	class Component
 		: public Entity
-		, public IUsesRtti
 	{
 		std::weak_ptr<GameObject> p_owner_;
 
@@ -28,7 +27,7 @@ namespace Engine
 			std::type_index type_;
 
 		public:
-			TypeInfo(const std::type_info& type);
+			TypeInfo(const std::type_info& type, const Requirement<GameObject>& requirement_to_be_instantiated_in = nullptr);
 			TypeInfo(const std::type_info& type, const TypeInfo& parent_type, const Requirement<GameObject>& requirement_to_be_instantiated_in = nullptr);
 			TypeInfo(const std::type_info& type, const std::initializer_list<TypeInfo>& parent_types, const Requirement<GameObject>& requirement_to_be_instantiated_in = nullptr);
 
@@ -46,8 +45,6 @@ namespace Engine
 			size_t get_hash() const override;
 		};
 
-		RTTI_DECLARATION;
-
 		virtual void assign(const Component& rhs);
 
 		bool is_alive() const override;
@@ -59,5 +56,6 @@ namespace Engine
 		void set_owner(GameObject& owner);
 
 		virtual std::shared_ptr<Component> clone() const = 0;
+		virtual TypeInfo get_type_info() const = 0;
 	};
 }

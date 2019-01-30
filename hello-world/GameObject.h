@@ -1,13 +1,10 @@
 #pragma once
 #include "MessagesListener.h"
-#include "Entity.h"
+#include "Component.h"
 #include "Transform.h"
 
 namespace Engine
 {
-	class Component;
-	class Rtti;
-
 	class GameObject
 		: public Entity
 		, public Messages::Listener
@@ -24,7 +21,7 @@ namespace Engine
 		void remove_child(const GameObject& posible_child);
 		Transform get_local_transform(const Transform& parent_world_transform) const;
 		void update_children_transforms(const Transform& old_world_transform) const;
-		DynamicArray<std::weak_ptr<Component> >::const_iterator get_iterator_to_type(const Rtti& type) const;
+		DynamicArray<std::weak_ptr<Component> >::const_iterator get_iterator_to_type(const Component::TypeInfo& type) const;
 		void destroy_children() const;
 		void destroy_components() const;
 		bool remove_parent_if_it_has();
@@ -65,7 +62,7 @@ namespace Engine
 		void set_attachment_to_parent_policy(const Transform::Concatenator::Policy& attachment_to_parent_policy);
 
 		template <typename T, typename ... Args> std::shared_ptr<T> add(Args&& ... arguments);
-		bool remove(const Rtti& type);
+		bool remove(const Component::TypeInfo& type);
 
 		template <typename T> std::shared_ptr<T> get() const;
 		template <typename T> DynamicArray<std::shared_ptr<T> > get_all() const;

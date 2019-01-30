@@ -1,6 +1,5 @@
 #include "GameObjectDestroyed.h"
 #include "GameObject.h"
-#include "Component.h"
 
 namespace Engine
 {
@@ -58,13 +57,13 @@ namespace Engine
 		});
 	}
 
-	DynamicArray<std::weak_ptr<Component> >::const_iterator GameObject::get_iterator_to_type(const Rtti& type) const
+	DynamicArray<std::weak_ptr<Component> >::const_iterator GameObject::get_iterator_to_type(const Component::TypeInfo& type) const
 	{
 		return std::find_if(components_.cbegin(), components_.cend(), [&type](const std::weak_ptr<Component>& wp_component)
 		{
 			if (const std::shared_ptr<Component> p_component = wp_component.lock())
 			{
-				const Rtti& component_type = p_component->get_rtti();
+				const Component::TypeInfo component_type = p_component->get_type_info();
 				return &type == &component_type;
 			}
 
@@ -140,7 +139,7 @@ namespace Engine
 		{
 			if (const std::shared_ptr<Component> p_component = it->lock())
 			{
-				if (rhs.get_iterator_to_type(p_component->get_rtti()) == it_rhs_end)
+				if (rhs.get_iterator_to_type(p_component->get_type_info()) == it_rhs_end)
 				{
 					p_component->destroy();
 					it = components_.erase(it);
@@ -154,7 +153,7 @@ namespace Engine
 
 		rhs.for_each_component([this](Component& component)
 		{
-			const DynamicArray<std::weak_ptr<Component> >::const_iterator it = get_iterator_to_type(component.get_rtti());
+			const DynamicArray<std::weak_ptr<Component> >::const_iterator it = get_iterator_to_type(component.get_type_info());
 			if (it == components_.cend())
 			{
 				const std::shared_ptr<Component> p_component = component.clone();
@@ -361,7 +360,7 @@ namespace Engine
 		attachment_to_parent_policy_ = attachment_to_parent_policy;
 	}
 
-	bool GameObject::remove(const Rtti& type)
+	bool GameObject::remove(const Component::TypeInfo& type)
 	{
 		const DynamicArray<std::weak_ptr<Component> >::const_iterator it = get_iterator_to_type(type);
 

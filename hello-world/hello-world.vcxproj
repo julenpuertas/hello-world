@@ -206,7 +206,6 @@
     <ClCompile Include="Writable.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rotation.cpp" />
-    <ClCompile Include="Rtti.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Transform.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -227,7 +226,6 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Comparator.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="ComponentTraits.h" />
     <ClInclude Include="Division.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Epsilon.h" />
@@ -250,7 +248,6 @@
     <ClInclude Include="Table.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UsesRtti.h" />
-    <ClInclude Include="Rtti.h" />
     <ClInclude Include="Writable.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Pair.h" />
@@ -270,7 +267,6 @@
     <None Include="BaseSortedDynamicArray.inl" />
     <None Include="Clonable.inl" />
     <None Include="Color.inl" />
-    <None Include="ComponentTraits.inl" />
     <None Include="Division.inl" />
     <None Include="DynamicArray.inl" />
     <None Include="Epsilon.inl" />

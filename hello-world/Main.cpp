@@ -1,7 +1,6 @@
 #include "Transform.h"
 #include "DynamicArray.h"
 #include "String.h"
-#include "Rtti.h"
 #include "Component.h"
 #include <iostream>
 #include "Hasheable.h"
