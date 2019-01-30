@@ -200,6 +200,7 @@
     <ClCompile Include="GameObjectDestroyed.cpp" />
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="MessagesListener.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Systern.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessagesListener.h" />
     <ClInclude Include="MultiSortedDynamicArray.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Requirement.h" />
     <ClInclude Include="ShareableFromThis.h" />
     <ClInclude Include="Singleton.h" />
