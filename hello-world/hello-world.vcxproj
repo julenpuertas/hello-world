@@ -103,7 +103,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
+      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -128,7 +128,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
+      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -157,7 +157,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
+      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -186,7 +186,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(SolutionDir)bin\$(Configuration)\$(Platform)\"</Command>
+      <Command>xcopy /d /y "$(SolutionDir)lib\$(Platform)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
