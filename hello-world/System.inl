@@ -3,9 +3,9 @@ namespace Engine
 {
 	namespace Systems
 	{
-		template<typename T> T System::get_frame_duration() const
+		template<typename T> T System::get_last_frame_seconds() const
 		{
-			return static_cast<T>(compute_frame_duration());
+			return static_cast<T>(get_last_frame_duration());
 		}
 	}
 }

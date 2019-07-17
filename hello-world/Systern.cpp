@@ -16,8 +16,14 @@ namespace Engine
 {
 	namespace Systems
 	{
-		double System::compute_frame_duration() const
+		double System::get_last_frame_duration() const
 		{
+			if (stepping_)
+				return g_last_frame_duration;
+
+			if (!updating_)
+				return 0;
+
 			if (update_wait_time_ == 0)
 				return waited_time_;
 
@@ -41,9 +47,11 @@ namespace Engine
 
 			on_update();
 
-			waited_time_ -= compute_frame_duration();
-			frame_count_since_last_update_ = 0;
+			if (stepping_)
+				waited_time_ = 0;
+			else waited_time_ -= get_last_frame_duration();
 
+			frame_count_since_last_update_ = 0;
 			stepping_ = false;
 		}
 
@@ -59,11 +67,25 @@ namespace Engine
 
 		void System::set_update_wait_time(double update_wait_time)
 		{
-			update_wait_time_ = std::max(0., update_wait_time);
+			if (update_wait_time < 0)
+				return;
+
+			if (update_wait_time > 0)
+				stepping_ = false;
+
+			update_wait_time_ = update_wait_time;
+		}
+
+		bool System::is_waiting_frame_for_update() const
+		{
+			return frame_count_to_update_after_ > 0;
 		}
 
 		void System::set_frame_count_to_update_after(size_t frame_count_to_update_after)
 		{
+			if (frame_count_to_update_after > 0)
+				stepping_ = false;
+
 			frame_count_to_update_after_ = frame_count_to_update_after;
 		}
 
@@ -91,6 +113,8 @@ namespace Engine
 		{
 			updating_ = false;
 			stepping_ = true;
+			update_wait_time_ = 0;
+			frame_count_since_last_update_ = 0;
 		}
 
 		void update()

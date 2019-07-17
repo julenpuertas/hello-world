@@ -242,14 +242,12 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="Requirement.h" />
     <ClInclude Include="ShareableFromThis.h" />
-    <ClInclude Include="Singleton.h" />
     <ClInclude Include="SortedDynamicArray.h" />
     <ClInclude Include="Swapable.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="UsesRtti.h" />
     <ClInclude Include="Writable.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Pair.h" />
@@ -279,7 +277,6 @@
     <None Include="MultiSortedDynamicArray.inl" />
     <None Include="Pair.inl" />
     <None Include="ShareableFromThis.inl" />
-    <None Include="Singleton.inl" />
     <None Include="SortedDynamicArray.inl" />
     <None Include="String.inl" />
     <None Include="Swapable.inl" />

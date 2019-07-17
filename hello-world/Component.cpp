@@ -101,19 +101,17 @@ namespace Engine
 		const TypeInfo& ref_this = *this;
 		const IHasheable::Map<TypeInfo, Requirement<GameObject> >::const_iterator it = g_requirements_to_be_instantiated_in.find(ref_this);
 
-		if (it == g_requirements_to_be_instantiated_in.cend() || it->second(game_object))
-		{
-			bool can_be_instantiated = true;
-			for (Pair<IHasheable::MultiMap<TypeInfo>::const_iterator> range = g_types.equal_range(ref_this); can_be_instantiated && range.first != range.second; ++range.first)
-			{
-				const TypeInfo& parent_type = range.first->second;
-				can_be_instantiated = parent_type.can_be_instantiated_in(game_object);
-			}
+		if (it != g_requirements_to_be_instantiated_in.cend() && !it->second(game_object))
+			return false;
 
-			return can_be_instantiated;
+		bool can_be_instantiated = true;
+		for (Pair<IHasheable::MultiMap<TypeInfo>::const_iterator> range = g_types.equal_range(ref_this); can_be_instantiated && range.first != range.second; ++range.first)
+		{
+			const TypeInfo& parent_type = range.first->second;
+			can_be_instantiated = parent_type.can_be_instantiated_in(game_object);
 		}
 
-		return false;
+		return can_be_instantiated;
 	}
 
 	size_t Component::TypeInfo::get_hash() const

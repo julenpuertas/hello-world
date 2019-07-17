@@ -49,16 +49,14 @@ namespace Engine
 				if (!p_handler)
 					continue;
 
-				for (Pair<MultiHashMap<std::type_index, std::shared_ptr<Handler> >::const_iterator> range = g_public_handlers.equal_range(type_handler_pair.first); range.first != range.second; ++range.first)
+				const Pair<MultiHashMap<std::type_index, std::shared_ptr<Handler> >::const_iterator> range = g_public_handlers.equal_range(type_handler_pair.first);
+				const MultiHashMap<std::type_index, std::shared_ptr<Handler> >::const_iterator it = std::find_if(range.first, range.second, [&p_handler](const Pair<const std::type_index, std::shared_ptr<Handler> >& element)
 				{
-					const MultiHashMap<std::type_index, std::shared_ptr<Handler> >::const_iterator it = std::find_if(range.first, range.second, [&p_handler](const Pair<const std::type_index, std::shared_ptr<Handler> >& element)
-					{
-						return p_handler == element.second;
-					});
+					return p_handler == element.second;
+				});
 
-					if (it != range.second)
-						g_public_handlers.erase(it);
-				}
+				if (it != range.second)
+					g_public_handlers.erase(it);
 			}
 		}
 

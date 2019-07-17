@@ -18,19 +18,20 @@ namespace Engine
 			bool updating_ = true;
 			bool stepping_ = false;
 
-			double compute_frame_duration() const;
+			double get_last_frame_duration() const;
 
 		protected:
 			virtual void on_update() = 0;
 
 		public:
 			void update();
-			template <typename T> T get_frame_duration() const;
+			template <typename T> T get_last_frame_seconds() const;
 
 			bool is_waiting_time_for_update() const;
 			void stop_waiting_time_for_update();
 			void set_update_wait_time(double update_wait_time);
 
+			bool is_waiting_frame_for_update() const;
 			void set_frame_count_to_update_after(size_t frame_count_to_update_after);
 
 			bool is_time_forward() const;
