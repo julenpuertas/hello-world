@@ -9,7 +9,7 @@ namespace
 	double g_max_frame_duration = 1. / OPTIMAL_FRAME_COUNT_PER_SECOND;
 	double g_last_frame_duration = 0;
 
-	Engine::DynamicArray<std::shared_ptr<Engine::Systems::System> > g_systems;
+	Engine::DynamicArray<std::unique_ptr<Engine::Systems::System> > g_systems;
 }
 
 namespace Engine
@@ -124,7 +124,7 @@ namespace Engine
 
 			const Clock::time_point frame_start = Clock::now();
 
-			for (const std::shared_ptr<System>& p_system : g_systems)
+			for (const std::unique_ptr<System>& p_system : g_systems)
 				p_system->update();
 
 			Seconds frame_duration = Clock::now() - frame_start;
