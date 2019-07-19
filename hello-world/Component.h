@@ -11,7 +11,7 @@ namespace Engine
 	class Component
 		: public Entity
 	{
-		std::weak_ptr<GameObject> p_owner_;
+		GameObject* p_owner_ = nullptr;
 
 	protected:
 		Component() = default;
@@ -52,10 +52,10 @@ namespace Engine
 		bool is_active() const;
 		void set_active(bool active);
 
-		std::shared_ptr<GameObject> get_owner() const;
+		GameObject* get_owner() const;
 		void set_owner(GameObject& owner);
 
-		virtual std::shared_ptr<Component> clone() const = 0;
+		virtual Component* clone() const = 0;
 		virtual TypeInfo get_type_info() const = 0;
 	};
 }

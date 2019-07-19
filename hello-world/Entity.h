@@ -4,7 +4,6 @@
 namespace Engine
 {
 	class Entity
-		: public ShareableFromThis
 	{
 		bool active_ = true;
 		bool alive_ = true;
@@ -14,6 +13,8 @@ namespace Engine
 		explicit Entity(const Entity&);
 
 	public:
+		virtual ~Entity() = default;
+
 		virtual bool is_alive() const;
 		void destroy();
 

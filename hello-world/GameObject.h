@@ -12,16 +12,16 @@ namespace Engine
 		Transform world_transform_;
 		Transform::Concatenator::Policy attachment_to_parent_policy_;
 
-		std::weak_ptr<GameObject> p_parent_;
-		DynamicArray<std::shared_ptr<GameObject> > children_;
-		DynamicArray<std::weak_ptr<Component> > components_;
+		GameObject* p_parent_ = nullptr;
+		DynamicArray<std::unique_ptr<GameObject> > children_;
+		DynamicArray<Component*> components_;
 
 		void for_each_component(const std::function<void(Component&)>& predicate) const;
 		void for_each_child(const std::function<void(GameObject&)>& predicate) const;
 		void remove_child(const GameObject& posible_child);
 		Transform get_local_transform(const Transform& parent_world_transform) const;
 		void update_children_transforms(const Transform& old_world_transform) const;
-		DynamicArray<std::weak_ptr<Component> >::const_iterator get_iterator_to_type(const Component::TypeInfo& type) const;
+		DynamicArray<Component*>::const_iterator get_iterator_to_type(const Component::TypeInfo& type) const;
 		void destroy_children() const;
 		void destroy_components() const;
 		bool remove_parent_if_it_has();
@@ -34,7 +34,7 @@ namespace Engine
 		void move_components(GameObject&& rhs);
 
 	public:
-		static bool update_or_destroy(const std::shared_ptr<GameObject>& p_gameobject);
+		static bool update_or_destroy(const std::unique_ptr<GameObject>& p_gameobject);
 
 		enum class Uninitialize : Byte
 		{};
@@ -48,7 +48,7 @@ namespace Engine
 		GameObject& operator=(GameObject&& rhs);
 
 		bool is_descendant_of(const GameObject& posible_ancestor) const;
-		std::shared_ptr<GameObject> get_ancestor(size_t ancestor_index = 0) const;
+		GameObject* get_ancestor(size_t ancestor_index = 0) const;
 		void set_parent(GameObject& new_parent);
 		void remove_parent();
 
@@ -61,11 +61,11 @@ namespace Engine
 		const Transform::Concatenator::Policy& get_attachment_to_parent_policy() const;
 		void set_attachment_to_parent_policy(const Transform::Concatenator::Policy& attachment_to_parent_policy);
 
-		template <typename T, typename ... Args> std::shared_ptr<T> add(Args&& ... arguments);
-		bool remove(const Component::TypeInfo& type);
+		template <typename T, typename ... Args> T* add(Args&& ... arguments);
+		bool remove(const Component::TypeInfo& type, bool destroy_component = true);
 
-		template <typename T> std::shared_ptr<T> get() const;
-		template <typename T> DynamicArray<std::shared_ptr<T> > get_all() const;
+		template <typename T> T* get() const;
+		template <typename T> DynamicArray<T*> get_all() const;
 
 		bool is_active() const override;
 		void set_active(bool active) override;

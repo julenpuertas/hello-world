@@ -133,18 +133,12 @@ namespace Engine
 
 	bool Component::is_alive() const
 	{
-		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
-			return Entity::is_alive() && p_owner->is_alive();
-
-		return false;
+		return Entity::is_alive() && p_owner_ && p_owner_->is_alive();
 	}
 
 	bool Component::is_active() const
 	{
-		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
-			return Entity::is_active() && p_owner->is_active();
-
-		return false;
+		return Entity::is_active() && p_owner_ && p_owner_->is_active();
 	}
 
 	void Component::set_active(bool active)
@@ -154,32 +148,28 @@ namespace Engine
 
 		Entity::set_active(active);
 
-		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
-		{
-			if (!p_owner->is_active())
-				return;
+		if (!p_owner_ || !p_owner_->is_active())
+			return;
 
-			if (active)
-				on_activation();
+		if (active)
+			on_activation();
 
-			else on_deactivation();
-		}
+		else on_deactivation();
 	}
 
-	std::shared_ptr<GameObject> Component::get_owner() const
+	GameObject* Component::get_owner() const
 	{
-		return p_owner_.lock();
+		return p_owner_;
 	}
 
 	void Component::set_owner(GameObject& owner)
 	{
-		if (const std::shared_ptr<GameObject> p_owner = p_owner_.lock())
-			p_owner->remove(get_type_info());
+		p_owner_->remove(get_type_info(), false);
 
-		const bool was_free = p_owner_.expired();
-		p_owner_ = owner.get_this<GameObject>();
+		const bool was_free = !p_owner_;
+		p_owner_ = &owner;
 
-		if(was_free)
+		if (was_free)
 			attach();
 
 		on_owner_set();
