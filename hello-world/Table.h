@@ -12,7 +12,7 @@ namespace Engine
 		DynamicArray<T> table_;
 		size_t width_ = 0;
 
-		size_t convert(const SVector2& indices) const;
+		size_t convert(size_t row, size_t column) const;
 		SVector2 convert(size_t index) const;
 		size_t get_height() const;
 
@@ -24,8 +24,11 @@ namespace Engine
 		using const_reference = typename DynamicArray<T>::const_reference;
 		using const_pointer = typename DynamicArray<T>::const_pointer;
 
-		const_reference operator[](const SVector2& indices) const;
+		reference get(size_t row, size_t column);
+		const_reference get(size_t row, size_t column) const;
+
 		reference operator[](const SVector2& indices);
+		const_reference operator[](const SVector2& indices) const;
 
 		void resize(const SVector2& dimensions, const T& element = T());
 		void clear();

@@ -37,6 +37,14 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="StbImage.cpp" />
+    <ClCompile Include="ID.cpp" />
+    <ClCompile Include="IsAreaClear.cpp">
+      <Filter>AI\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="FloydWarshall.cpp">
+      <Filter>AI\Pathfinding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -71,6 +79,12 @@
     </Filter>
     <Filter Include="Function">
       <UniqueIdentifier>{8bb109bf-bdfe-4ed3-8a2a-ce847fbbdc67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{bb001e85-8a3d-4570-987e-f3e86b4e7673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\Pathfinding">
+      <UniqueIdentifier>{f7886549-af91-48fb-aeda-19f712099edc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +187,16 @@
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="Random.h" />
+    <ClInclude Include="ID.h" />
+    <ClInclude Include="IsAreaClear.h">
+      <Filter>AI\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="FloydWarshall.h">
+      <Filter>AI\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -228,6 +252,9 @@
     </None>
     <None Include="Table.inl">
       <Filter>Containers</Filter>
+    </None>
+    <None Include="Constants.inl">
+      <Filter>Math</Filter>
     </None>
   </ItemGroup>
 </Project>

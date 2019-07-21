@@ -20,7 +20,7 @@ namespace Engine
 			return nullptr;
 
 		T* p_component = new T(std::forward<Args>(arguments) ...);
-		components_.emplace_back(p_component);
+		components_.push_back(p_component);
 		p_component->set_owner(this_ref);
 
 		return p_component;

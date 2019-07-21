@@ -2,9 +2,9 @@
 
 namespace Engine
 {
-	template <typename T> size_t Table<T>::convert(const SVector2& indices) const
+	template<typename T> size_t Table<T>::convert(size_t row, size_t column) const
 	{
-		return indices.x + width_ * indices.y;
+		return row * width_ + column;
 	}
 
 	template <typename T> SVector2 Table<T>::convert(size_t index) const
@@ -25,14 +25,24 @@ namespace Engine
 		, table_(dimensions.x * dimensions.y, element)
 	{}
 
-	template <typename T> typename Table<T>::const_reference Table<T>::operator[](const SVector2& indices) const
+	template<typename T> typename Table<T>::reference Table<T>::get(size_t row, size_t column)
 	{
-		return table_.at(convert(indices));
+		return table_.at(convert(row, column));
+	}
+
+	template<typename T> typename Table<T>::const_reference Table<T>::get(size_t row, size_t column) const
+	{
+		return table_.at(convert(row, column));
 	}
 
 	template <typename T> typename Table<T>::reference Table<T>::operator[](const SVector2& indices)
 	{
-		return table_.at(convert(indices));
+		return get(indices.y, indices.x);
+	}
+
+	template <typename T> typename Table<T>::const_reference Table<T>::operator[](const SVector2& indices) const
+	{
+		return get(indices.y, indices.x);
 	}
 
 	template <typename T> void Table<T>::resize(const SVector2& dimensions, const T& element)

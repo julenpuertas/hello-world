@@ -196,11 +196,15 @@
   <ItemGroup>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="FloydWarshall.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDestroyed.cpp" />
     <ClCompile Include="Hasheable.cpp" />
+    <ClCompile Include="ID.cpp" />
+    <ClCompile Include="IsAreaClear.cpp" />
     <ClCompile Include="MessagesListener.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="StbImage.cpp" />
     <ClCompile Include="Systern.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -227,15 +231,19 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Comparator.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Division.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Epsilon.h" />
+    <ClInclude Include="FloydWarshall.h" />
     <ClInclude Include="GLMMatrixWrapper.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectDestroyed.h" />
     <ClInclude Include="Hasheable.h" />
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="HashTable.h" />
+    <ClInclude Include="ID.h" />
+    <ClInclude Include="IsAreaClear.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessagesListener.h" />
     <ClInclude Include="MultiSortedDynamicArray.h" />
@@ -267,6 +275,7 @@
     <None Include="BaseSortedDynamicArray.inl" />
     <None Include="Clonable.inl" />
     <None Include="Color.inl" />
+    <None Include="Constants.inl" />
     <None Include="Division.inl" />
     <None Include="DynamicArray.inl" />
     <None Include="Epsilon.inl" />
