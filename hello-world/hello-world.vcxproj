@@ -194,6 +194,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AStar.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FloydWarshall.cpp" />
@@ -223,6 +224,7 @@
   <ItemGroup>
     <ClInclude Include="Angles.h" />
     <ClInclude Include="Array.h" />
+    <ClInclude Include="AStar.h" />
     <ClInclude Include="BaseSortedDynamicArray.h" />
     <ClInclude Include="Axis.h" />
     <ClInclude Include="BitArray.h" />

@@ -119,7 +119,7 @@ namespace Engine
 				{
 					path.push_back(current_pos);
 					const size_t parent_index = current_pos.x + grid_dimensions_.x * current_pos.y;
-					current_pos = parent_matrix_[SVector2(parent_index, end_index)];
+					current_pos = parent_matrix_.get(end_index, parent_index);
 
 					// path not found
 					if (current_pos.x == INVALID_INDEX || current_pos.y == INVALID_INDEX)
