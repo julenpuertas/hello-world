@@ -203,6 +203,7 @@
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="ID.cpp" />
     <ClCompile Include="IsAreaClear.cpp" />
+    <ClCompile Include="JumpPointSearch.cpp" />
     <ClCompile Include="MessagesListener.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="StbImage.cpp" />
@@ -246,6 +247,7 @@
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="ID.h" />
     <ClInclude Include="IsAreaClear.h" />
+    <ClInclude Include="JumpPointSearch.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessagesListener.h" />
     <ClInclude Include="MultiSortedDynamicArray.h" />
