@@ -19,7 +19,7 @@ namespace Engine
 			static const Vector<T, 2> UP;
 
 			template <typename ... Args> explicit Vector(Args&& ... args);
-			template <glm::precision P> Vector(const glm::tvec2<T, P>& rhs);
+			template <typename U, glm::precision P> Vector(const glm::tvec2<U, P>& rhs);
 		};
 
 		template<typename T> struct Vector<T, 3> : public GLMVectorWrapper<Vector, T, 3, glm::tvec3>
@@ -29,7 +29,7 @@ namespace Engine
 			static const Vector<T, 3> FORWARD;
 
 			template <typename ... Args> explicit Vector(Args&& ... args);
-			template <glm::precision P> Vector(const glm::tvec3<T, P>& rhs);
+			template <typename U, glm::precision P> Vector(const glm::tvec3<U, P>& rhs);
 
 			Vector<T, 3> cross(const Vector<T, 3>& rhs) const;
 		};
@@ -41,7 +41,7 @@ namespace Engine
 			static const Vector<T, 4> FORWARD;
 
 			template <typename ... Args> explicit Vector(Args&& ... args);
-			template <glm::precision P> Vector(const glm::tvec4<T, P>& rhs);
+			template <typename U, glm::precision P> Vector(const glm::tvec4<U, P>& rhs);
 		};
 	}
 

@@ -15,7 +15,7 @@ namespace Engine
 			explicit GLMVectorWrapper(Axis axis);
 
 		public:
-			using iterator = T*;
+			using iterator = T * ;
 			using const_iterator = const T*;
 
 			static constexpr size_t SIZE = N;
@@ -30,22 +30,22 @@ namespace Engine
 			VectorT<T, N> operator-() const;
 
 			VectorT<T, N> operator+(const VectorT<T, N>& rhs) const;
-			VectorT<T, N>& operator+=(const VectorT<T, N>& rhs);
+			template <typename U> VectorT<T, N>& operator+=(const VectorT<U, N>& rhs);
 			VectorT<T, N> operator+(const T& rhs) const;
 			VectorT<T, N>& operator+=(const T& rhs);
 
 			VectorT<T, N> operator-(const VectorT<T, N>& rhs) const;
-			VectorT<T, N>& operator-=(const VectorT<T, N>& rhs);
+			template <typename U> VectorT<T, N>& operator-=(const VectorT<U, N>& rhs);
 			VectorT<T, N> operator-(const T& rhs) const;
 			VectorT<T, N>& operator-=(const T& rhs);
 
 			VectorT<T, N> operator*(const VectorT<T, N>& rhs) const;
-			VectorT<T, N>& operator*=(const VectorT<T, N>& rhs);
+			template <typename U> VectorT<T, N>& operator*=(const VectorT<U, N>& rhs);
 			VectorT<T, N> operator*(const T& rhs) const;
 			VectorT<T, N>& operator*=(const T& rhs);
 
 			VectorT<T, N> operator/(const VectorT<T, N>& rhs) const;
-			VectorT<T, N>& operator/=(const VectorT<T, N>& rhs);
+			template <typename U> VectorT<T, N>& operator/=(const VectorT<U, N>& rhs);
 			VectorT<T, N> operator/(const T& rhs) const;
 			VectorT<T, N>& operator/=(const T& rhs);
 

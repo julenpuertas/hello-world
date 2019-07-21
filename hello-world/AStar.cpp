@@ -45,7 +45,7 @@ namespace Engine
 				: coords_(coords)
 				, parent_coords_(parent.coords_)
 			{
-				const IVector2 direction = { coords_ - parent_coords_ };
+				const IVector2 direction = coords_ - parent_coords_;
 
 				// given cost
 				given_cost_ = static_cast<float>(std::max(abs(direction.x), abs(direction.y)));
@@ -100,8 +100,8 @@ namespace Engine
 					return i;
 				};
 
-				const IVector2 result = { coords_ - parent_coords_ };
-				return{ normalize_int(result.x), normalize_int(result.y) };
+				const IVector2 result = coords_ - parent_coords_;
+				return IVector2(normalize_int(result.x), normalize_int(result.y));
 			}
 
 			bool AStar::node_greater(const Node& lhs, const Node& rhs)

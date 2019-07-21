@@ -54,8 +54,8 @@ namespace Engine
 
 		void swap(Table& rhs) override;
 
-		using iterator = DynamicArray<T>::iterator;
-		using const_iterator = DynamicArray<T>::const_iterator;
+		using iterator = typename DynamicArray<T>::iterator;
+		using const_iterator = typename DynamicArray<T>::const_iterator;
 		iterator begin();
 		iterator end();
 		const_iterator begin() const;

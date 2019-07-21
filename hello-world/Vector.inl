@@ -11,7 +11,7 @@ namespace Engine
 			: GLMVectorWrapper<Engine::Math::Vector, T, 2, glm::tvec2>(std::forward<Args>(args)...)
 		{}
 
-		template <typename T> template <glm::precision P> Vector<T, 2>::Vector(const glm::tvec2<T, P>& rhs)
+		template <typename T> template <typename U, glm::precision P> Vector<T, 2>::Vector(const glm::tvec2<U, P>& rhs)
 			: GLMVectorWrapper<Engine::Math::Vector, T, 2, glm::tvec2>(rhs)
 		{}
 
@@ -23,7 +23,7 @@ namespace Engine
 			: GLMVectorWrapper<Engine::Math::Vector, T, 3, glm::tvec3>(std::forward<Args>(args)...)
 		{}
 
-		template <typename T> template <glm::precision P> Vector<T, 3>::Vector(const glm::tvec3<T, P>& rhs)
+		template <typename T> template <typename U, glm::precision P> Vector<T, 3>::Vector(const glm::tvec3<U, P>& rhs)
 			: GLMVectorWrapper<Engine::Math::Vector, T, 3, glm::tvec3>(rhs)
 		{}
 
@@ -40,7 +40,7 @@ namespace Engine
 			: GLMVectorWrapper<Engine::Math::Vector, T, 4, glm::tvec4>(std::forward<Args>(args)...)
 		{}
 
-		template <typename T> template <glm::precision P> Vector<T, 4>::Vector(const glm::tvec4<T, P>& rhs)
+		template <typename T> template <typename U, glm::precision P> Vector<T, 4>::Vector(const glm::tvec4<U, P>& rhs)
 			: GLMVectorWrapper<Engine::Math::Vector, T, 4, glm::tvec4>(rhs)
 		{}
 	}

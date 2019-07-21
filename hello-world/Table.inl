@@ -130,7 +130,7 @@ namespace Engine
 
 		size_t decrease_offset_cool_down = width_ - column_index;
 		const DynamicArray<T>::reverse_iterator it_end = table_.rend();
-		for (DynamicArray<T>::reverse_iterator it = table_.rbegin() + element_shift_offset; element_shift_offset && it != it_end; ++it)
+		for (typename DynamicArray<T>::reverse_iterator it = table_.rbegin() + element_shift_offset; element_shift_offset && it != it_end; ++it)
 		{
 			if (!decrease_offset_cool_down)
 			{
@@ -173,7 +173,7 @@ namespace Engine
 		const size_t height = get_height();
 		width_ -= column_count;
 
-		DynamicArray<T>::iterator it = table_.begin();
+		typename DynamicArray<T>::iterator it = table_.begin();
 		const DynamicArray<T>::iterator it_end = it + width_ * height;
 		for (it += column_index; it != it_end; ++it)
 		{
