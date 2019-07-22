@@ -10,6 +10,7 @@
 #include <random>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "Division.h"
 
 static void windowwwwww()
 {
@@ -48,9 +49,5 @@ static void windowwwwww()
 
 int main(int argc, char* argv[])
 {
-	using namespace Engine;
-
-
-
 	return 0;
 }

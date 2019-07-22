@@ -48,7 +48,10 @@
     <ClCompile Include="AStar.cpp">
       <Filter>AI\Pathfinding</Filter>
     </ClCompile>
-    <ClCompile Include="JumpPointSearch.cpp" />
+    <ClCompile Include="JumpPointSearch.cpp">
+      <Filter>AI\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetRoots.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -204,7 +207,10 @@
     <ClInclude Include="AStar.h">
       <Filter>AI\Pathfinding</Filter>
     </ClInclude>
-    <ClInclude Include="JumpPointSearch.h" />
+    <ClInclude Include="JumpPointSearch.h">
+      <Filter>AI\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetRoots.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">

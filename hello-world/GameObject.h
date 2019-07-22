@@ -42,7 +42,10 @@ namespace Engine
 		GameObject(Uninitialize);
 		template <typename ... Args> explicit GameObject(Args&& ... arguments);
 		GameObject(const Transform& world_transform, const Transform::Concatenator::Policy& attachment_to_parent_policy);
-		GameObject(const GameObject& rhs) = delete;
+		GameObject(GameObject& parent, const Transform& world_transform, const Transform::Concatenator::Policy& attachment_to_parent_policy);
+		GameObject(const GameObject& rhs, const FVector3& translation, const Rotation& rotation, bool make_sibling = true);
+		GameObject(const GameObject& rhs, bool make_sibling = true);
+		GameObject(GameObject&& rhs);
 
 		GameObject& operator=(const GameObject& rhs);
 		GameObject& operator=(GameObject&& rhs);

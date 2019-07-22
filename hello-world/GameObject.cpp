@@ -243,7 +243,37 @@ namespace Engine
 	GameObject::GameObject(const Transform& world_transform, const Transform::Concatenator::Policy& attachment_to_parent_policy)
 		: world_transform_(world_transform)
 		, attachment_to_parent_policy_(attachment_to_parent_policy)
-	{}
+	{
+		add_to_global_gameobject_list();
+	}
+
+	GameObject::GameObject(GameObject& parent, const Transform& world_transform, const Transform::Concatenator::Policy& attachment_to_parent_policy)
+		: world_transform_(world_transform)
+		, attachment_to_parent_policy_(attachment_to_parent_policy)
+	{
+		set_parent(parent);
+	}
+
+	GameObject::GameObject(const GameObject& rhs, const FVector3& translation, const Rotation& rotation, bool make_sibling)
+	{
+		*this = rhs;
+		world_transform_.set_translation(translation);
+		world_transform_.set_rotation(rotation);
+		if (make_sibling && rhs.p_parent_)
+			set_parent(*rhs.p_parent_);
+	}
+
+	GameObject::GameObject(const GameObject& rhs, bool make_sibling)
+	{
+		*this = rhs;
+		if (make_sibling && rhs.p_parent_)
+			set_parent(*rhs.p_parent_);
+	}
+
+	GameObject::GameObject(GameObject && rhs)
+	{
+		*this = std::move(rhs);
+	}
 
 	GameObject& GameObject::operator=(const GameObject& rhs)
 	{

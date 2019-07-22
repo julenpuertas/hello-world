@@ -197,6 +197,7 @@
     <ClCompile Include="AStar.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="AssetRoots.cpp" />
     <ClCompile Include="FloydWarshall.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDestroyed.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="Division.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Epsilon.h" />
+    <ClInclude Include="AssetRoots.h" />
     <ClInclude Include="FloydWarshall.h" />
     <ClInclude Include="GLMMatrixWrapper.h" />
     <ClInclude Include="GameObject.h" />

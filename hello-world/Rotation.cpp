@@ -101,7 +101,7 @@ namespace Engine
 	Array<FVector3, 3> Rotation::get_orientation() const
 	{
 		Array<FVector3, 3> result;
-		const size_t size = result.size();
+		constexpr size_t size = result.size();
 
 		for (size_t i = 0; i < size; ++i)
 			result[i] = get_orientation(static_cast<Math::Axis>(i));

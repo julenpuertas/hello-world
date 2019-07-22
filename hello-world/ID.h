@@ -19,7 +19,12 @@ namespace Engine
 		static constexpr size_t INVALID = std::numeric_limits<size_t>::max();
 
 		ID(Provider& provider, size_t starting_id = 0);
+		ID(const ID& rhs) = delete;
+		ID(ID&& rhs);
 		~ID();
+
+		ID& operator=(const ID& rhs) = delete;
+		ID& operator=(ID&& rhs);
 
 		bool is_assigned() const;
 		void assign(size_t min_possible_id = 0);

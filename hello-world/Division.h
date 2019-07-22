@@ -12,13 +12,13 @@ namespace Engine
 				T reminder_;
 
 			public:
-				Result(T quotient, T divisor);
+				constexpr Result(T quotient, T divisor);
 
-				int get_dividend() const;
-				T get_reminder() const;
+				constexpr int get_dividend() const;
+				constexpr T get_reminder() const;
 			};
 
-			template <typename T> Result<T> compute(T quotient, T divisor);
+			template <typename T> constexpr Result<T> compute(T quotient, T divisor);
 		}
 	}
 }

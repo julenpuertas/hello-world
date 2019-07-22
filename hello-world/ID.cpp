@@ -128,9 +128,25 @@ namespace Engine
 			id_ = provider.request(starting_id);
 	}
 
+	ID::ID(ID && rhs)
+		: p_provider_(rhs.p_provider_)
+		, id_(rhs.id_)
+	{
+		rhs.id_ = INVALID;
+	}
+
 	ID::~ID()
 	{
 		release();
+	}
+
+	ID & ID::operator=(ID&& rhs)
+	{
+		p_provider_ = rhs.p_provider_;
+		id_ = rhs.id_;
+		rhs.id_ = INVALID;
+
+		return *this;
 	}
 
 	bool ID::is_assigned() const
