@@ -52,6 +52,12 @@
       <Filter>AI\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="AssetRoots.cpp" />
+    <ClCompile Include="AABB.cpp">
+      <Filter>BoundingVolumes</Filter>
+    </ClCompile>
+    <ClCompile Include="Readable.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -92,6 +98,9 @@
     </Filter>
     <Filter Include="AI\Pathfinding">
       <UniqueIdentifier>{f7886549-af91-48fb-aeda-19f712099edc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BoundingVolumes">
+      <UniqueIdentifier>{a08739fd-6631-4a99-9440-771bfa15bc6c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +220,13 @@
       <Filter>AI\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="AssetRoots.h" />
+    <ClInclude Include="AABB.h">
+      <Filter>BoundingVolumes</Filter>
+    </ClInclude>
+    <ClInclude Include="Readable.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Interval.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -270,5 +286,6 @@
     <None Include="Constants.inl">
       <Filter>Math</Filter>
     </None>
+    <None Include="Interval.inl" />
   </ItemGroup>
 </Project>

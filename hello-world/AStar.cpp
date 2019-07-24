@@ -12,7 +12,7 @@ namespace Engine
 			{
 				Pair<float> diff = { abs(point_2.x - point_1.x), abs(point_2.y - point_1.y) };
 
-				float cost = nanf("");
+				float cost = std::numeric_limits<float>::quiet_NaN();
 				switch (heuristic_)
 				{
 				case Heuristic::EUCLIDEAN:

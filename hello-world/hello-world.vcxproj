@@ -199,6 +199,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AStar.cpp" />
+    <ClCompile Include="AABB.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="AssetRoots.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="GameObjectDestroyed.cpp" />
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="ID.cpp" />
+    <ClCompile Include="Readable.cpp" />
     <ClCompile Include="IsAreaClear.cpp" />
     <ClCompile Include="JumpPointSearch.cpp" />
     <ClCompile Include="MessagesListener.cpp" />
@@ -231,6 +233,7 @@
     <ClInclude Include="Angles.h" />
     <ClInclude Include="Array.h" />
     <ClInclude Include="AStar.h" />
+    <ClInclude Include="AABB.h" />
     <ClInclude Include="BaseSortedDynamicArray.h" />
     <ClInclude Include="Axis.h" />
     <ClInclude Include="BitArray.h" />
@@ -252,6 +255,8 @@
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="ID.h" />
+    <ClInclude Include="Interval.h" />
+    <ClInclude Include="Readable.h" />
     <ClInclude Include="IsAreaClear.h" />
     <ClInclude Include="JumpPointSearch.h" />
     <ClInclude Include="Message.h" />
@@ -291,6 +296,7 @@
     <None Include="Epsilon.inl" />
     <None Include="GLMMatrixWrapper.inl" />
     <None Include="GameObject.inl" />
+    <None Include="Interval.inl" />
     <None Include="Matrix.inl" />
     <None Include="MessagesListener.inl" />
     <None Include="MultiSortedDynamicArray.inl" />

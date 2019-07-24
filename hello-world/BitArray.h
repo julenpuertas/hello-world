@@ -3,6 +3,5 @@
 
 namespace Engine
 {
-	template <typename N>
-	using BitArray = std::bitset<N>;
+	template <size_t N> using BitArray = std::bitset<N>;
 }
