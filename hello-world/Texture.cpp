@@ -23,7 +23,11 @@ namespace Engine
 		{
 			IVector2 size;
 			int comp_count;
-			Byte* const p_image_data = stbi_load((/*AssetRoots::TEXTURES +*/ name).data(), &size.x, &size.y, &comp_count, 0);
+
+			String path = AssetRoots::TEXTURES;
+			path.append(name);
+
+			Byte* const p_image_data = stbi_load(path.c_str(), &size.x, &size.y, &comp_count, 0);
 			if (p_image_data)
 			{
 				// default values

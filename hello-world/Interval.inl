@@ -115,7 +115,7 @@ namespace Engine
 
 	template <typename T> void Interval<T>::read(std::istream& is)
 	{
-		const String error = "Wrong value passed to read an Interval";
+		const char error[] = "Wrong value passed to read an Interval";
 		char c;
 
 		// open from the left
@@ -129,7 +129,7 @@ namespace Engine
 			min_open_ = false;
 			break;
 		default:
-			throw std::runtime_error(error);
+			throw std::ios::failure(error);
 		}
 
 		is >> min_;
@@ -140,7 +140,7 @@ namespace Engine
 			is >> c;
 
 			if (c != '.')
-				throw std::runtime_error(error);
+				throw std::ios::failure(error);
 		}
 
 		is >> max_;
@@ -156,7 +156,7 @@ namespace Engine
 			max_open_ = false;
 			break;
 		default:
-			throw std::runtime_error(error);
+			throw std::ios::failure(error);
 		}
 	}
 }
