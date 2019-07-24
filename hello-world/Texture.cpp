@@ -6,6 +6,8 @@ namespace Engine
 {
 	namespace Graphics
 	{
+		ID::Provider Texture::g_id_provider;
+
 		void Texture::load(const SVector2& size, Format format, PixelData::Format pixel_data_format, PixelData::Type pixel_data_type, const void* p_pixel_data)
 		{
 			unload();
@@ -107,7 +109,7 @@ namespace Engine
 			location_.assign();
 			const size_t location = location_;
 
-			glActiveTexture(GL_TEXTURE0 + location);
+			glActiveTexture(GL_TEXTURE0 + static_cast<GLenum>(location));
 			bind();
 
 			return location;

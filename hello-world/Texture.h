@@ -1,7 +1,7 @@
 #pragma once
 
-#include "String.h"
 #include <GL/glew.h>
+#include "String.h"
 #include "Color.h"
 #include "Swapable.h"
 #include "Table.h"
