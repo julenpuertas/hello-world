@@ -14,7 +14,7 @@ namespace Engine
 		void normalize();
 
 	public:
-		Rotation() = default;
+		constexpr Rotation() = default;
 		explicit Rotation(float degrees, Math::Axis axis);
 		explicit Rotation(float degrees, const FVector3& axis);
 		explicit Rotation(const FVector3& euler_degrees);

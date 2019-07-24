@@ -21,10 +21,10 @@ namespace Engine
 			constexpr const FVector3& get_extend() const;
 			constexpr void set_extend(const FVector3& extend);
 
-			constexpr FVector3 get_scale() const;
-			constexpr void set_scale(const FVector3& scale);
+			FVector3 get_scale() const;
+			void set_scale(const FVector3& scale);
 
-			constexpr Transform get_transform() const;
+			Transform get_transform() const;
 
 			constexpr float get_area() const;
 			constexpr float get_volume() const;

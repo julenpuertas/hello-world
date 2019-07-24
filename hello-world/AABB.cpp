@@ -35,17 +35,17 @@ namespace Engine
 			extend_ = extend;
 		}
 
-		constexpr FVector3 AABB::get_scale() const
+		FVector3 AABB::get_scale() const
 		{
-			return extend_ * 2.f;
+			return extend_;
 		}
 
-		constexpr void AABB::set_scale(const FVector3& scale)
+		void AABB::set_scale(const FVector3& scale)
 		{
-			extend_ = scale * .5f;
+			extend_ = scale;
 		}
 
-		constexpr Transform AABB::get_transform() const
+		Transform AABB::get_transform() const
 		{
 			return Transform(center_, get_scale());
 		}
