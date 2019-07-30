@@ -172,39 +172,39 @@ namespace Engine
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
-		typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::begin()
+		constexpr typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::begin()
 		{
 			MatrixT<T, M, N>& matrix = *this;
 			return &matrix[0][0];
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
-		typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::end()
+		constexpr typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::end()
 		{
 			return begin() + WIDTH * HEIGTH;
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
-		typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::begin() const
+		constexpr typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::begin() const
 		{
 			const MatrixT<T, M, N>& matrix = *this;
 			return &matrix[0][0];
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
-		typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::end() const
+		constexpr typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::end() const
 		{
 			return begin() + WIDTH * HEIGTH;
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
-		typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::cbegin() const
+		constexpr typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::cbegin() const
 		{
 			return begin();
 		}
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>
-		typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::cend() const
+		constexpr typename GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::const_iterator GLMMatrixWrapper<MatrixT, T, M, N, GLMMatrixT, P>::cend() const
 		{
 			return end();
 		}

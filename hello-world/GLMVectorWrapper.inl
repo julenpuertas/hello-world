@@ -254,37 +254,37 @@ namespace Engine
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::begin()
+		constexpr typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::begin()
 		{
 			return &this->x;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::end()
+		constexpr typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::end()
 		{
 			return begin() + N;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::begin() const
+		constexpr typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::begin() const
 		{
 			return &this->x;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::end() const
+		constexpr typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::end() const
 		{
 			return begin() + N;
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::cbegin() const
+		constexpr typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::cbegin() const
 		{
 			return begin();
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
-		typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::cend() const
+		constexpr typename GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::const_iterator GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::cend() const
 		{
 			return end();
 		}

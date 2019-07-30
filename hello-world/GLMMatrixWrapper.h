@@ -47,12 +47,12 @@ namespace Engine
 			bool is_zero(const T& epsilon = get_epsilon<T>()) const;
 			bool equals(const MatrixT<T, M, N>& rhs, const T& epsilon = get_epsilon<T>()) const;
 
-			iterator begin();
-			iterator end();
-			const_iterator begin() const;
-			const_iterator end() const;
-			const_iterator cbegin() const;
-			const_iterator cend() const;
+			constexpr iterator begin();
+			constexpr iterator end();
+			constexpr const_iterator begin() const;
+			constexpr const_iterator end() const;
+			constexpr const_iterator cbegin() const;
+			constexpr const_iterator cend() const;
 		};
 
 		template <template <typename, size_t, size_t> typename MatrixT, typename T, size_t M, size_t N, template <typename, glm::precision> typename GLMMatrixT, glm::precision P>

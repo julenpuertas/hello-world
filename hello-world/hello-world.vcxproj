@@ -204,10 +204,12 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="AssetRoots.cpp" />
     <ClCompile Include="FloydWarshall.cpp" />
+    <ClCompile Include="Frustrum.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDestroyed.cpp" />
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="ID.cpp" />
+    <ClCompile Include="GraphicsMaterial.cpp" />
     <ClCompile Include="Readable.cpp" />
     <ClCompile Include="IsAreaClear.cpp" />
     <ClCompile Include="JumpPointSearch.cpp" />
@@ -248,6 +250,7 @@
     <ClInclude Include="Epsilon.h" />
     <ClInclude Include="AssetRoots.h" />
     <ClInclude Include="FloydWarshall.h" />
+    <ClInclude Include="Frustrum.h" />
     <ClInclude Include="GLMMatrixWrapper.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectDestroyed.h" />
@@ -256,6 +259,7 @@
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="ID.h" />
     <ClInclude Include="Interval.h" />
+    <ClInclude Include="GraphicsMaterial.h" />
     <ClInclude Include="Readable.h" />
     <ClInclude Include="IsAreaClear.h" />
     <ClInclude Include="JumpPointSearch.h" />
@@ -294,6 +298,7 @@
     <None Include="Division.inl" />
     <None Include="DynamicArray.inl" />
     <None Include="Epsilon.inl" />
+    <None Include="Frustrum.inl" />
     <None Include="GLMMatrixWrapper.inl" />
     <None Include="GameObject.inl" />
     <None Include="Interval.inl" />

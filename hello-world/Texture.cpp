@@ -15,7 +15,7 @@ namespace Engine
 			glGenTextures(1, &handle_);
 
 			bind();
-			Math::Vector<GLsizei, 2> gl_size = size;
+			const Math::Vector<GLsizei, 2> gl_size = size;
 			glTexImage2D(GL_TEXTURE_2D, 0, static_cast<GLint>(format), gl_size.x, gl_size.y, 0, static_cast<GLenum>(pixel_data_format), static_cast<GLenum>(pixel_data_type), p_pixel_data);
 		}
 
@@ -24,7 +24,7 @@ namespace Engine
 			IVector2 size;
 			int comp_count;
 
-			String path = AssetRoots::TEXTURES;
+			String path = AssetRoots::TEXTURES.generic_string();
 			path.append(name);
 
 			Byte* const p_image_data = stbi_load(path.c_str(), &size.x, &size.y, &comp_count, 0);

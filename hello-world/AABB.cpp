@@ -3,7 +3,7 @@
 
 namespace Engine
 {
-	namespace BoundingVolumes
+	namespace Volumes
 	{
 		constexpr AABB::AABB(const FVector3& center, const FVector3& extend)
 			: center_(center)

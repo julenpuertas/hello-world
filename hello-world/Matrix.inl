@@ -23,5 +23,13 @@ namespace Engine
 		{
 			return *this * Vector<T, 4>(rhs, 1);
 		}
+
+		template <typename T> template <typename ... Args> Matrix<T, 4, 4>::Matrix(Args&& ... args)
+			: GLMMatrixWrapper<Engine::Math::Matrix, T, 4, 4, glm::tmat4x4>(std::forward<Args>(args)...)
+		{}
+
+		template <typename T> template <glm::precision P> Matrix<T, 4, 4>::Matrix(const glm::tmat4x4<T, P>& rhs)
+			: GLMMatrixWrapper<Engine::Math::Matrix, T, 4, 4, glm::tmat4x4>(rhs)
+		{}
 	}
 }

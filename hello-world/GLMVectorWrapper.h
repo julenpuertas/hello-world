@@ -60,12 +60,12 @@ namespace Engine
 			bool is_zero(const T& epsilon = get_epsilon<T>()) const;
 			bool equals(const VectorT<T, N>& rhs, const T& epsilon = get_epsilon<T>()) const;
 
-			iterator begin();
-			iterator end();
-			const_iterator begin() const;
-			const_iterator end() const;
-			const_iterator cbegin() const;
-			const_iterator cend() const;
+			constexpr iterator begin();
+			constexpr iterator end();
+			constexpr const_iterator begin() const;
+			constexpr const_iterator end() const;
+			constexpr const_iterator cbegin() const;
+			constexpr const_iterator cend() const;
 		};
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>

@@ -3,7 +3,7 @@
 
 namespace Engine
 {
-	namespace BoundingVolumes
+	namespace Volumes
 	{
 		class AABB
 		{
@@ -11,6 +11,8 @@ namespace Engine
 			FVector3 extend_{ .5f };
 
 		public:
+			static constexpr size_t VERTEX_COUNT = 8;
+
 			AABB() = default;
 			constexpr AABB(const FVector3& center, const FVector3& extend);
 			AABB(const Pair<FVector3>& min_max_points);
