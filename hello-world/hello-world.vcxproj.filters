@@ -66,8 +66,12 @@
     <ClCompile Include="StbImage.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp" />
-    <ClCompile Include="GLSLProgram.cpp" />
+    <ClCompile Include="GLSLProgram.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Graphics\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -111,6 +115,9 @@
     </Filter>
     <Filter Include="Volumes">
       <UniqueIdentifier>{a08739fd-6631-4a99-9440-771bfa15bc6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Components">
+      <UniqueIdentifier>{2b1a8ca2-3898-434a-83a9-65037cd2d6ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -243,10 +250,14 @@
     <ClInclude Include="Frustrum.h">
       <Filter>Volumes</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h" />
-    <ClInclude Include="GLSLProgram.h" />
     <ClInclude Include="Map.h">
       <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Graphics\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GLSLProgram.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
