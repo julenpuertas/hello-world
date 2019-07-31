@@ -207,9 +207,11 @@
     <ClCompile Include="Frustrum.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDestroyed.cpp" />
+    <ClCompile Include="GLSLProgram.cpp" />
     <ClCompile Include="Hasheable.cpp" />
     <ClCompile Include="ID.cpp" />
     <ClCompile Include="GraphicsMaterial.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Readable.cpp" />
     <ClCompile Include="IsAreaClear.cpp" />
     <ClCompile Include="JumpPointSearch.cpp" />
@@ -254,12 +256,14 @@
     <ClInclude Include="GLMMatrixWrapper.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectDestroyed.h" />
+    <ClInclude Include="GLSLProgram.h" />
     <ClInclude Include="Hasheable.h" />
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="ID.h" />
     <ClInclude Include="Interval.h" />
     <ClInclude Include="GraphicsMaterial.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Readable.h" />
     <ClInclude Include="IsAreaClear.h" />
     <ClInclude Include="JumpPointSearch.h" />
@@ -275,6 +279,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Writable.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Pair.h" />

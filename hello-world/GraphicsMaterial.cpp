@@ -1,3 +1,4 @@
+#include "Texture.h"
 #include "GraphicsMaterial.h"
 
 namespace

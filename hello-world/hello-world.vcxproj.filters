@@ -37,7 +37,6 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Random.cpp" />
-    <ClCompile Include="StbImage.cpp" />
     <ClCompile Include="ID.cpp" />
     <ClCompile Include="FloydWarshall.cpp">
       <Filter>AI\Pathfinding</Filter>
@@ -64,6 +63,11 @@
     <ClCompile Include="Frustrum.cpp">
       <Filter>Volumes</Filter>
     </ClCompile>
+    <ClCompile Include="StbImage.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="GLSLProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -238,6 +242,11 @@
     </ClInclude>
     <ClInclude Include="Frustrum.h">
       <Filter>Volumes</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="GLSLProgram.h" />
+    <ClInclude Include="Map.h">
+      <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

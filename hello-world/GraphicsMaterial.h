@@ -1,10 +1,12 @@
 #pragma once
-#include "Texture.h"
+#include "String.h"
 
 namespace Engine
 {
 	namespace Graphics
 	{
+		class Texture;
+
 		class Material
 		{
 			float shininess_ = 0.f;
