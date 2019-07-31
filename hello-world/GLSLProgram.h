@@ -4,7 +4,7 @@
 #include "Swapable.h"
 #include "Map.h"
 #include "Matrix.h"
-#include "String.h"
+#include "Writable.h"
 
 namespace Engine
 {
@@ -17,7 +17,8 @@ namespace Engine
 		class Material;
 
 		class GLSLProgram
-			: public ISwapable<GLSLProgram>
+			: IO::IWritable
+			, public ISwapable<GLSLProgram>
 		{
 			GLint handle_ = 0;
 			String vertex_shader_name_;
@@ -34,8 +35,8 @@ namespace Engine
 			enum class Stage : GLenum
 			{
 				VERTEX = GL_VERTEX_SHADER,
-				TESS_CONTROL = GL_TESS_CONTROL_SHADER,
-				TESS_EVALUATION = GL_TESS_EVALUATION_SHADER,
+				TESSELATION_CONTROL = GL_TESS_CONTROL_SHADER,
+				TESSELATION_EVALUATION = GL_TESS_EVALUATION_SHADER,
 				GEOMETRY = GL_GEOMETRY_SHADER,
 				FRAGMENT = GL_FRAGMENT_SHADER
 			};
@@ -44,23 +45,22 @@ namespace Engine
 			static size_t get_max_fragment_uniforms();
 			static size_t get_max_geometry_uniforms();
 
-			GLSLProgram(const String::View& vertex_shader_name, const String::View& fragment_shader_name, std::ostream* p_ostream = nullptr);
-			GLSLProgram(const String::View& vertex_shader_name, const String::View& tesselation_control_shader_name, const String::View& tesselation_evaluation_shader_name, const String::View& fragment_shader_name, std::ostream* p_ostream = nullptr);
-			GLSLProgram(const String::View& vertex_shader_name, const String::View& geometry_shader_name, const String::View& fragment_shader_name, std::ostream* p_ostream = nullptr);
-			GLSLProgram(const String::View& vertex_shader_name, const String::View& tesselation_control_shader_name, const String::View& tesselation_evaluation_shader_name, const String::View& geometry_shader_name, const String::View& fragment_shader_name, std::ostream* p_ostream = nullptr);
-			GLSLProgram(const GLSLProgram& rhs);
+			GLSLProgram(const String::View& vertex_shader_name, const String::View& fragment_shader_name, std::ostream& error_log);
+			GLSLProgram(const String::View& vertex_shader_name, const String::View& tesselation_control_shader_name, const String::View& tesselation_evaluation_shader_name, const String::View& fragment_shader_name, std::ostream& error_log);
+			GLSLProgram(const String::View& vertex_shader_name, const String::View& geometry_shader_name, const String::View& fragment_shader_name, std::ostream& error_log);
+			GLSLProgram(const String::View& vertex_shader_name, const String::View& tesselation_control_shader_name, const String::View& tesselation_evaluation_shader_name, const String::View& geometry_shader_name, const String::View& fragment_shader_name, std::ostream& error_log);
+			GLSLProgram(const GLSLProgram& rhs, std::ostream& error_log);
 			GLSLProgram(GLSLProgram&& rhs);
 			~GLSLProgram();
 
-			GLSLProgram& operator=(const GLSLProgram& rhs);
+			GLSLProgram& operator=(const GLSLProgram& rhs) = delete;
 			GLSLProgram& operator=(GLSLProgram&& rhs);
 
 			bool operator==(const GLSLProgram& rhs) const;
 			bool operator!=(const GLSLProgram& rhs) const;
 
 			void use() const;
-			String build();
-			String get_log() const;
+			void build(std::ostream& error_log);
 			size_t get_shader_count() const;
 			size_t get_active_subroutine_uniform_locations(const Stage shader_type) const;
 
@@ -95,6 +95,7 @@ namespace Engine
 			bool set_uniform(const Map<String::View>& names, Stage stage) const;
 
 			void swap(GLSLProgram& rhs) override;
+			void write(std::ostream& ostream) const override;
 
 			//void set_uniform(const String::View& name, const DynamicArray<float>& values) const;
 			//void set_uniform(const String::View& name, const DynamicArray<FMatrix4>& values) const;

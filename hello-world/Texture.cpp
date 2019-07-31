@@ -24,10 +24,10 @@ namespace Engine
 			IVector2 size;
 			int comp_count;
 
-			String path = AssetRoots::TEXTURES.generic_string();
-			path.append(name);
+			String file_name = AssetRoots::TEXTURES.generic_string();
+			file_name.append(name);
 
-			Byte* const p_image_data = stbi_load(path.c_str(), &size.x, &size.y, &comp_count, 0);
+			Byte* const p_image_data = stbi_load(file_name.c_str(), &size.x, &size.y, &comp_count, 0);
 			if (p_image_data)
 			{
 				// default values
