@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-	Entity::Entity(const Entity&)
+	constexpr Entity::Entity(const Entity&)
 	{}
 
 	bool Entity::is_alive() const

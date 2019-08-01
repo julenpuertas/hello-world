@@ -1,8 +1,9 @@
 #pragma once
+#include <functional>
 #include <typeindex>
 #include "String.h"
-#include "Entity.h"
 #include "Hasheable.h"
+#include "Entity.h"
 
 namespace Engine
 {
@@ -14,8 +15,8 @@ namespace Engine
 		GameObject* p_owner_ = nullptr;
 
 	protected:
-		Component() = default;
-		Component(const Component&);
+		constexpr Component() = default;
+		constexpr Component(const Component&);
 
 		virtual void attach();
 		virtual void on_owner_set();
@@ -27,9 +28,9 @@ namespace Engine
 			std::type_index type_;
 
 		public:
-			TypeInfo(const std::type_info& type, const Requirement<GameObject>& requirement_to_be_instantiated_in = nullptr);
-			TypeInfo(const std::type_info& type, const TypeInfo& parent_type, const Requirement<GameObject>& requirement_to_be_instantiated_in = nullptr);
-			TypeInfo(const std::type_info& type, const std::initializer_list<TypeInfo>& parent_types, const Requirement<GameObject>& requirement_to_be_instantiated_in = nullptr);
+			TypeInfo(const std::type_info& type, const std::function<bool(const GameObject&)>& requirement_to_be_instantiated_in = nullptr);
+			TypeInfo(const std::type_info& type, const TypeInfo& parent_type, const std::function<bool(const GameObject&)>& requirement_to_be_instantiated_in = nullptr);
+			TypeInfo(const std::type_info& type, const std::initializer_list<TypeInfo>& parent_types, const std::function<bool(const GameObject&)>& requirement_to_be_instantiated_in = nullptr);
 
 			bool operator==(const TypeInfo& rhs) const;
 			bool operator!=(const TypeInfo& rhs) const;

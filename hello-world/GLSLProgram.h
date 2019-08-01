@@ -6,18 +6,22 @@
 #include "Matrix.h"
 #include "Writable.h"
 
+#include "GraphicsMaterial.h"
+#include "Light.h"
+#include "Transform.h"
+
 namespace Engine
 {
-	class Transform;
+	//class Transform;
 
 	namespace Graphics
 	{
 		class Texture;
-		class Light;
-		class Material;
+		//class Light;
+		//class Material;
 
 		class GLSLProgram
-			: IO::IWritable
+			: public IO::IWritable
 			, public ISwapable<GLSLProgram>
 		{
 			GLint handle_ = 0;
@@ -39,6 +43,24 @@ namespace Engine
 				TESSELATION_EVALUATION = GL_TESS_EVALUATION_SHADER,
 				GEOMETRY = GL_GEOMETRY_SHADER,
 				FRAGMENT = GL_FRAGMENT_SHADER
+			};
+
+			class SetSubroutineUniformsResult
+				: public IO::IWritable
+			{
+				DynamicArray<String> non_set_subroutine_uniforms_names_;
+				DynamicArray<String> non_set_subroutines_names_;
+				bool correct_subroutine_count_set_ = true;
+
+			public:
+				void incorrect_subroutine_count_set();
+				void add_non_set_subroutine_uniform_name(const String::View& non_set_subroutine_uniform_name);
+				void add_non_set_subroutine_name(const String::View& non_set_subroutine_name);
+
+				operator bool() const;
+				bool operator!() const;
+
+				void write(std::ostream& ostream) const override;
 			};
 
 			static size_t get_max_vertex_uniforms();
@@ -92,7 +114,7 @@ namespace Engine
 			bool set_uniform(const String::View& name, Texture& texture) const;
 			bool set_uniform(const String::View& name, const Transform& camera_transform, const Light& light) const;
 			bool set_uniform(const String::View& name, const Material& material) const;
-			bool set_uniform(const Map<String::View>& names, Stage stage) const;
+			SetSubroutineUniformsResult set_subroutine_uniforms(const Map<String::View>& names, Stage stage) const;
 
 			void swap(GLSLProgram& rhs) override;
 			void write(std::ostream& ostream) const override;

@@ -4,14 +4,14 @@ namespace Engine
 {
 	namespace Graphics
 	{
-		constexpr Light::Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular)
+		Light::Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular)
 			: type_(Type::DIRECTIONAL)
 			, ambient_(ambient)
 			, diffuse_(diffuse)
 			, specular_(specular)
 		{}
 
-		constexpr Light::Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular, const FVector3& attenuation)
+		Light::Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular, const FVector3& attenuation)
 			: type_(Type::POINT)
 			, ambient_(ambient)
 			, diffuse_(diffuse)
@@ -19,7 +19,7 @@ namespace Engine
 			, attenuation_(attenuation)
 		{}
 
-		constexpr Light::Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular, const FVector3& attenuation, float inner_cone_degrees, float outer_cone_degrees)
+		Light::Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular, const FVector3& attenuation, float inner_cone_degrees, float outer_cone_degrees)
 			: type_(Type::SPOT)
 			, ambient_(ambient)
 			, diffuse_(diffuse)

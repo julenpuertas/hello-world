@@ -4,19 +4,19 @@
 namespace
 {
 	Engine::IHasheable::MultiMap<Engine::Component::TypeInfo> g_types;
-	Engine::IHasheable::Map<Engine::Component::TypeInfo, Engine::Requirement<Engine::GameObject> > g_requirements_to_be_instantiated_in;
+	Engine::IHasheable::Map<Engine::Component::TypeInfo, std::function<bool(const Engine::GameObject&)> > g_requirements_to_be_instantiated_in;
 }
 
 namespace Engine
 {
-	Component::TypeInfo::TypeInfo(const std::type_info& type, const Requirement<GameObject>& requirement_to_be_instantiated_in)
+	Component::TypeInfo::TypeInfo(const std::type_info& type, const std::function<bool(const GameObject&)>& requirement_to_be_instantiated_in)
 		: type_(type)
 	{
 		if (requirement_to_be_instantiated_in)
 			g_requirements_to_be_instantiated_in.emplace(*this, requirement_to_be_instantiated_in);
 	}
 
-	Component::TypeInfo::TypeInfo(const std::type_info& type, const TypeInfo& parent_type, const Requirement<GameObject>& requirement_to_be_instantiated_in)
+	Component::TypeInfo::TypeInfo(const std::type_info& type, const TypeInfo& parent_type, const std::function<bool(const GameObject&)>& requirement_to_be_instantiated_in)
 		: type_(type)
 	{
 		const TypeInfo& ref_this = *this;
@@ -26,7 +26,7 @@ namespace Engine
 			g_requirements_to_be_instantiated_in.emplace(ref_this, requirement_to_be_instantiated_in);
 	}
 
-	Component::TypeInfo::TypeInfo(const std::type_info& type, const std::initializer_list<TypeInfo>& parent_types, const Requirement<GameObject>& requirement_to_be_instantiated_in)
+	Component::TypeInfo::TypeInfo(const std::type_info& type, const std::initializer_list<TypeInfo>& parent_types, const std::function<bool(const GameObject&)>& requirement_to_be_instantiated_in)
 		: type_(type)
 	{
 		const TypeInfo& ref_this = *this;
@@ -99,7 +99,7 @@ namespace Engine
 	bool Component::TypeInfo::can_be_instantiated_in(const GameObject& game_object) const
 	{
 		const TypeInfo& ref_this = *this;
-		const IHasheable::Map<TypeInfo, Requirement<GameObject> >::const_iterator it = g_requirements_to_be_instantiated_in.find(ref_this);
+		const IHasheable::Map<TypeInfo, std::function<bool(const GameObject&)> >::const_iterator it = g_requirements_to_be_instantiated_in.find(ref_this);
 
 		if (it != g_requirements_to_be_instantiated_in.cend() && !it->second(game_object))
 			return false;
@@ -119,7 +119,7 @@ namespace Engine
 		return std::hash<std::type_index>()(type_);
 	}
 
-	Component::Component(const Component&)
+	constexpr Component::Component(const Component&)
 	{}
 
 	void Component::attach()

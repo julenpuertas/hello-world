@@ -10,16 +10,16 @@ namespace Engine
 			: public Component
 		{
 		public:
-			enum class Type : unsigned int
+			enum class Type : unsigned
 			{
 				POINT = 0,
 				DIRECTIONAL = 1,
 				SPOT = 2
 			};
 
-			constexpr Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular);
-			constexpr Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular, const FVector3& attenuation);
-			constexpr Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular, const FVector3& attenuation, float inner_cone_degrees, float outer_cone_degrees);
+			Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular);
+			Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular, const FVector3& attenuation);
+			Light(const FVector3& ambient, const FVector3& diffuse, const FVector3& specular, const FVector3& attenuation, float inner_cone_degrees, float outer_cone_degrees);
 			
 			constexpr Type get_type() const;
 			constexpr void set_type(Type type);
@@ -48,8 +48,8 @@ namespace Engine
 			FVector3 diffuse_;
 			FVector3 specular_;
 			FVector3 attenuation_;
-			float inner_cone_degrees_;
-			float outer_cone_degrees_;
+			float inner_cone_degrees_ = 0.f;
+			float outer_cone_degrees_ = 0.f;
 		};
 	}
 }

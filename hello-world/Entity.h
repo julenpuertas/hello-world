@@ -9,8 +9,8 @@ namespace Engine
 		bool alive_ = true;
 
 	protected:
-		Entity() = default;
-		explicit Entity(const Entity&);
+		constexpr Entity() = default;
+		constexpr explicit Entity(const Entity&);
 
 	public:
 		virtual ~Entity() = default;

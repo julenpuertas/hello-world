@@ -207,7 +207,8 @@ namespace Engine
 		T GLMVectorWrapper<VectorT, T, N, GLMVectorT, P>::dot(const VectorT<T, N>& rhs) const
 		{
 			const GLMVectorT<T, P>& vector = *this;
-			return glm::dot(vector, rhs);
+			const GLMVectorT<T, P>& rhs_vector = rhs;
+			return glm::dot(vector, rhs_vector);
 		}
 
 		template <template <typename, size_t> typename VectorT, typename T, size_t N, template <typename, glm::precision> typename GLMVectorT, glm::precision P>
