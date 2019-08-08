@@ -2,6 +2,8 @@
 #include "Texture.h"
 #include "AssetRoots.h"
 
+#include "Rotation.h"
+
 namespace Engine
 {
 	namespace Graphics

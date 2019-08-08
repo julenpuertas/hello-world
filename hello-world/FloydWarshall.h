@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Table.h"
 
 namespace Engine

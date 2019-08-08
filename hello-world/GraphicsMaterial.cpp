@@ -13,22 +13,22 @@ namespace Engine
 {
 	namespace Graphics
 	{
-		constexpr float Material::get_shininess() const
+		float Material::get_shininess() const
 		{
 			return shininess_;
 		}
 
-		constexpr void Material::set_shininess(float shininess)
+		void Material::set_shininess(float shininess)
 		{
 			shininess_ = shininess;
 		}
 
-		constexpr float Material::get_parallax_scale() const
+		float Material::get_parallax_scale() const
 		{
 			return parallax_scale_;
 		}
 
-		constexpr void Material::set_parallax_scale(float parallax_scale)
+		void Material::set_parallax_scale(float parallax_scale)
 		{
 			parallax_scale_ = parallax_scale;
 		}

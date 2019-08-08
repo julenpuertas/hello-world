@@ -1,5 +1,4 @@
 #pragma once
-
 #include "GLMVectorWrapper.h"
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>

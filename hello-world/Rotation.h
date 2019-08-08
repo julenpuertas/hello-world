@@ -2,7 +2,6 @@
 #include <glm\gtc\quaternion.hpp>
 #include "Array.h"
 #include "Pair.h"
-#include "Vector.h"
 #include "Matrix.h"
 
 namespace Engine
@@ -33,7 +32,7 @@ namespace Engine
 		FVector3 get_euler_angles() const;
 		Pair<FVector3, float> get_axis_angle() const;
 		FVector3 get_orientation(Math::Axis axis) const;
-		Array<FVector3, 3> get_orientation() const;
+		Array<FVector3, FVector3::SIZE> get_orientation() const;
 		FMatrix3 get_matrix() const;
 	};
 }

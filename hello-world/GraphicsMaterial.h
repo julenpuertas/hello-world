@@ -20,12 +20,10 @@ namespace Engine
 			Texture* p_depth_map_ = nullptr;
 
 		public:
-			constexpr Material() = default;
-
-			constexpr float get_shininess() const;
-			constexpr void set_shininess(float shininess);
-			constexpr float get_parallax_scale() const;
-			constexpr void set_parallax_scale(float parallax_scale);
+			float get_shininess() const;
+			void set_shininess(float shininess);
+			float get_parallax_scale() const;
+			void set_parallax_scale(float parallax_scale);
 
 			Texture& get_ambient() const;
 			void set_ambient(const String::View& name);

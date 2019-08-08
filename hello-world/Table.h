@@ -1,5 +1,4 @@
 #pragma once
-
 #include "DynamicArray.h"
 #include "Vector.h"
 #include "Swapable.h"

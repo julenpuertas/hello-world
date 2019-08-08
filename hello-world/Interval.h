@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Readable.h"
 #include "Writable.h"
 

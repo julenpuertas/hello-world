@@ -1,5 +1,4 @@
 #pragma once
-
 #include "BaseSortedDynamicArray.h"
 
 namespace Engine

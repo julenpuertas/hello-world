@@ -90,7 +90,7 @@ namespace Engine
 
 	Pair<FVector3, float> Rotation::get_axis_angle() const
 	{
-		return std::make_pair(glm::axis(quaternion_), glm::degrees(glm::angle(quaternion_)));
+		return std::make_pair(FVector3(glm::axis(quaternion_)), glm::degrees(glm::angle(quaternion_)));
 	}
 
 	FVector3 Rotation::get_orientation(Math::Axis axis) const
@@ -98,12 +98,10 @@ namespace Engine
 		return *this * FVector3(axis);
 	}
 
-	Array<FVector3, 3> Rotation::get_orientation() const
+	Array<FVector3, FVector3::SIZE> Rotation::get_orientation() const
 	{
-		Array<FVector3, 3> result;
-		constexpr size_t size = result.size();
-
-		for (size_t i = 0; i < size; ++i)
+		Array<FVector3, FVector3::SIZE> result;
+		for (size_t i = 0; i < FVector3::SIZE; ++i)
 			result[i] = get_orientation(static_cast<Math::Axis>(i));
 
 		return result;

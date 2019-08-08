@@ -1,10 +1,10 @@
 #include <fstream>
 #include "Angles.h"
 #include "AssetRoots.h"
+#include "Light.h"
 #include "Texture.h"
 #include "GraphicsMaterial.h"
 #include "GameObject.h"
-#include "Light.h"
 #include "GLSLProgram.h"
 
 namespace
@@ -445,12 +445,12 @@ namespace Engine
 			return value;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, bool value) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, bool value) const
 		{
-			return set_uniform(name, value ? 1u : 0u);
+			return try_set_uniform(name, value ? 1u : 0u);
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, int value) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, int value) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -460,7 +460,7 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, unsigned value) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, unsigned value) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -470,7 +470,7 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, float value) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, float value) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -480,17 +480,18 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, const SVector2& vector) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, const SVector2& vector) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
 				return false;
 
-			glProgramUniform2ui(handle_, uniform_location, vector.x, vector.y);
+			Math::Vector<GLuint, 2> ogl_vector = vector;
+			glProgramUniform2ui(handle_, uniform_location, ogl_vector.x, ogl_vector.y);
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, const IVector2& vector) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, const IVector2& vector) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -500,7 +501,7 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, const FVector2& vector) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, const FVector2& vector) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -510,7 +511,7 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, const FVector3& vector) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, const FVector3& vector) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -520,7 +521,7 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, const FVector4& vector) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, const FVector4& vector) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -530,7 +531,7 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, const FMatrix3& matrix) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, const FMatrix3& matrix) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -540,7 +541,7 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, const FMatrix4& matrix) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, const FMatrix4& matrix) const
 		{
 			const GLint uniform_location = get_uniform_location(name);
 			if (uniform_location < 0)
@@ -550,19 +551,9 @@ namespace Engine
 			return true;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, Texture& texture) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, const Transform& camera_transform, const Light& light) const
 		{
-			const GLint uniform_location = get_uniform_location(name);
-			if (uniform_location < 0)
-				return false;
-
-			glProgramUniform1i(handle_, uniform_location, texture.get_location());
-			return true;
-		}
-
-		bool GLSLProgram::set_uniform(const String::View& name, const Transform& camera_transform, const Light& light) const
-		{
-//#if 0
+#if 0
 			const GameObject* p_light_owner = light.get_owner();
 			if (!p_light_owner)
 				return false;
@@ -575,91 +566,98 @@ namespace Engine
 
 			String material_name = name;
 			material_name += ".translation_";
-			if (!set_uniform(material_name, light_transform.get_translation()))
+			if (!try_set_uniform(material_name, light_transform.get_translation()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".orientation_";
-			if (!set_uniform(material_name, light_transform.get_rotation().get_orientation(Math::Axis::Z)))
+			if (!try_set_uniform(material_name, light_transform.get_rotation().get_orientation(Math::Axis::Z)))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".type_";
-			if (!set_uniform(material_name, static_cast<unsigned>(light.get_type())))
+			if (!try_set_uniform(material_name, static_cast<unsigned>(light.get_type())))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".inner_cone_radians_";
-			if (!set_uniform(material_name, Math::Angles::degrees_to_radians(light.get_inner_cone_degrees())))
+			if (!try_set_uniform(material_name, Math::Angles::degrees_to_radians(light.get_inner_cone_degrees())))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".outer_cone_radians_";
-			if (!set_uniform(material_name, Math::Angles::degrees_to_radians(light.get_outer_cone_degrees())))
+			if (!try_set_uniform(material_name, Math::Angles::degrees_to_radians(light.get_outer_cone_degrees())))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".attenuation_";
-			if (!set_uniform(material_name, light.get_attenuation()))
+			if (!try_set_uniform(material_name, light.get_attenuation()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".ambient_";
-			if (!set_uniform(material_name, light.get_ambient()))
+			if (!try_set_uniform(material_name, light.get_ambient()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".diffuse_";
-			if (!set_uniform(material_name, light.get_diffuse()))
+			if (!try_set_uniform(material_name, light.get_diffuse()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".specular_";
-			return set_uniform(material_name, light.get_specular());
-//#endif
-//			return false;
+			return try_set_uniform(material_name, light.get_specular());
+#endif
+			return false;
 		}
 
-		bool GLSLProgram::set_uniform(const String::View& name, const Material& material) const
+		bool GLSLProgram::try_set_uniform(const String::View& name, Texture& texture) const
 		{
-#if 0
+			const GLint uniform_location = get_uniform_location(name);
+			if (uniform_location < 0)
+				return false;
+
+			glProgramUniform1i(handle_, uniform_location, static_cast<GLint>(texture.get_location()));
+			return true;
+		}
+
+		bool GLSLProgram::try_set_uniform(const String::View& name, const Material& material) const
+		{
 			const size_t name_size = name.size();
 
 			String material_name = name;
 			material_name += ".diffuse_";
-			if (!set_uniform(material_name, material.get_diffuse()))
+			if (!try_set_uniform(material_name, material.get_diffuse()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".specular_";
-			if (!set_uniform(material_name, material.get_specular()))
+			if (!try_set_uniform(material_name, material.get_specular()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".emissive_";
-			if (!set_uniform(material_name, material.get_emissive()))
+			if (!try_set_uniform(material_name, material.get_emissive()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".shininess_";
-			if (!set_uniform(material_name, material.get_shininess()))
+			if (!try_set_uniform(material_name, material.get_shininess()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".normal_map_";
-			if (!set_uniform(material_name, material.get_normal_map()))
+			if (!try_set_uniform(material_name, material.get_normal_map()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".depth_map_";
-			if (!set_uniform(material_name, material.get_depth_map()))
+			if (!try_set_uniform(material_name, material.get_depth_map()))
 				return false;
 
 			material_name.erase(name_size);
 			material_name += ".parallax_scale_";
-			return set_uniform(material_name, material.get_parallax_scale());
-#endif
-			return false;
+			return try_set_uniform(material_name, material.get_parallax_scale());
 		}
 
 		GLSLProgram::SetSubroutineUniformsResult GLSLProgram::set_subroutine_uniforms(const Map<String::View>& names, Stage stage) const
@@ -696,13 +694,13 @@ namespace Engine
 						result.add_non_set_subroutine_uniform_name(uniform_subroutine.first);
 						all_set = false;
 					}
-					
+
 					else p_indices[location] = index;
 				}
 			}
 
 			if (all_set)
-				glUniformSubroutinesuiv(stage_index, required_names_size, p_indices);
+				glUniformSubroutinesuiv(stage_index, static_cast<GLsizei>(required_names_size), p_indices);
 
 			return result;
 		}

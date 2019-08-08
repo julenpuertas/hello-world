@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Axis.h"
 #include "Epsilon.h"
 

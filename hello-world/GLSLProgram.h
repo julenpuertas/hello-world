@@ -5,20 +5,17 @@
 #include "Map.h"
 #include "Matrix.h"
 #include "Writable.h"
-
-#include "GraphicsMaterial.h"
-#include "Light.h"
-#include "Transform.h"
+#include "DynamicArray.h"
 
 namespace Engine
 {
-	//class Transform;
+	class Transform;
 
 	namespace Graphics
 	{
 		class Texture;
-		//class Light;
-		//class Material;
+		class Light;
+		class Material;
 
 		class GLSLProgram
 			: public IO::IWritable
@@ -100,29 +97,24 @@ namespace Engine
 			template <> std::optional<FMatrix3> get_uniform<FMatrix3>(const String::View& name) const;
 			template <> std::optional<FMatrix4> get_uniform<FMatrix4>(const String::View& name) const;
 
-			bool set_uniform(const String::View& name, bool value) const;
-			bool set_uniform(const String::View& name, int value) const;
-			bool set_uniform(const String::View& name, unsigned value) const;
-			bool set_uniform(const String::View& name, float value) const;
-			bool set_uniform(const String::View& name, const SVector2& vextor) const;
-			bool set_uniform(const String::View& name, const IVector2& vextor) const;
-			bool set_uniform(const String::View& name, const FVector2& vextor) const;
-			bool set_uniform(const String::View& name, const FVector3& vextor) const;
-			bool set_uniform(const String::View& name, const FVector4& vextor) const;
-			bool set_uniform(const String::View& name, const FMatrix3& matrix) const;
-			bool set_uniform(const String::View& name, const FMatrix4& matrix) const;
-			bool set_uniform(const String::View& name, Texture& texture) const;
-			bool set_uniform(const String::View& name, const Transform& camera_transform, const Light& light) const;
-			bool set_uniform(const String::View& name, const Material& material) const;
+			bool try_set_uniform(const String::View& name, bool value) const;
+			bool try_set_uniform(const String::View& name, int value) const;
+			bool try_set_uniform(const String::View& name, unsigned value) const;
+			bool try_set_uniform(const String::View& name, float value) const;
+			bool try_set_uniform(const String::View& name, const SVector2& vextor) const;
+			bool try_set_uniform(const String::View& name, const IVector2& vextor) const;
+			bool try_set_uniform(const String::View& name, const FVector2& vextor) const;
+			bool try_set_uniform(const String::View& name, const FVector3& vextor) const;
+			bool try_set_uniform(const String::View& name, const FVector4& vextor) const;
+			bool try_set_uniform(const String::View& name, const FMatrix3& matrix) const;
+			bool try_set_uniform(const String::View& name, const FMatrix4& matrix) const;
+			bool try_set_uniform(const String::View& name, const Transform& camera_transform, const Light& light) const;
+			bool try_set_uniform(const String::View& name, Texture& texture) const;
+			bool try_set_uniform(const String::View& name, const Material& material) const;
 			SetSubroutineUniformsResult set_subroutine_uniforms(const Map<String::View>& names, Stage stage) const;
 
 			void swap(GLSLProgram& rhs) override;
 			void write(std::ostream& ostream) const override;
-
-			//void set_uniform(const String::View& name, const DynamicArray<float>& values) const;
-			//void set_uniform(const String::View& name, const DynamicArray<FMatrix4>& values) const;
-			//void set_uniform(const String::View& name, const DynamicArray<FMatrix3>& values) const;
-			//void set_uniform(const String::View& name, const DynamicArray<FVector4>& values) const;
 		};
 	}
 }

@@ -11,9 +11,22 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Division.h"
+#include "Rotation.h"
+
+using namespace Engine;
 
 static void windowwwwww()
 {
+	Rotation foo;
+	foo.get_matrix();
+	foo.rotate_over(0.f, Math::Axis::Z);
+
+	foo.get_orientation();
+	foo.get_orientation(Math::Axis::Z);
+	foo.get_axis_angle();
+	foo.get_euler_angles();
+	foo.rotate_over(0.f, FVector3::RIGHT);
+
 	GLFWwindow* window;
 
 	/* Initialize the library */
