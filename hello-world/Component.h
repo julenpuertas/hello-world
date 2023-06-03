@@ -15,13 +15,13 @@ namespace Engine
 		GameObject* p_owner_ = nullptr;
 
 	protected:
-		constexpr Component() = default;
-		constexpr Component(const Component&);
-
 		virtual void attach();
 		virtual void on_owner_set();
 
 	public:
+		constexpr Component() = default;
+		Component(const Component&);
+
 		class TypeInfo
 			: public IHasheable
 		{

@@ -204,6 +204,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="AssetRoots.cpp" />
     <ClCompile Include="FloydWarshall.cpp" />
+    <ClCompile Include="foo.cpp" />
     <ClCompile Include="Frustrum.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDestroyed.cpp" />
@@ -308,7 +309,6 @@
     <None Include="Angles.inl" />
     <None Include="BaseSortedDynamicArray.inl" />
     <None Include="Clonable.inl" />
-    <None Include="Color.inl" />
     <None Include="Constants.inl" />
     <None Include="Division.inl" />
     <None Include="DynamicArray.inl" />

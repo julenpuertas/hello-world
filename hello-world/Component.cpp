@@ -119,7 +119,7 @@ namespace Engine
 		return std::hash<std::type_index>()(type_);
 	}
 
-	constexpr Component::Component(const Component&)
+	Component::Component(const Component&)
 	{}
 
 	void Component::attach()

@@ -1,6 +1,5 @@
 #pragma once
 #include "GLMMatrixWrapper.h"
-#include "Vector.h"
 
 namespace Engine
 {
